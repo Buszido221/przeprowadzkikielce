@@ -15,7 +15,7 @@ export const hero = {
 export const trustFacts = [
   {
     title: 'Od 2019 roku',
-    desc: 'Setki przeprowadzek i transportów na koncie.',
+    desc: 'Rozwijamy system przeprowadzek, transportu i magazynowania.',
   },
   {
     title: 'Wszystko w jednym miejscu',
@@ -26,8 +26,8 @@ export const trustFacts = [
     desc: 'Wózki, schodołaz, windy załadunkowe, pokrowce i pasy.',
   },
   {
-    title: 'Rozmawiasz z Mateuszem',
-    desc: 'Właściciel osobiście odpowiada na zapytania.',
+    title: 'Odpowiada zespół WHM',
+    desc: 'Jedna marka odpowiada za ustalony zakres i realizację.',
   },
 ];
 
@@ -75,7 +75,7 @@ export const servicesSection = {
       image: '/images/packing-services/pakowanie-przeprowadzki-kielce-3.webp',
     },
   ],
-  cta: { label: 'Zobacz pełną ofertę', href: '/przeprowadzki/' },
+  cta: { label: 'Zobacz pełną ofertę', href: '/uslugi/' },
 };
 
 export const standardSection = {
@@ -122,7 +122,7 @@ export const realizationsSection = {
 export const specialTransportSection = {
   eyebrow: 'Transport specjalistyczny',
   heading: 'Masz coś ciężkiego lub nietypowego? Zajmiemy się tym.',
-  text: 'Pianina, sejfy, piece, duże AGD, wyposażenie laboratoryjne - przewieźliśmy już setki takich przedmiotów. Pokaż nam, co i skąd trzeba zabrać, a dobierzemy najlepszy sposób transportu.',
+  text: 'Pianina, sejfy, piece, duże AGD, serwery i wyposażenie laboratoryjne wymagają oceny przed realizacją. Pokaż nam, co i skąd trzeba zabrać, a dobierzemy sposób transportu.',
   categories: [
     'pianina i fortepiany',
     'ciężkie meble',
@@ -192,8 +192,8 @@ export const ecosystemSection = {
   heading: 'Przeprowadzka, przechowanie i materiały - wszystko w jednym miejscu.',
   storage: {
     title: 'Magazyny WHM',
-    text: 'Nie zawsze terminy się zgadzają. Jeśli potrzebujesz bezpiecznie przechować rzeczy między wyprowadzką a wprowadzeniem - mamy na to miejsce.',
-    cta: { label: 'Poznaj Magazyny WHM', href: '/magazyny/' },
+    text: 'Ogrzewane boksy od 2 do 9 m² wspierają przeprowadzki, remonty i relokacje etapowe. Obiekt jest gotowy i częściowo zajęty.',
+    cta: { label: 'Poznaj Magazyny WHM', href: '/magazyny-kielce/' },
   },
   shop: {
     title: 'WHM Shop',
@@ -239,10 +239,10 @@ export const processSection = {
 };
 
 export const guideSection = {
-  eyebrow: 'Darmowy poradnik',
+  eyebrow: 'Poradniki WHM',
   heading: 'Przygotuj się do przeprowadzki spokojnie i bez chaosu.',
-  text: 'Stworzyliśmy praktyczny poradnik w PDF, który pomoże Ci zaplanować przeprowadzkę krok po kroku - od pierwszych przygotowań po rozpakowywanie w nowym miejscu.',
-  cta: { label: 'Pobierz poradnik', href: '/poradnik/' },
+  text: 'Praktyczny poradnik pomoże Ci zaplanować przeprowadzkę krok po kroku - od pierwszych przygotowań po dzień transportu.',
+  cta: { label: 'Przeczytaj poradnik', href: '/poradniki/' },
   image: '/images/guides/poradnik-jak-przygotowac-sie-do-przeprowadzki.webp',
 };
 

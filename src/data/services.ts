@@ -310,15 +310,15 @@ export const transportSpecPage = {
     items: [
       {
         title: 'Transport pianin i fortepianów',
-        desc: 'Instrument klawiszowy wymaga oceny konstrukcji, drogi transportowej i zabezpieczenia - zajmujemy się tym od lat.',
+        desc: 'Instrument klawiszowy wymaga oceny konstrukcji, drogi transportowej i zabezpieczenia.',
         href: '/transport-pianin-i-fortepianow-kielce/',
         image: '/images/transport-pianin-i-fortepianow/transport-pianin-i-fortepianow-kielce-3.webp',
         alt: 'Pianino zabezpieczone pokrowcami i pasami przed transportem',
       },
       {
-        title: 'Transport gabarytowy',
+        title: 'Ciężkie i nietypowe wyposażenie',
         desc: 'Ciężkie meble, urządzenia i nietypowe wyposażenie - oceniamy wymiary, masę i całą drogę transportową, zanim ruszymy.',
-        href: '/transport-gabarytowy-kielce/',
+        href: '#wycena',
         image: '/images/transport-gabarytow/transport-gabarytow-kielce-7.webp',
         alt: 'Duży zabezpieczony przedmiot podnoszony przy użyciu specjalistycznego sprzętu',
       },
@@ -344,7 +344,7 @@ export const transportSpecPage = {
     eyebrow: 'Sprzęt dobieramy do zadania',
     heading: 'Realne wyposażenie WHM',
     text: 'Koce i pokrowce ochronne, pasy transportowe, wózki, windy załadunkowe, schodołaz Escalera oraz zabezpieczenia przestrzeni ładunkowej - dobieramy je do konkretnego przedmiotu i warunków, z jakimi mamy do czynienia.',
-    notice: 'WHM realizowało transporty przedmiotów ważących około 400 kg. Nie oznacza to automatycznej możliwości przewiezienia każdego przedmiotu o podobnej masie - znaczenie mają również wymiary, konstrukcja oraz droga transportowa.',
+    notice: 'W realizacjach WHM były między innymi szafy serwerowe o wysokości ponad 2 m przenoszone przez okno, piece, serwery i wyposażenie laboratoryjne. Każde kolejne zadanie oceniamy jednak osobno — znaczenie mają masa, wymiary, konstrukcja i droga transportowa.',
   },
   gallery: {
     eyebrow: 'Galeria zakresu specjalistycznego',
@@ -510,14 +510,14 @@ export const pianinaPage = {
 };
 
 /* ===================================================
-   /transport-gabarytowy-kielce/
+   Historyczne dane skonsolidowane w /transport-specjalistyczny/
    =================================================== */
 
 export const gabarytyPage = {
   seo: {
     title: 'Transport gabarytowy Kielce | Ciężkie przedmioty WHM',
     description: 'Transport gabarytowy w Kielcach. Ciężkie meble, urządzenia i nietypowe wyposażenie po wcześniejszej ocenie wymiarów, masy i drogi transportowej.',
-    canonical: `${site.domain}transport-gabarytowy-kielce/`,
+    canonical: `${site.domain}transport-specjalistyczny/`,
   },
   breadcrumbs: [
     { label: 'Transport specjalistyczny', href: '/transport-specjalistyczny/' },
@@ -673,17 +673,17 @@ export const magazynyPage = {
   seo: {
     title: 'Magazyny i przechowywanie mienia Kielce | WHM',
     description: 'Magazyny WHM w Masłowie koło Kielc. Suche i ogrzewane schowki do przechowywania mienia. Dostępność potwierdzamy indywidualnie.',
-    canonical: `${site.domain}magazyny/`,
+    canonical: `${site.domain}magazyny-kielce/`,
   },
   breadcrumbs: [{ label: 'Magazyny WHM' }],
   hero: {
     heading: 'Przechowywanie mienia w suchych i ogrzewanych schowkach',
-    lead: 'Magazyny WHM rozszerzają przeprowadzkę o etap pomiędzy odbiorem a dostarczeniem mienia. Nowa lokalizacja przy ulicy Lotniczej 60A w Masłowie jest obecnie przygotowywana.',
+    lead: 'Magazyny WHM rozszerzają przeprowadzkę o etap pomiędzy odbiorem a dostarczeniem mienia. Ogrzewane boksy od 2 do 9 m² przy ulicy Lotniczej 60A w Masłowie są gotowe i częściowo zajęte.',
     ctaLabel: 'Zapytaj o dostępność',
     ctaHref: '/kontakt/',
     heroImage: null as string | null,
   },
-  status: 'Nowa lokalizacja Magazynów WHM w Masłowie jest w trakcie przygotowania. Dostępność schowków i możliwy termin przyjęcia mienia potwierdzamy indywidualnie - zadzwoń lub napisz, a podamy Ci aktualne informacje.',
+  status: 'Magazyny WHM w Masłowie są gotowe i częściowo zajęte. Dostępność boksu od 2 do 9 m² oraz możliwy termin przyjęcia mienia potwierdzamy indywidualnie.',
   asPart: {
     eyebrow: 'Magazyn jako część procesu',
     heading: 'Kiedy przechowywanie bywa przydatne',
@@ -696,11 +696,12 @@ export const magazynyPage = {
     ],
   },
   features: {
-    eyebrow: 'Docelowy standard schowków',
+    eyebrow: 'Standard boksów',
     heading: 'Cechy magazynów WHM',
     items: [
       'Suche pomieszczenia',
       'Ogrzewane schowki',
+      'Boksy od 2 do 9 m²',
       'Ochrona mienia przed wpływem warunków atmosferycznych',
       'Możliwość połączenia przechowywania z usługą przeprowadzkową',
       'Lokalizacja w Masłowie Pierwszym',
@@ -741,11 +742,11 @@ export const magazynyPage = {
   faq: [
     {
       question: 'Gdzie znajdują się Magazyny WHM?',
-      answer: 'Magazyny WHM znajdują się pod adresem Lotnicza 60A, 26-001 Masłów Pierwszy. Nowa lokalizacja jest obecnie w trakcie przygotowania.',
+      answer: 'Magazyny WHM znajdują się pod adresem Lotnicza 60A, 26-001 Masłów Pierwszy. Obiekt jest gotowy i częściowo zajęty.',
     },
     {
       question: 'Czy schowki są ogrzewane?',
-      answer: 'Tak, schowki są ogrzewane. To suche pomieszczenia, które chronią Twoje mienie przed wilgocią.',
+      answer: 'Tak, boksy od 2 do 9 m² znajdują się w ogrzewanym obiekcie.',
     },
     {
       question: 'Czy można połączyć przeprowadzkę z magazynowaniem?',
@@ -766,7 +767,7 @@ export const magazynyPage = {
   ],
   finalCta: {
     heading: 'Zapytaj o dostępność i możliwy termin',
-    text: 'Opisz rodzaj mienia, jego przybliżoną ilość oraz planowany okres przechowywania. Dostępność nowej lokalizacji potwierdzimy po kontakcie.',
+    text: 'Opisz rodzaj mienia, jego przybliżoną ilość oraz planowany okres przechowywania. Dostępność właściwego boksu potwierdzimy po kontakcie.',
   },
 };
 
@@ -1030,7 +1031,7 @@ export const realizacjePage = {
     { title: 'Przeprowadzki firm i biur', desc: 'Uporządkowane i zabezpieczone wyposażenie biurowe podczas realizacji.', image: '/images/office-moving/przeprowadzki-biura-2.webp', alt: 'Uporządkowane i zabezpieczone wyposażenie biurowe podczas realizacji', href: '/przeprowadzki-firm-i-instytucji/' },
     { title: 'Obsługa instytucji', desc: 'Praca zespołu WHM przy obiekcie instytucjonalnym.', image: '/images/institution-moving/przeprowadzki-instytucji-2.webp', alt: 'Praca zespołu WHM przy obiekcie instytucjonalnym', href: '/przeprowadzki-firm-i-instytucji/' },
     { title: 'Pakowanie i zabezpieczanie', desc: 'Duży mebel zabezpieczony pokrowcem i pasami przed wyniesieniem.', image: '/images/packing-services/pakowanie-przeprowadzki-kielce-3.webp', alt: 'Duży mebel zabezpieczony pokrowcem i pasami przed wyniesieniem', href: '/pakowanie-i-zabezpieczanie/' },
-    { title: 'Transport gabarytowy', desc: 'Praca ze schodołazem podczas przenoszenia ciężkiego przedmiotu.', image: '/images/transport-gabarytow/transport-gabarytow-kielce-5.webp', alt: 'Praca ze schodołazem podczas przenoszenia ciężkiego przedmiotu', href: '/transport-gabarytowy-kielce/' },
+    { title: 'Transport specjalistyczny', desc: 'Praca ze schodołazem podczas przenoszenia ciężkiego przedmiotu.', image: '/images/transport-gabarytow/transport-gabarytow-kielce-5.webp', alt: 'Praca ze schodołazem podczas przenoszenia ciężkiego przedmiotu', href: '/transport-specjalistyczny/' },
     { title: 'Transport pianin i fortepianów', desc: 'Zabezpieczony instrument gotowy do przeniesienia przez zespół WHM.', image: '/images/transport-pianin-i-fortepianow/transport-pianin-i-fortepianow-kielce-4.webp', alt: 'Zabezpieczony instrument gotowy do przeniesienia przez zespół WHM', href: '/transport-pianin-i-fortepianow-kielce/' },
   ],
   finalCta: {
@@ -1133,14 +1134,14 @@ export const jakToDzialaPage = {
 };
 
 /* ===================================================
-   /poradnik/
+   Historyczne dane przeniesione do /poradniki/
    =================================================== */
 
 export const poradnikPage = {
   seo: {
     title: 'Jak przygotować się do przeprowadzki | Poradnik WHM',
     description: 'Praktyczny poradnik WHM: planowanie przeprowadzki, pakowanie kartonów, oznaczanie rzeczy, przygotowanie mebli i organizacja dnia transportu.',
-    canonical: `${site.domain}poradnik/`,
+    canonical: `${site.domain}poradniki/`,
   },
   breadcrumbs: [{ label: 'Poradnik' }],
   hero: {
@@ -1258,7 +1259,7 @@ export const poradnikPage = {
 export const oNasPage = {
   seo: {
     title: 'O WHM Przeprowadzki | Kielce i Masłów',
-    description: 'Poznaj WHM Przeprowadzki - firmę rozwijaną od 2019 roku przez Mateusza Konderę, działającą w obszarze przeprowadzek, transportu i przechowywania mienia.',
+    description: 'Poznaj WHM Przeprowadzki — zespół rozwijający od 2019 roku usługi przeprowadzkowe, transport specjalistyczny i przechowywanie mienia.',
     canonical: `${site.domain}o-nas/`,
   },
   breadcrumbs: [{ label: 'O nas' }],
@@ -1284,7 +1285,7 @@ export const oNasPage = {
     items: [
       { title: 'WHM Przeprowadzki', desc: 'Usługi przeprowadzkowe i transportowe dla osób prywatnych, firm i instytucji.', href: '/przeprowadzki/' },
       { title: 'WHM Shop', desc: 'Sklep z materiałami przeprowadzkowymi, powstały z doświadczenia operacyjnego.', href: '/whm-shop/' },
-      { title: 'Magazyny WHM', desc: 'Przechowywanie mienia w nowej lokalizacji w Masłowie. Dostępność potwierdzamy po kontakcie.', href: '/magazyny/' },
+      { title: 'Magazyny WHM', desc: 'Ogrzewane boksy od 2 do 9 m² w gotowym obiekcie w Masłowie. Dostępność potwierdzamy po kontakcie.', href: '/magazyny-kielce/' },
     ],
   },
   local: {

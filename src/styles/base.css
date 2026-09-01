@@ -1,6 +1,6 @@
 /* ===================================================
    WHM Przeprowadzki - Shared Base / Design Tokens
-   Loaded by both Layout.astro and SalesLandingLayout.astro
+   Loaded by the shared site layout.
    =================================================== */
 
 :root {
@@ -919,6 +919,19 @@ strong {
   flex-wrap: wrap;
   gap: var(--space-3);
   margin-bottom: var(--space-4);
+}
+
+.service-hero .btn--hero-secondary {
+  border-color: var(--color-border);
+  color: var(--color-text-primary);
+  background: transparent;
+  backdrop-filter: none;
+}
+
+.service-hero .btn--hero-secondary:hover {
+  border-color: var(--color-text-primary);
+  color: var(--color-text-primary);
+  background: var(--color-bg);
 }
 
 .service-hero__note {

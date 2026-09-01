@@ -1,0 +1,95 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import LeadForm from '../../components/forms/LeadForm.astro';
+import MobileStickyCta from '../../components/MobileStickyCta.astro';
+import { site } from '../../data/site';
+import { getRoute } from '../../data/routes';
+
+const route = getRoute('/dla-firm/');
+const canonical = `${site.domain}dla-firm/`;
+const pathways = [
+  { title: 'Relokacje firm i instytucji', text: 'Oględziny, plan, pakowanie, oznaczenia, transport i rozmieszczenie z myślą o ciągłości pracy.', href: '/przeprowadzki-firm-i-instytucji/', image: '/images/institution-moving/przeprowadzki-instytucji-2.webp' },
+  { title: 'Transport specjalistyczny', text: 'Serwery, wyposażenie laboratoryjne, piece i inne elementy wymagające indywidualnej technologii pracy.', href: '/transport-specjalistyczny/', image: '/images/transport-gabarytow/transport-gabarytow-kielce-7.webp' },
+  { title: 'Magazynowanie pomostowe', text: 'Ogrzewane boksy od 2 do 9 m² dla wyposażenia, dokumentów lub etapowej zmiany lokalizacji.', href: '/magazyny-kielce/', image: '/images/institution-moving/przeprowadzki-instytucji-3.webp' },
+  { title: 'Opróżnianie lokali', text: 'Wyniesienie i wywóz starych mebli oraz wyposażenia, z jasno opisanym zakresem wyłączeń.', href: '/oproznianie-mieszkan-i-wywoz-mebli/', image: '/images/furniture-assembly/montaz-demontaz-mebli-1.webp' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'CollectionPage', name: route.name, description: route.description, url: canonical },
+    { '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Strona główna', item: site.domain },
+      { '@type': 'ListItem', position: 2, name: route.name, item: canonical },
+    ] },
+  ],
+};
+---
+
+<Layout title={route.title} description={route.description} robots={route.robots} canonical={canonical} ogImage="/images/office-moving/przeprowadzki-biura-1.webp">
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <ServiceHero
+    eyebrow="WHM dla biznesu i instytucji"
+    heading="Relokacja, transport i magazynowanie w jednym odpowiedzialnym procesie"
+    lead="Koordynujemy zmianę lokalizacji, dokumenty, wyposażenie i zadania specjalistyczne. Zaczynamy od bezpłatnej wizji lokalnej i planu dopasowanego do pracy organizacji."
+    breadcrumbs={[{ label: route.name }]}
+    heroImage="/images/office-moving/przeprowadzki-biura-1.webp"
+    heroAlt="Zabezpieczone wyposażenie biurowe przygotowane przez zespół WHM"
+    secondaryCtaLabel="Porozmawiaj o projekcie"
+    secondaryCtaHref="#kontakt-b2b"
+  />
+
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading label="Ścieżki współpracy" title="Wybierz potrzebę, nie przypadkową mikrousługę" description="Każda większa realizacja może łączyć kilka kompetencji. Jeden koordynowany zakres ułatwia planowanie i rozliczenie odpowiedzialności." />
+      <div class="services-grid services-grid--2col">
+        {pathways.map((item) => (
+          <a class="service-card" href={item.href}><div class="service-card__media"><img src={item.image} alt="" role="presentation" width="600" height="400" loading="lazy" decoding="async" /></div><div class="service-card__body"><h2 class="service-card__title">{item.title}</h2><p class="service-card__desc">{item.text}</p><span class="service-card__link">Poznaj zakres</span></div></a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading label="Standard współpracy" title="Najpierw ograniczenia operacyjne, potem harmonogram" />
+      <div class="items-grid">
+        <article class="items-grid__item"><h3 class="items-grid__title">Bezpłatne oględziny</h3><p class="items-grid__desc">Rozpoznajemy lokalizacje, drogi, zakres i elementy ryzyka.</p></article>
+        <article class="items-grid__item"><h3 class="items-grid__title">Plan i etapy</h3><p class="items-grid__desc">Ustalamy kolejność prac tak, aby ograniczyć przestój organizacji.</p></article>
+        <article class="items-grid__item"><h3 class="items-grid__title">Oznaczenia i pojemniki</h3><p class="items-grid__desc">Setki zamykanych pojemników około 70 l wspierają transport archiwów i wyposażenia.</p></article>
+        <article class="items-grid__item"><h3 class="items-grid__title">Zaplecze WHM</h3><p class="items-grid__desc">Materiały, sprzęt, własny zespół i ogrzewane boksy od 2 do 9 m².</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="split-section split-section--reverse">
+        <div class="split-section__content">
+          <SectionHeading label="Dowód w praktyce" title="Relokacja instytucji bez przerwy w działaniu" description="W realizacji dla Prokuratury Kielce-Wschód i Kielce-Zachód zakres objął cztery piętra i piwnicę, duże archiwum oraz dziesiątki szaf i komputerów. Organizacja prac pozwoliła utrzymać ciągłość działania instytucji." />
+          <div class="section-cta"><a class="arrow-link" href="/realizacje/">Przejdź do studiów przypadków</a></div>
+        </div>
+        <div class="split-section__media"><img src="/images/institution-moving/przeprowadzki-instytucji-5.webp" alt="Zespół WHM podczas relokacji instytucjonalnej" width="800" height="600" loading="lazy" decoding="async" class="section-img" /></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading label="Odpowiedzialność" title="Ustalenia potwierdzone przed realizacją" description="Przed startem uzgadniamy zakres, zadania stron, sposób zabezpieczenia i dokumenty. WHM posiada ochronę ubezpieczeniową do 1 mln zł; zastosowanie oraz warunki potwierdzamy dla konkretnego projektu." />
+    </div>
+  </section>
+
+  <section id="kontakt-b2b" class="form-section" aria-label="Kontakt B2B">
+    <div class="container">
+      <SectionHeading title="Opowiedz o projekcie" description="Podaj lokalizacje, przybliżony zakres, termin i najważniejsze ograniczenie operacyjne. Po rozmowie umówimy bezpłatne oględziny, jeśli będą potrzebne." />
+      <div class="form-section__grid">
+        <div class="form-section__phone-card"><p class="section-heading__label">Kontakt dla firm</p><h3>Porozmawiaj z zespołem WHM</h3><a href={`tel:${site.phoneRaw}`} data-cta-click data-cta-location="business-hub-form">{site.phone}</a><p class="form-section__phone-note">W rozmowie skupimy się na zakresie i warunkach, nie na ogólnych deklaracjach.</p></div>
+        <LeadForm formId="business-hub-form" serviceType="Zapytanie B2B" variant="firma" presentation="page" context="business" formLocation="/dla-firm/" placeholder="Co, dokąd i w jakim terminie trzeba przenieść?" submitLabel="Wyślij zapytanie B2B" />
+      </div>
+    </div>
+  </section>
+  <MobileStickyCta formHref="#kontakt-b2b" />
+</Layout>

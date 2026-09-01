@@ -84,12 +84,9 @@ const selectedTestimonials = testimonials.filter((t) =>
 );
 ---
 
-<Layout title={title} description={description} robots="index, follow">
-  <head>
-    <link rel="canonical" href={canonical} />
-    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
-    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-  </head>
+<Layout title={title} description={description} robots="index, follow" canonical={canonical} ogImage="/images/home-moving/przeprowadzki-domow-kielce-3.webp">
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 
   <ServiceHero
     eyebrow="Przeprowadzki w Kielcach i całej Polsce"
@@ -102,7 +99,7 @@ const selectedTestimonials = testimonials.filter((t) =>
   />
 
   <TrustBar facts={[
-    { title: 'Ubezpieczenie do 1 mln zł', desc: 'Każda przeprowadzka jest objęta ubezpieczeniem do 1 000 000 zł.' },
+    { title: 'Ochrona ubezpieczeniowa do 1 mln zł', desc: 'Zastosowanie i warunki ochrony potwierdzamy dla konkretnego zlecenia.' },
     { title: 'Bezpłatne oględziny większych zleceń', desc: 'Przy większych lub złożonych przeprowadzkach przyjeżdżamy, by ocenić zakres na miejscu.' },
     { title: 'Profesjonalne zabezpieczenia w standardzie', desc: 'Koce, gumy, dedykowane pokrowce i pasy — nie jako opcja, ale jako podstawa.' },
   ]} />

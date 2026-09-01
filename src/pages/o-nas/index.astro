@@ -22,7 +22,6 @@ const jsonLd = {
       mainEntity: {
         '@type': 'LocalBusiness',
         name: 'WHM TRANSPORT MATEUSZ KONDERA',
-        founder: { '@type': 'Person', name: 'Mateusz Kondera' },
         telephone: page.companyData.phone,
         email: page.companyData.email,
         address: {
@@ -38,8 +37,7 @@ const jsonLd = {
 };
 ---
 
-<Layout title={page.seo.title} description={page.seo.description} robots="index, follow">
-  <link slot="head" rel="canonical" href={page.seo.canonical} />
+<Layout title={page.seo.title} description={page.seo.description} robots="index, follow" canonical={page.seo.canonical} ogImage={page.hero.image}>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
   <SubpageHero
@@ -96,8 +94,8 @@ const jsonLd = {
       <SectionHeading label={page.companyData.eyebrow} title={page.companyData.heading} />
       <div class="company-data">
         <div class="company-data__row">
-          <span class="company-data__label">Właściciel</span>
-          <span class="company-data__value">{page.companyData.owner}</span>
+          <span class="company-data__label">Nazwa prawna</span>
+          <span class="company-data__value">{page.companyData.heading}</span>
         </div>
         <div class="company-data__row">
           <span class="company-data__label">NIP</span>
@@ -129,8 +127,8 @@ const jsonLd = {
         <h2 class="final-cta__heading">Porozmawiajmy o Twojej przeprowadzce</h2>
         <p class="final-cta__text">Skontaktuj się lub opisz zlecenie - ustalimy zakres i sposób realizacji.</p>
         <div class="final-cta__actions">
-          <a href="/wycena/" class="btn btn--primary btn--lg">Poproś o wycenę</a>
-          <a href={`tel:${site.phoneRaw}`} class="btn btn--secondary btn--lg">Zadzwoń: 720 719 022</a>
+          <a href={`tel:${site.phoneRaw}`} class="btn btn--primary btn--lg" data-cta-click data-cta-location="about-final">Zadzwoń: {site.phone}</a>
+          <a href="/wycena/" class="btn btn--secondary btn--lg" data-cta-click data-cta-location="about-final">Poproś o wycenę</a>
         </div>
         <p class="final-cta__hours">Pn–Pt: {site.hours.weekdays} &middot; Sob: {site.hours.saturday}</p>
       </div>

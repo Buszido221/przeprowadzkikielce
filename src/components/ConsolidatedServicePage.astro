@@ -1,0 +1,175 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ServiceHero from './ServiceHero.astro';
+import TrustBar from './TrustBar.astro';
+import StandardWhm from './StandardWhm.astro';
+import ProcessSteps from './ProcessSteps.astro';
+import ServiceGallery from './ServiceGallery.astro';
+import ServiceFaq from './ServiceFaq.astro';
+import FinalCta from './FinalCta.astro';
+import MobileStickyCta from './MobileStickyCta.astro';
+import SectionHeading from './SectionHeading.astro';
+import LeadForm from './forms/LeadForm.astro';
+import { testimonials } from '../data/home';
+import { site } from '../data/site';
+import type { ConsolidatedServicePage as PageData } from '../data/consolidatedServices';
+
+interface Props {
+  page: PageData;
+}
+
+const { page } = Astro.props;
+const canonical = new URL(page.slug.replace(/^\//, ''), site.domain).href;
+const selectedTestimonials = testimonials.filter((testimonial) => page.testimonialAuthors.includes(testimonial.author));
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: page.heading,
+  description: page.description,
+  url: canonical,
+  provider: {
+    '@type': 'MovingCompany',
+    name: site.brand,
+    telephone: site.phone,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: site.address.street,
+      postalCode: site.address.postalCode,
+      addressLocality: site.address.city,
+      addressCountry: 'PL',
+    },
+  },
+  areaServed: ['Kielce', 'Województwo świętokrzyskie'],
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Strona główna', item: site.domain },
+    { '@type': 'ListItem', position: 2, name: 'Usługi', item: `${site.domain}uslugi/` },
+    { '@type': 'ListItem', position: 3, name: page.heading, item: canonical },
+  ],
+};
+---
+
+<Layout title={page.title} description={page.description} robots="index, follow" canonical={canonical} ogImage={page.heroImage}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <ServiceHero
+    eyebrow={page.eyebrow}
+    heading={page.heading}
+    lead={page.lead}
+    breadcrumbs={[{ label: 'Usługi', href: '/uslugi/' }, { label: page.heading }]}
+    heroImage={page.heroImage}
+    heroAlt={page.heroAlt}
+    secondaryCtaLabel="Opisz zlecenie"
+    secondaryCtaHref="#wycena"
+  />
+
+  <TrustBar facts={page.trust} />
+
+  <section class="editorial-intro">
+    <div class="container editorial-intro__grid">
+      <SectionHeading title={page.intro.heading} />
+      <div class="editorial-intro__copy">
+        {page.intro.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="service-scope" aria-label={page.scope.heading}>
+    <div class="container">
+      <SectionHeading title={page.scope.heading} description={page.scope.description} />
+      <div class="service-scope__grid">
+        {page.scope.groups.map((group) => (
+          <div class="service-scope__group">
+            <h3 class="service-scope__group-title">{group.title}</h3>
+            <ul class="service-scope__list">
+              {group.items.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {page.exclusions && (
+    <section class="exclusions-section" aria-label={page.exclusions.heading}>
+      <div class="container exclusions-section__grid">
+        <div>
+          <span class="section-heading__label">Ważne ograniczenia</span>
+          <h2>{page.exclusions.heading}</h2>
+          <p>{page.exclusions.text}</p>
+        </div>
+        <ul class="exclusions-section__list">
+          {page.exclusions.items.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <StandardWhm heading={page.standard.heading} text={page.standard.text} images={page.standard.images} />
+  <ProcessSteps heading="Jak przebiega realizacja" steps={page.process} />
+  <ServiceGallery eyebrow="Prawdziwe zdjęcia WHM" heading="Zobacz, jak pracujemy" images={page.gallery} />
+
+  {selectedTestimonials.length > 0 && (
+    <section class="proof-quotes" aria-label="Opinie klientów">
+      <div class="container">
+        <SectionHeading label="Opinie klientów" title="Doświadczenia z prawdziwych realizacji" />
+        <div class="proof-quotes__grid">
+          {selectedTestimonials.map((testimonial) => (
+            <figure class="proof-quote">
+              <blockquote>{testimonial.text}</blockquote>
+              <figcaption>— {testimonial.author}{testimonial.source ? `, ${testimonial.source}` : ''}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="related-services" aria-label="Powiązane usługi">
+    <div class="container">
+      <SectionHeading label="Powiązane potrzeby" title="Sprawdź właściwą ścieżkę" />
+      <div class="related-services__grid">
+        {page.related.map((item) => (
+          <a class="related-service" href={item.href}>
+            <h3>{item.label}</h3>
+            <p>{item.text}</p>
+            <span>Dowiedz się więcej</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ServiceFaq items={page.faq} />
+
+  <section id="wycena" class="form-section" aria-label="Formularz wyceny">
+    <div class="container">
+      <SectionHeading title="Opisz zlecenie" description="Wystarczy jeden kanał kontaktu i krótki opis. Zdjęcia możesz dosłać po zgłoszeniu." />
+      <div class="form-section__grid">
+        <div class="form-section__phone-card">
+          <p class="section-heading__label">Najprostsza ścieżka</p>
+          <h3>Zadzwoń i omów zakres</h3>
+          <a href={`tel:${site.phoneRaw}`} data-cta-click data-cta-location="form-section">{site.phone}</a>
+          <p class="form-section__phone-note">Jeżeli nie możemy odebrać od razu, wracamy z kontaktem zwykle w ciągu 1–2 godzin w godzinach pracy.</p>
+        </div>
+        <LeadForm
+          formId={page.form.id}
+          serviceType={page.form.serviceType}
+          presentation="page"
+          context="consumer"
+          formLocation={page.slug}
+          placeholder={page.form.placeholder}
+        />
+      </div>
+    </div>
+  </section>
+
+  <FinalCta heading={page.finalCta.heading} text={page.finalCta.text} />
+  <MobileStickyCta />
+</Layout>

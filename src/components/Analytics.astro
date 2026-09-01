@@ -57,57 +57,27 @@
   function initEventTracking() {
     if (window._whm_events_loaded) return;
     window._whm_events_loaded = true;
-    trackContactClicks();
     trackFormEvents();
-    trackCtaClicks();
+    trackInteractionEvents();
     trackScrollDepth();
     trackEngagedTime();
   }
 
-  function resolveLinkLocation(link) {
-    if (link.closest('.lp-header')) return 'lp-header';
-    if (link.closest('.lp-sticky-cta')) return 'lp-sticky';
-    if (link.closest('.lp-final-cta')) return 'lp-final';
-    if (link.closest('.lead-form')) return 'form';
-    if (link.closest('.header-cta')) return 'header';
-    if (link.closest('.top-bar')) return 'top-bar';
-    if (link.closest('.footer')) return 'footer';
-    if (link.closest('.lp-footer')) return 'lp-footer';
-    if (link.closest('.subpage-hero')) return 'hero';
-    return 'unknown';
-  }
+  function trackInteractionEvents() {
+    document.addEventListener('whm:analytics', function (e) {
+      var detail = e.detail || {};
+      if (detail.event !== 'phone_click' && detail.event !== 'email_click' && detail.event !== 'cta_click') return;
+      if (typeof gtag !== 'function') return;
 
-  function trackContactClicks() {
-    document.addEventListener('click', function (e) {
-      var phoneLink = e.target.closest('a[href^="tel:"], [data-phone-click]');
-      if (phoneLink) {
-        var linkLocation = resolveLinkLocation(phoneLink);
-        var detail = { event: 'phone_click', link_location: linkLocation, page_path: location.pathname };
-        document.dispatchEvent(new CustomEvent('whm:analytics', { detail: detail }));
-        if (typeof gtag === 'function') {
-          gtag('event', 'phone_click', {
-            event_category: 'kontakt',
-            event_label: linkLocation,
-            link_location: linkLocation,
-            page_path: location.pathname
-          });
-        }
-      }
-
-      var mailLink = e.target.closest('a[href^="mailto:"]');
-      if (mailLink) {
-        var mailLocation = resolveLinkLocation(mailLink);
-        var mailDetail = { event: 'email_click', link_location: mailLocation, page_path: location.pathname };
-        document.dispatchEvent(new CustomEvent('whm:analytics', { detail: mailDetail }));
-        if (typeof gtag === 'function') {
-          gtag('event', 'email_click', {
-            event_category: 'kontakt',
-            event_label: mailLocation,
-            link_location: mailLocation,
-            page_path: location.pathname
-          });
-        }
-      }
+      var isContact = detail.event === 'phone_click' || detail.event === 'email_click';
+      var eventLocation = detail.link_location || detail.cta_location || 'content';
+      gtag('event', detail.event, {
+        event_category: isContact ? 'kontakt' : 'engagement',
+        event_label: eventLocation,
+        link_location: isContact ? eventLocation : undefined,
+        cta_location: isContact ? undefined : eventLocation,
+        page_path: location.pathname
+      });
     });
   }
 
@@ -137,20 +107,6 @@
         service_type: detail.serviceType || '',
         form_location: detail.formLocation || '',
         form_context: detail.formContext || '',
-        page_path: location.pathname
-      });
-    });
-  }
-
-  function trackCtaClicks() {
-    document.addEventListener('whm:analytics', function (e) {
-      var detail = e.detail || {};
-      if (detail.event !== 'cta_click') return;
-      if (typeof gtag !== 'function') return;
-      gtag('event', 'cta_click', {
-        event_category: 'engagement',
-        event_label: detail.cta_location || 'unknown',
-        cta_location: detail.cta_location || 'unknown',
         page_path: location.pathname
       });
     });

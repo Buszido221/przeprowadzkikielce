@@ -1,0 +1,18 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import MobileStickyCta from '../../components/MobileStickyCta.astro';
+import { site } from '../../data/site';
+import { getRoute } from '../../data/routes';
+const route = getRoute('/obszar-dzialania/');
+const canonical = `${site.domain}obszar-dzialania/`;
+---
+
+<Layout title={route.title} description={route.description} robots={route.robots} canonical={canonical} ogImage="/images/kielce-moving/przeprowadzki-kielce-6.webp">
+  <ServiceHero eyebrow="Obszar działania" heading="Kielce, region świętokrzyski i trasy w całej Polsce" lead="Baza WHM znajduje się w Masłowie Pierwszym. Realizujemy przeprowadzki lokalne, regionalne i ogólnopolskie, a zakres każdej trasy potwierdzamy po poznaniu zlecenia." breadcrumbs={[{ label: route.name }]} heroImage="/images/kielce-moving/przeprowadzki-kielce-6.webp" heroAlt="Samochód WHM w trasie podczas realizacji przeprowadzki" secondaryCtaLabel="Opisz trasę" secondaryCtaHref="/wycena/" />
+  <section class="section section--alt"><div class="container"><SectionHeading label="Zasięg" title="Trzy skale tej samej odpowiedzialnej usługi" /><div class="items-grid"><article class="items-grid__item"><h2 class="items-grid__title">Kielce i okolice</h2><p class="items-grid__desc">Przeprowadzki mieszkań, domów, transport mebli i zadania specjalistyczne.</p></article><article class="items-grid__item"><h2 class="items-grid__title">Województwo świętokrzyskie</h2><p class="items-grid__desc">Relokacje pomiędzy miejscowościami regionu oraz obsługa firm i instytucji.</p></article><article class="items-grid__item"><h2 class="items-grid__title">Cała Polska</h2><p class="items-grid__desc">Trasy krajowe planowane według zakresu, dostępu, terminu i rodzaju mienia.</p></article></div></div></section>
+  <section class="section"><div class="container"><div class="split-section split-section--reverse"><div class="split-section__content"><SectionHeading label="Punkt startowy" title="Zaplecze w Masłowie Pierwszym" description={`Adres operacyjny WHM to ${site.address.full}. Znajdują się tu biuro, sklep i magazyn; wizytę zawsze umawiamy wcześniej telefonicznie.`} /><div class="section-cta"><a class="arrow-link" href="/kontakt/">Dane kontaktowe i godziny</a></div></div><div class="split-section__media"><img src="/images/hero/hero-4.webp" alt="Samochód WHM przy realizacji transportu" width="800" height="600" loading="lazy" decoding="async" class="section-img" /></div></div></div></section>
+  <section class="final-cta"><div class="container"><div class="final-cta__inner"><h2 class="final-cta__heading">Sprawdź możliwość realizacji Twojej trasy</h2><p class="final-cta__text">Podaj miejsca odbioru i dostawy, termin oraz krótki zakres.</p><div class="final-cta__actions"><a href={`tel:${site.phoneRaw}`} class="btn btn--primary btn--lg" data-cta-click data-cta-location="area-final">Zadzwoń: {site.phone}</a><a href="/wycena/" class="btn btn--secondary btn--lg" data-cta-click data-cta-location="area-final">Opisz zlecenie</a></div></div></div></section>
+  <MobileStickyCta formHref="/wycena/" />
+</Layout>

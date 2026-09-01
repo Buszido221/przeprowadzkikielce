@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
+import MobileStickyCta from '../components/MobileStickyCta.astro';
 import { site } from '../data/site';
 import {
   hero,
@@ -43,20 +44,7 @@ import {
       postalCode: site.address.postalCode,
       addressCountry: 'PL',
     },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: 50.8823,
-      longitude: 20.6856,
-    },
-    areaServed: {
-      '@type': 'GeoCircle',
-      geoMidpoint: {
-        '@type': 'GeoCoordinates',
-        latitude: 50.8661,
-        longitude: 20.6286,
-      },
-      geoRadius: '50000',
-    },
+    areaServed: ['Kielce', 'Województwo świętokrzyskie', 'Polska'],
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
@@ -71,8 +59,6 @@ import {
         closes: '18:00',
       },
     ],
-    priceRange: '$',
-    sameAs: [],
   })} />
 
   <!-- HERO -->
@@ -99,8 +85,8 @@ import {
         <h1 class="hero__heading">{hero.heading}</h1>
         <p class="hero__lead">{hero.lead}</p>
         <div class="hero__actions">
-          <a href="/wycena/" class="btn btn--primary btn--lg">Poproś o wycenę</a>
-          <a href={`tel:${site.phoneRaw}`} class="btn btn--hero-secondary btn--lg">Zadzwoń: {site.phone}</a>
+          <a href={`tel:${site.phoneRaw}`} class="btn btn--primary btn--lg" data-cta-click data-cta-location="home-hero">Zadzwoń: {site.phone}</a>
+          <a href="/wycena/" class="btn btn--hero-secondary btn--lg" data-cta-click data-cta-location="home-hero">Poproś o wycenę</a>
         </div>
         <p class="hero__note">{hero.contactNote}</p>
       </div>
@@ -115,6 +101,24 @@ import {
             </div>
           ))}
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section home-business">
+    <div class="container">
+      <div class="split-section split-section--reverse">
+        <div class="split-section__content">
+          <SectionHeading label="Dla firm i instytucji" title="Relokacja zaplanowana tak, aby ograniczyć przestój" description="Bezpłatne oględziny, plan etapów, transport archiwów i sprzętu oraz magazynowanie pomostowe tworzą jeden koordynowany proces." />
+          <ul class="check-list">
+            <li class="check-list__item">firmy, biura i instytucje,</li>
+            <li class="check-list__item">archiwa i setki zamykanych pojemników około 70 l,</li>
+            <li class="check-list__item">serwery, laboratoria i wyposażenie specjalistyczne,</li>
+            <li class="check-list__item">ochrona ubezpieczeniowa do 1 mln zł — warunki potwierdzane dla zlecenia.</li>
+          </ul>
+          <div class="section-cta"><a href="/dla-firm/" class="btn btn--primary">Zobacz ofertę B2B</a></div>
+        </div>
+        <div class="split-section__media"><img src="/images/institution-moving/przeprowadzki-instytucji-4.webp" alt="Zespół WHM podczas relokacji instytucji" width="800" height="600" loading="lazy" decoding="async" class="section-img" /></div>
       </div>
     </div>
   </section>
@@ -397,7 +401,7 @@ import {
             </div>
             <h3>{ecosystemSection.storage.title}</h3>
             <p>{ecosystemSection.storage.text}</p>
-            <p class="ecosystem-card__note">Obiekt w Masłowie jest w trakcie przygotowania. Zdjęcia pojawią się po zakończeniu prac.</p>
+            <p class="ecosystem-card__note">Ogrzewane boksy od 2 do 9 m² są gotowe i częściowo zajęte. Dostępność potwierdzamy na bieżąco.</p>
             <div class="section-cta">
               <a href={ecosystemSection.storage.cta.href} class="arrow-link">{ecosystemSection.storage.cta.label}</a>
             </div>
@@ -506,14 +510,14 @@ import {
       <div class="related-links">
         <a href="/przeprowadzki/" class="arrow-link">Wyceń przeprowadzkę w Kielcach</a>
         <a href="/przeprowadzki/" class="arrow-link">Sprawdź, co wpływa na cenę przeprowadzki</a>
-        <a href="/lp/przeprowadzki-firm-kielce/" class="arrow-link">Omów relokację firmy</a>
-        <a href="/lp/utylizacja-mebli-kielce/" class="arrow-link">Wyceń wywóz starych mebli</a>
-        <a href="/lp/transport-pianina-kielce/" class="arrow-link">Wyceń transport pianina</a>
-        <a href="/lp/transport-specjalistyczny-kielce/" class="arrow-link">Wyceń transport specjalistyczny</a>
-        <a href="/lp/transport-gabarytowy-kielce/" class="arrow-link">Wyceń transport gabarytowy</a>
+        <a href="/przeprowadzki-firm-i-instytucji/" class="arrow-link">Omów relokację firmy</a>
+        <a href="/oproznianie-mieszkan-i-wywoz-mebli/" class="arrow-link">Wyceń wywóz starych mebli</a>
+        <a href="/transport-pianin-i-fortepianow-kielce/" class="arrow-link">Wyceń transport pianina</a>
+        <a href="/transport-specjalistyczny/" class="arrow-link">Wyceń transport specjalistyczny</a>
+        <a href="/transport-specjalistyczny/" class="arrow-link">Wyceń transport gabarytowy</a>
         <a href="/przeprowadzki/" class="arrow-link">Wyceń transport lodówki</a>
         <a href="/przeprowadzki/" class="arrow-link">Wyceń transport AGD</a>
-        <a href="/lp/pakowanie-przeprowadzki-kielce/" class="arrow-link">Zamów pakowanie do przeprowadzki</a>
+        <a href="/pakowanie-i-zabezpieczanie/" class="arrow-link">Zamów pakowanie do przeprowadzki</a>
       </div>
     </div>
   </section>
@@ -525,8 +529,8 @@ import {
         <h2 class="final-cta__heading">{finalCta.heading}</h2>
         <p class="final-cta__text">{finalCta.text}</p>
         <div class="final-cta__actions">
-          <a href="/wycena/" class="btn btn--primary btn--lg">Poproś o wycenę</a>
-          <a href={`tel:${site.phoneRaw}`} class="btn btn--secondary btn--lg">Zadzwoń: {site.phone}</a>
+          <a href={`tel:${site.phoneRaw}`} class="btn btn--primary btn--lg" data-cta-click data-cta-location="home-final">Zadzwoń: {site.phone}</a>
+          <a href="/wycena/" class="btn btn--secondary btn--lg" data-cta-click data-cta-location="home-final">Poproś o wycenę</a>
           <a href={`sms:${site.phoneRaw}`} class="btn btn--secondary btn--lg">Wyślij SMS</a>
         </div>
         <p class="final-cta__hours">
@@ -535,6 +539,7 @@ import {
       </div>
     </div>
   </section>
+  <MobileStickyCta formHref="/wycena/" />
 </Layout>
 
 <script>

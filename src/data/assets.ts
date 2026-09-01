@@ -49,12 +49,6 @@ export const plannedImages: PlannedAsset[] = [
     assignedTo: '/transport-pianin-i-fortepianow-kielce/',
   },
   {
-    filename: 'transport-gabarytow-kielce-5.webp',
-    path: '/images/transport-gabarytow/transport-gabarytow-kielce-5.webp',
-    purpose: 'Zdjęcie główne strony Transport gabarytowy',
-    assignedTo: '/transport-gabarytowy-kielce/',
-  },
-  {
     filename: 'przeprowadzki-kielce-4.webp',
     path: '/images/kielce-moving/przeprowadzki-kielce-4.webp',
     purpose: 'Zdjęcie główne strony Standard WHM',

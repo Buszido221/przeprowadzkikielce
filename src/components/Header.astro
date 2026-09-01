@@ -1,23 +1,11 @@
 ---
 import { site } from '../data/site';
+import { mainNavigation, utilityNavigation } from '../data/routes';
 
 const currentPath = Astro.url.pathname;
 
-const mainNav = [
-  { name: 'Przeprowadzki', slug: '/przeprowadzki/' },
-  { name: 'Dla firm i instytucji', slug: '/przeprowadzki-firm-i-instytucji/' },
-  { name: 'Transport specjalistyczny', slug: '/transport-specjalistyczny/' },
-  { name: 'Magazyny WHM', slug: '/magazyny/' },
-  { name: 'Standard WHM', slug: '/standard-whm/' },
-  { name: 'Realizacje', slug: '/realizacje/' },
-  { name: 'O nas', slug: '/o-nas/' },
-];
-
-const secondaryNav = [
-  { name: 'Poradnik', slug: '/poradnik/' },
-  { name: 'Kontakt', slug: '/kontakt/' },
-  { name: 'WHM Shop', slug: '/whm-shop/' },
-];
+const mainNav = mainNavigation;
+const secondaryNav = utilityNavigation;
 ---
 
 <div class="top-bar">
@@ -55,8 +43,8 @@ const secondaryNav = [
       </nav>
 
       <div class="header-cta">
-        <a href={`tel:${site.phoneRaw}`} class="header-cta__phone">{site.phone}</a>
-        <a href="/wycena/" class="btn btn--primary btn--sm">Poproś o wycenę</a>
+        <a href={`tel:${site.phoneRaw}`} class="header-cta__phone" data-cta-click data-cta-location="header">{site.phone}</a>
+        <a href="/wycena/" class="btn btn--primary btn--sm" data-cta-click data-cta-location="header">Wycena</a>
       </div>
 
       <button
@@ -78,7 +66,7 @@ const secondaryNav = [
 
   <nav id="mobile-nav" class="mobile-nav" data-open="false" aria-label="Menu mobilne">
     <div class="mobile-nav__section">
-      <p class="mobile-nav__section-title">Usługi</p>
+      <p class="mobile-nav__section-title">Główne</p>
       {mainNav.map((item) => (
         <a
           href={item.slug}

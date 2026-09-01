@@ -1,13 +1,34 @@
-# Redirects for consolidated pages — 301 permanent
-# Source pages removed during /przeprowadzki/ rebuild
+# Kontrolowana migracja starych i reklamowych adresów do najbliższych tematycznie stron.
 
-/przeprowadzki-mieszkan-i-domow/    /przeprowadzki/    301
-/przeprowadzki-mieszkan-i-domow     /przeprowadzki/    301
-/lp/przeprowadzki-kielce/           /przeprowadzki/    301
-/lp/przeprowadzki-kielce            /przeprowadzki/    301
-/lp/przeprowadzki-cena/             /przeprowadzki/    301
-/lp/przeprowadzki-cena              /przeprowadzki/    301
-/lp/transport-agd-kielce/          /przeprowadzki/    301
-/lp/transport-agd-kielce           /przeprowadzki/    301
-/lp/transport-lodowki-kielce/      /przeprowadzki/    301
-/lp/transport-lodowki-kielce       /przeprowadzki/    301
+/przeprowadzki-mieszkan-i-domow/              /przeprowadzki/                                  301
+/przeprowadzki-mieszkan-i-domow               /przeprowadzki/                                  301
+/lp/przeprowadzki-kielce/                     /przeprowadzki/                                  301
+/lp/przeprowadzki-kielce                      /przeprowadzki/                                  301
+/lp/przeprowadzki-cena/                       /przeprowadzki/                                  301
+/lp/przeprowadzki-cena                        /przeprowadzki/                                  301
+/lp/transport-agd-kielce/                     /przeprowadzki/                                  301
+/lp/transport-agd-kielce                      /przeprowadzki/                                  301
+/lp/transport-lodowki-kielce/                 /przeprowadzki/                                  301
+/lp/transport-lodowki-kielce                  /przeprowadzki/                                  301
+
+/lp/transport-mebli-kielce/                   /transport-mebli-kielce/                         301
+/lp/transport-mebli-kielce                    /transport-mebli-kielce/                         301
+/lp/pakowanie-przeprowadzki-kielce/           /pakowanie-i-zabezpieczanie/                     301
+/lp/pakowanie-przeprowadzki-kielce            /pakowanie-i-zabezpieczanie/                     301
+/lp/transport-pianina-kielce/                 /transport-pianin-i-fortepianow-kielce/          301
+/lp/transport-pianina-kielce                  /transport-pianin-i-fortepianow-kielce/          301
+/lp/transport-specjalistyczny-kielce/         /transport-specjalistyczny/                      301
+/lp/transport-specjalistyczny-kielce          /transport-specjalistyczny/                      301
+/lp/transport-gabarytowy-kielce/              /transport-specjalistyczny/                      301
+/lp/transport-gabarytowy-kielce               /transport-specjalistyczny/                      301
+/transport-gabarytowy-kielce/                 /transport-specjalistyczny/                      301
+/transport-gabarytowy-kielce                  /transport-specjalistyczny/                      301
+/lp/utylizacja-mebli-kielce/                  /oproznianie-mieszkan-i-wywoz-mebli/             301
+/lp/utylizacja-mebli-kielce                   /oproznianie-mieszkan-i-wywoz-mebli/             301
+/lp/przeprowadzki-firm-kielce/                /przeprowadzki-firm-i-instytucji/                301
+/lp/przeprowadzki-firm-kielce                 /przeprowadzki-firm-i-instytucji/                301
+
+/magazyny/                                    /magazyny-kielce/                                301
+/magazyny                                     /magazyny-kielce/                                301
+/poradnik/                                    /poradniki/                                      301
+/poradnik                                     /poradniki/                                      301

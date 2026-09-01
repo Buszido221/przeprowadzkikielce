@@ -1,10 +1,8 @@
 import type { APIRoute } from 'astro';
 import { site } from '../data/site';
-import { allRoutes } from '../data/routes';
+import { publicRoutes } from '../data/routes';
 
-const indexableRoutes = allRoutes.filter(
-  (r) => r.robots !== 'noindex, follow' && r.status === 'ready'
-);
+const indexableRoutes = publicRoutes.filter((route) => route.robots === 'index, follow');
 
 const urls = indexableRoutes.map((r) => ({
   loc: `${site.domain}${r.slug.replace(/^\//, '')}`,

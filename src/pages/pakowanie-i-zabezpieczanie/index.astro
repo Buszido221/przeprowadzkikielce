@@ -2,6 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 import SubpageHero from '../../components/SubpageHero.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
+import LeadForm from '../../components/forms/LeadForm.astro';
+import MobileStickyCta from '../../components/MobileStickyCta.astro';
 import { site } from '../../data/site';
 import { pakowanePage as page } from '../../data/services';
 
@@ -48,7 +50,10 @@ const jsonLd = {
     heading={page.hero.heading}
     lead={page.hero.lead}
     breadcrumbs={page.breadcrumbs}
-    ctaLabel={page.hero.ctaLabel}
+    ctaLabel={`Zadzwoń: ${site.phone}`}
+    ctaHref={`tel:${site.phoneRaw}`}
+    ctaSecondaryLabel="Opisz zlecenie"
+    ctaSecondaryHref="#wycena"
   />
 
   <!-- WHAT WE PACK -->
@@ -158,12 +163,17 @@ const jsonLd = {
     </div>
   </section>
 
-  <!-- QUICK VALUATION LINKS -->
-  <section class="section section--sm">
+  <section id="wycena" class="form-section" aria-label="Formularz wyceny pakowania">
     <div class="container">
-      <SectionHeading label="Szybka wycena" title="Wyceń konkretną usługę" />
-      <div class="related-links">
-        <a href="/lp/pakowanie-przeprowadzki-kielce/" class="arrow-link">Zamów pakowanie do przeprowadzki</a>
+      <SectionHeading title="Opisz zakres pakowania" description="Podaj skalę zlecenia, termin i rodzaj mienia. Wystarczy telefon albo e-mail." />
+      <div class="form-section__grid">
+        <div class="form-section__phone-card">
+          <p class="section-heading__label">Najszybciej</p>
+          <h3>Zadzwoń i omów zakres</h3>
+          <a href={`tel:${site.phoneRaw}`} data-cta-click data-cta-location="packing-form">{site.phone}</a>
+          <p class="form-section__phone-note">Możemy zaplanować pełne pakowanie albo pomoc tylko przy wybranych elementach.</p>
+        </div>
+        <LeadForm formId="packing-service-form" serviceType="Pakowanie i zabezpieczanie" presentation="page" context="consumer" formLocation="/pakowanie-i-zabezpieczanie/" placeholder="Co mamy spakować lub zabezpieczyć?" />
       </div>
     </div>
   </section>
@@ -199,4 +209,5 @@ const jsonLd = {
       </div>
     </div>
   </section>
+  <MobileStickyCta />
 </Layout>

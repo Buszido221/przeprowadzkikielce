@@ -1,12 +1,18 @@
 ---
 import { site } from '../data/site';
+
+interface Props {
+  formHref?: string;
+}
+
+const { formHref = '#wycena' } = Astro.props;
 ---
 
 <div class="mobile-sticky-cta" data-mobile-sticky-cta>
   <a href={`tel:${site.phoneRaw}`} class="mobile-sticky-cta__btn mobile-sticky-cta__btn--primary" data-cta-click data-cta-location="sticky-cta">
     Zadzwoń
   </a>
-  <a href="#wycena" class="mobile-sticky-cta__btn mobile-sticky-cta__btn--secondary">
+  <a href={formHref} class="mobile-sticky-cta__btn mobile-sticky-cta__btn--secondary" data-cta-click data-cta-location="sticky-cta">
     Wycena
   </a>
 </div>
