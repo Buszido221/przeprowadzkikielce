@@ -5,62 +5,142 @@ import SectionHeading from '../../components/SectionHeading.astro';
 import MobileStickyCta from '../../components/MobileStickyCta.astro';
 import { site } from '../../data/site';
 import { getRoute } from '../../data/routes';
+import { caseStudies, caseStudyCategories } from '../../data/realizacje';
+
 const route = getRoute('/realizacje/');
 const canonical = `${site.domain}realizacje/`;
-const cases = [
-  {
-    label: 'Instytucja publiczna',
-    title: 'Prokuratura Kielce-Wschód i Kielce-Zachód',
-    text: 'Relokacja objęła cztery piętra i piwnicę, duże archiwum oraz dziesiątki szaf i komputerów. Organizacja kolejności i etapów pozwoliła utrzymać pracę instytucji bez przerwy.',
-    image: '/images/institution-moving/przeprowadzki-instytucji-4.webp',
-    alt: 'Relokacja wyposażenia instytucji realizowana przez zespół WHM',
-    facts: ['4 piętra i piwnica', 'duże archiwum', 'ciągłość działania'],
-    href: '/przeprowadzki-firm-i-instytucji/',
-  },
-  {
-    label: 'Dzieło sztuki',
-    title: 'Zamek Szydłowieckich',
-    text: 'Stary obraz musiał pozostać przez cały czas w pozycji poziomej. Ze względu na warunki obiektu został przeniesiony przez okno zgodnie z przygotowaną drogą transportu.',
-    image: '/images/transport-gabarytow/transport-gabarytow-kielce-6.webp',
-    alt: 'Zespół WHM podczas wymagającego transportu specjalistycznego',
-    facts: ['pozycja pozioma', 'droga przez okno', 'indywidualny plan'],
-    href: '/transport-specjalistyczny/',
-  },
-  {
-    label: 'Transport specjalistyczny',
-    title: 'Sprzęt, którego nie da się potraktować jak zwykłej paczki',
-    text: 'Realizacje WHM obejmowały między innymi szafy serwerowe o wysokości ponad 2 m przenoszone przez okno, piece, serwery, wyposażenie laboratoryjne i liczne pianina.',
-    image: '/images/transport-gabarytow/transport-gabarytow-kielce-7.webp',
-    alt: 'Przenoszenie dużego przedmiotu z użyciem sprzętu WHM',
-    facts: ['szafy serwerowe ponad 2 m', 'piece i laboratoria', 'pianina'],
-    href: '/transport-specjalistyczny/',
-  },
+
+const technicalMentions = [
+  { title: 'Ponad dwumetrowe szafy serwerowe wprowadzane przez okno', text: 'Sprzęt techniczny potrafi wykluczyć drogę, która na planie budynku wygląda na oczywistą. Przy ponad dwumetrowych szafach serwerowych zespół przygotował alternatywną trasę przez okno.' },
+  { title: 'Transporty pieców na pellet o masie około 350–450 kg', text: 'Piece na pellet transportowane również do i z piwnic. Schodołaz pomaga przenosić obciążenie po stopniach, ale wymaga asekuracji zespołu.' },
+  { title: 'Szafy pancerne, sejfy i szafy na broń', text: 'Doświadczenie obejmuje egzemplarze od około 200 kg do szafy ważącej według danych producenta około 880 kg. Przy dużych gabarytach kierowany jest często zespół cztero- lub pięcioosobowy.' },
+  { title: 'Prace przy zbiornikach azotu w Centrum Onkologii w Kielcach', text: 'Wykorzystanie schodołazu przy ciężkim wyposażeniu w środowisku placówki medycznej na Czarnowie.' },
+  { title: 'Precyzyjne ustawianie sprzętu laboratoryjnego', text: 'Widły schodołazu pozwalają podnieść urządzenie na wysokość niemal 1,5 m i ustawić je na podwyższonym stojaku z dokładnością określaną jako milimetrowa.' },
+  { title: 'Duże balie ogrodowe', text: 'Transporty dużych balii ogrodowych — gabaryt wymagający zaplanowania całej drogi przez posesję oraz dostępu samochodu.' },
 ];
 ---
 
 <Layout title={route.title} description={route.description} robots={route.robots} canonical={canonical} ogImage="/images/institution-moving/przeprowadzki-instytucji-4.webp">
-  <ServiceHero eyebrow="Prawdziwe realizacje WHM" heading="Zakres, ograniczenie i sposób pracy — bez marketingowych skrótów" lead="Pokazujemy własne zdjęcia oraz studia przypadków oparte na potwierdzonych informacjach. Każda realizacja zaczyna się od zrozumienia tego, co w danym zadaniu nie może pójść źle." breadcrumbs={[{ label: route.name }]} heroImage="/images/kielce-moving/przeprowadzki-kielce-5.webp" heroAlt="Zabezpieczone mienie podczas realizacji WHM" secondaryCtaLabel="Poznaj Standard WHM" secondaryCtaHref="/standard-whm/" />
+  <ServiceHero
+    eyebrow="Prawdziwe realizacje WHM"
+    heading="Projekty, w których sam transport był dopiero początkiem"
+    lead="Przenieść można niemal wszystko. Różnica polega na tym, czy przed rozpoczęciem pracy ktoś potrafi rozpoznać ryzyko, zaplanować kolejność i wziąć odpowiedzialność za cały proces. Pokazujemy realizacje WHM, w których liczyły się nie tylko samochody i siła zespołu, ale również organizacja, sprzęt, zabezpieczenia i umietność rozwiązania problemu."
+    breadcrumbs={[{ label: route.name }]}
+    heroImage="/images/kielce-moving/przeprowadzki-kielce-5.webp"
+    heroAlt="Zabezpieczone mienie podczas realizacji WHM"
+    secondaryCtaLabel="Umów bezpłatne oględziny"
+    secondaryCtaHref="/wycena/"
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="editorial-intro__grid">
+        <SectionHeading title="Nie każdą przeprowadzkę da się zamknąć w prostym schemacie" />
+        <div class="editorial-intro__copy">
+          <p>Nie każdą przeprowadzkę da się zamknąć w prostym schemacie „wyniesienie, transport, wniesienie”. Czasem obraz nie może zostać ustawiony pionowo nawet na chwilę. Czasem niemal osiem tysięcy pozycji archiwum musi po przeprowadzce wrócić dokładnie na swoje miejsce. Innym razem instytucja nie może przerwać pracy, mimo że z budynku trzeba wynieść wyposażenie ponad stu osób, dziesiątki szaf i kilometry bieżące akt.</p>
+          <p>W takich projektach najdroższym błędem nie jest dodatkowy kurs samochodu. Jest nim utrata kolejności dokumentacji, uszkodzenie cennego mienia, zatrzymanie działalności klienta albo improwizacja w miejscu, w którym standardowa droga transportu po prostu nie istnieje.</p>
+          <p>Dlatego realizacje WHM pokazujemy nie jako galerię przypadkowych zdjęć, lecz jako studia przypadków. Opisujemy punkt wyjścia, najważniejsze ograniczenie, przyjęty plan i sposób wykonania. To najlepszy dowód, że za sprzętem i flotą stoi doświadczenie zespołu, który potrafi myśleć o całej operacji.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section class="section section--alt">
     <div class="container">
-      <SectionHeading label="Studia przypadków" title="Trzy różne rodzaje odpowiedzialności" />
-      <div class="case-studies">
-        {cases.map((item, index) => (
-          <article class:list={['case-study', { 'case-study--reverse': index % 2 === 1 }]}>
-            <div class="case-study__media"><img src={item.image} alt={item.alt} width="800" height="600" loading="lazy" decoding="async" /></div>
-            <div class="case-study__body"><p class="section-heading__label">{item.label}</p><h2>{item.title}</h2><p>{item.text}</p><ul>{item.facts.map((fact) => <li>{fact}</li>)}</ul><a class="arrow-link" href={item.href}>Zobacz właściwą usługę</a></div>
-          </article>
+      <SectionHeading label="Skala" title="Od lokalnej przeprowadzki do relokacji całej instytucji" />
+      <p class="realizacje-hub__intro-text">WHM obsługuje przeprowadzki mieszkań i domów, ale te same zasady odpowiedzialności wykorzystuje również przy relokacjach firm, urzędów, archiwów, obiektów kultury i sprzętu technicznego. Skala się zmienia. Standard przygotowania pozostaje ten sam: oględziny, rozpoznanie drogi, dobór zespołu i sprzętu, zabezpieczenie mienia, zaplanowanie kolejności oraz kontrola realizacji aż do ustawienia ostatniego elementu.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading label="Studia przypadków" title="Pełne realizacje WHM" />
+      <div class="realizacje-hub__filters">
+        {caseStudyCategories.map((cat) => (
+          <button class="realizacje-hub__filter" data-filter={cat}>{cat}</button>
+        ))}
+      </div>
+      <div class="realizacje-hub__grid">
+        {caseStudies.map((cs) => (
+          <a class="realizacje-hub__card" href={cs.slug} data-category={cs.category}>
+            <div class="realizacje-hub__card-media">
+              <img src={cs.heroImage} alt={cs.heroAlt} width="600" height="400" loading="lazy" decoding="async" />
+            </div>
+            <div class="realizacje-hub__card-body">
+              <span class="section-heading__label">{cs.category}</span>
+              <h2>{cs.heading}</h2>
+              <p>{cs.lead}</p>
+              <span class="arrow-link">Zobacz realizację</span>
+            </div>
+          </a>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container"><div class="split-section"><div class="split-section__content"><SectionHeading label="Instytucje kultury" title="Teatr im. Stefana Żeromskiego" description="Teatr im. Stefana Żeromskiego znajduje się wśród instytucji, z którymi współpracował WHM. Nie przypisujemy tej współpracy niepotwierdzonego zakresu — szczegóły prezentujemy wyłącznie wtedy, gdy są zweryfikowane." /></div><div class="split-section__media"><img src="/images/institution-moving/przeprowadzki-instytucji-2.webp" alt="Zespół WHM podczas pracy dla instytucji" width="800" height="600" loading="lazy" decoding="async" class="section-img" /></div></div></div>
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading label="Dalsze realizacje techniczne" title="Doświadczenie przekrojowe WHM" />
+      <p class="realizacje-hub__intro-text">Poniższe historie są prawdziwe, ale mają mniej szczegółów niż osiem głównych case studies. Zostały uwzględnione w zbiorczym case study technicznym. Osobne indeksowane podstrony można uruchomić dopiero po przypisaniu właściwych zdjęć i wystarczającej treści.</p>
+      <div class="realizacje-hub__technical-grid">
+        {technicalMentions.map((item) => (
+          <div class="realizacje-hub__technical-item">
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </div>
+        ))}
+      </div>
+      <a href="/realizacje/relokacje-techniczne-i-ciezkie-ladunki/" class="btn btn--secondary btn--lg realizacje-hub__technical-cta">Zobacz zbiorcze case study techniczne</a>
+    </div>
   </section>
 
-  <section class="section section--alt"><div class="container"><SectionHeading label="Galeria pracy" title="Zabezpieczenia, sprzęt i prawdziwy zespół" /><div class="photo-grid photo-grid--3"><div class="photo-grid__item"><img src="/images/packing-services/pakowanie-przeprowadzki-kielce-1.webp" alt="Zabezpieczone elementy wyposażenia" width="600" height="450" loading="lazy" decoding="async" /></div><div class="photo-grid__item"><img src="/images/transport-pianin-i-fortepianow/transport-pianin-i-fortepianow-kielce-4.webp" alt="Zabezpieczony instrument podczas transportu WHM" width="600" height="450" loading="lazy" decoding="async" /></div><div class="photo-grid__item"><img src="/images/office-moving/przeprowadzki-biura-2.webp" alt="Zabezpieczone wyposażenie biurowe" width="600" height="450" loading="lazy" decoding="async" /></div></div></div></section>
+  <section class="section">
+    <div class="container">
+      <SectionHeading label="Pianina i fortepiany" title="Dowód doświadczenia w transporcie instrumentów" />
+      <div class="editorial-intro__grid">
+        <SectionHeading title="Setki transportów, każdy oceniany osobno" />
+        <div class="editorial-intro__copy">
+          <p>WHM przewiozło dziesiątki, a prawdopodobnie setki pianin i fortepianów na terenie województwa świętokrzyskiego. Doświadczenie powstawało przy współpracy z domami kultury, stroicielami instrumentów i organizatorami wydarzeń oraz targów.</p>
+          <p>Każdy instrument wymaga osobnej oceny. Znaczenie mają jego typ i masa, stan techniczny, piętra, schody, windy, zakręty, odległość od miejsca postoju oraz sposób ustawienia po transporcie. Dlatego WHM nie sprowadza wyceny do podania jednej stawki za kilogram lub piętro.</p>
+          <p>Historie fortepianu Fazioli oraz dwóch eksponatów z Zamku Szydłowieckich pokazują dwa skrajnie różne przypadki: instrument koncertowy wymagający nocnego odbioru po wydarzeniu oraz eksponat oczekujący na renowację, dla którego ciasna winda wymusiła nietypową pozycję. Właściwa metoda zawsze wynika z konkretnego instrumentu i konkretnej drogi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <section class="final-cta"><div class="container"><div class="final-cta__inner"><h2 class="final-cta__heading">Masz zadanie, które wymaga własnego planu?</h2><p class="final-cta__text">Opisz zakres i ograniczenia. Najpierw ocenimy sposób realizacji.</p><div class="final-cta__actions"><a href={`tel:${site.phoneRaw}`} class="btn btn--primary btn--lg" data-cta-click data-cta-location="cases-final">Zadzwoń: {site.phone}</a><a href="/wycena/" class="btn btn--secondary btn--lg" data-cta-click data-cta-location="cases-final">Opisz zadanie</a></div></div></div></section>
+  <section class="final-cta">
+    <div class="container">
+      <div class="final-cta__inner">
+        <h2 class="final-cta__heading">Masz projekt, którego nie da się wycenić na podstawie jednego zdjęcia?</h2>
+        <p class="final-cta__text">Przy większych relokacjach WHM może przeprowadzić bezpłatne oględziny, ocenić warunki i przygotować plan. Opowiedz nam, co trzeba przenieść, jakie ograniczenia ma budynek i czego nie można pozostawić przypadkowi.</p>
+        <div class="final-cta__actions">
+          <a href={`tel:${site.phoneRaw}`} class="btn btn--primary btn--lg" data-cta-click data-cta-location="cases-final">Zadzwoń: {site.phone}</a>
+          <a href="/wycena/" class="btn btn--secondary btn--lg" data-cta-click data-cta-location="cases-final">Umów bezpłatne oględziny</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <MobileStickyCta formHref="/wycena/" />
+
+  <script>
+    const filters = document.querySelectorAll<HTMLButtonElement>('.realizacje-hub__filter');
+    const cards = document.querySelectorAll<HTMLElement>('.realizacje-hub__card');
+
+    filters.forEach((filter) => {
+      filter.addEventListener('click', () => {
+        const category = filter.dataset.filter;
+        filters.forEach((f) => f.classList.remove('is-active'));
+        filter.classList.add('is-active');
+
+        cards.forEach((card) => {
+          if (category === 'all' || card.dataset.category === category) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
 </Layout>

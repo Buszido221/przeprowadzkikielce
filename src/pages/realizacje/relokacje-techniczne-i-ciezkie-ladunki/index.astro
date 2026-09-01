@@ -1,0 +1,8 @@
+---
+import CaseStudyPage from '../../../components/CaseStudyPage.astro';
+import { getCaseStudy } from '../../../data/realizacje';
+
+const study = getCaseStudy('/realizacje/relokacje-techniczne-i-ciezkie-ladunki/')!;
+---
+
+<CaseStudyPage study={study} />

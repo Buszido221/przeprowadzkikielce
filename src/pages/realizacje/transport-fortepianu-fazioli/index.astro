@@ -1,0 +1,8 @@
+---
+import CaseStudyPage from '../../../components/CaseStudyPage.astro';
+import { getCaseStudy } from '../../../data/realizacje';
+
+const study = getCaseStudy('/realizacje/transport-fortepianu-fazioli/')!;
+---
+
+<CaseStudyPage study={study} />

@@ -1,0 +1,146 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ServiceHero from './ServiceHero.astro';
+import SectionHeading from './SectionHeading.astro';
+import MobileStickyCta from './MobileStickyCta.astro';
+import { site } from '../data/site';
+import type { CaseStudy } from '../data/realizacje';
+
+interface Props {
+  study: CaseStudy;
+}
+
+const { study } = Astro.props;
+const canonical = `${site.domain}${study.slug.replace(/^\//, '')}`;
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: study.heading,
+  description: study.description,
+  url: canonical,
+  image: new URL(study.heroImage, site.domain).href,
+  author: { '@type': 'Organization', name: site.brand },
+  publisher: {
+    '@type': 'Organization',
+    name: site.brand,
+    telephone: site.phone,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: site.address.street,
+      postalCode: site.address.postalCode,
+      addressLocality: site.address.city,
+      addressCountry: 'PL',
+    },
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Strona główna', item: site.domain },
+    { '@type': 'ListItem', position: 2, name: 'Realizacje', item: `${site.domain}realizacje/` },
+    { '@type': 'ListItem', position: 3, name: study.heading, item: canonical },
+  ],
+};
+---
+
+<Layout title={study.title} description={study.description} robots="index, follow" canonical={canonical} ogImage={study.heroImage}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <ServiceHero
+    eyebrow={study.eyebrow}
+    heading={study.heading}
+    lead={study.lead}
+    breadcrumbs={[{ label: 'Realizacje', href: '/realizacje/' }, { label: study.heading }]}
+    heroImage={study.heroImage}
+    heroAlt={study.heroAlt}
+    secondaryCtaLabel="Umów bezpłatne oględziny"
+    secondaryCtaHref="/wycena/"
+  />
+
+  <section class="case-study__facts" aria-label="Najważniejsze fakty">
+    <div class="container">
+      <SectionHeading label="Najważniejsze fakty" title="Kluczowe parametry realizacji" />
+      <ul class="case-study__facts-list">
+        {study.facts.map((fact) => <li>{fact}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="case-study__content">
+    <div class="container case-study__content-grid">
+      <div class="case-study__content-body">
+        {study.sections.map((section) => (
+          <div class="case-study__section">
+            <h2>{section.heading}</h2>
+            {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+          </div>
+        ))}
+        <div class="case-study__conclusion">
+          <h2>{study.conclusionHeading}</h2>
+          <p>{study.conclusionText}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-study__gallery section--alt" aria-label="Galeria zdjęć z realizacji">
+    <div class="container">
+      <SectionHeading label="Zdjęcia z pracy WHM" title="Sposób pracy i zabezpieczenia" />
+      <div class="photo-grid photo-grid--3">
+        {study.gallery.map((image) => (
+          <figure class="photo-grid__item case-study__gallery-item">
+            <img src={image.src} alt={image.alt} width="600" height="450" loading="lazy" decoding="async" />
+            <figcaption>{image.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="case-study__related-services" aria-label="Powiązane usługi">
+    <div class="container">
+      <SectionHeading label="Powiązane usługi" title="Sprawdź właściwą ścieżkę" />
+      <div class="related-services__grid">
+        {study.relatedServices.map((item) => (
+          <a class="related-service" href={item.href}>
+            <h3>{item.label}</h3>
+            <p>{item.text}</p>
+            <span>Dowiedz się więcej</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="case-study__related-realizacje" aria-label="Inne realizacje">
+    <div class="container">
+      <SectionHeading label="Inne realizacje" title="Zobacz również" />
+      <div class="case-study__related-realizacje-grid">
+        {study.relatedRealizacje.map((item) => (
+          <a class="case-study__related-realizacje-card" href={item.href}>
+            <span>{item.label}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="case-study__sales-cta" aria-label={study.salesHeading}>
+    <div class="container">
+      <div class="case-study__sales-cta-inner">
+        <h2>{study.salesHeading}</h2>
+        <p>{study.salesText}</p>
+        <div class="case-study__sales-cta-actions">
+          <a href={`tel:${site.phoneRaw}`} class="btn btn--primary btn--lg" data-cta-click data-cta-location="case-study-sales">Zadzwoń: {site.phone}</a>
+          <a href="/wycena/" class="btn btn--secondary btn--lg" data-cta-click data-cta-location="case-study-sales">Umów bezpłatne oględziny</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <MobileStickyCta formHref="/wycena/" />
+</Layout>
