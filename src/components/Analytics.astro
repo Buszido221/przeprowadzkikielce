@@ -1,0 +1,208 @@
+---
+---
+
+<!-- Cookie Consent Banner -->
+<div id="cookie-consent" class="cookie-consent" role="dialog" aria-label="Zgoda na pliki cookie" aria-hidden="true">
+  <div class="cookie-consent__inner">
+    <p class="cookie-consent__text">
+      Ta strona korzysta z plików cookie i narzędzi analitycznych (Google Analytics), aby lepiej dostosować nasze usługi do Twoich potrzeb.
+      <a href="/polityka-prywatnosci/">Polityka prywatności</a>
+    </p>
+    <div class="cookie-consent__actions">
+      <button id="cookie-reject" class="cookie-consent__btn cookie-consent__btn--secondary" type="button">Odrzucam</button>
+      <button id="cookie-accept" class="cookie-consent__btn cookie-consent__btn--primary" type="button">Akceptuję</button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+(function () {
+  var CONSENT_KEY = 'whm_cookie_consent';
+  var consent = localStorage.getItem(CONSENT_KEY);
+  var banner = document.getElementById('cookie-consent');
+
+  if (consent !== 'accepted' && consent !== 'rejected') {
+    banner.setAttribute('aria-hidden', 'false');
+    banner.classList.add('cookie-consent--visible');
+  }
+
+  if (consent === 'accepted') {
+    initEventTracking();
+  }
+
+  document.getElementById('cookie-accept').addEventListener('click', function () {
+    localStorage.setItem(CONSENT_KEY, 'accepted');
+    hideBanner();
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', {
+        analytics_storage: 'granted',
+        ad_storage: 'granted',
+        ad_user_data: 'granted',
+        ad_personalization: 'granted'
+      });
+    }
+    initEventTracking();
+  });
+
+  document.getElementById('cookie-reject').addEventListener('click', function () {
+    localStorage.setItem(CONSENT_KEY, 'rejected');
+    hideBanner();
+  });
+
+  function hideBanner() {
+    banner.classList.remove('cookie-consent--visible');
+    banner.setAttribute('aria-hidden', 'true');
+  }
+
+  function initEventTracking() {
+    if (window._whm_events_loaded) return;
+    window._whm_events_loaded = true;
+    trackContactClicks();
+    trackFormEvents();
+    trackCtaClicks();
+    trackScrollDepth();
+    trackEngagedTime();
+  }
+
+  function resolveLinkLocation(link) {
+    if (link.closest('.lp-header')) return 'lp-header';
+    if (link.closest('.lp-sticky-cta')) return 'lp-sticky';
+    if (link.closest('.lp-final-cta')) return 'lp-final';
+    if (link.closest('.lead-form')) return 'form';
+    if (link.closest('.header-cta')) return 'header';
+    if (link.closest('.top-bar')) return 'top-bar';
+    if (link.closest('.footer')) return 'footer';
+    if (link.closest('.lp-footer')) return 'lp-footer';
+    if (link.closest('.subpage-hero')) return 'hero';
+    return 'unknown';
+  }
+
+  function trackContactClicks() {
+    document.addEventListener('click', function (e) {
+      var phoneLink = e.target.closest('a[href^="tel:"], [data-phone-click]');
+      if (phoneLink) {
+        var linkLocation = resolveLinkLocation(phoneLink);
+        var detail = { event: 'phone_click', link_location: linkLocation, page_path: location.pathname };
+        document.dispatchEvent(new CustomEvent('whm:analytics', { detail: detail }));
+        if (typeof gtag === 'function') {
+          gtag('event', 'phone_click', {
+            event_category: 'kontakt',
+            event_label: linkLocation,
+            link_location: linkLocation,
+            page_path: location.pathname
+          });
+        }
+      }
+
+      var mailLink = e.target.closest('a[href^="mailto:"]');
+      if (mailLink) {
+        var mailLocation = resolveLinkLocation(mailLink);
+        var mailDetail = { event: 'email_click', link_location: mailLocation, page_path: location.pathname };
+        document.dispatchEvent(new CustomEvent('whm:analytics', { detail: mailDetail }));
+        if (typeof gtag === 'function') {
+          gtag('event', 'email_click', {
+            event_category: 'kontakt',
+            event_label: mailLocation,
+            link_location: mailLocation,
+            page_path: location.pathname
+          });
+        }
+      }
+    });
+  }
+
+  function trackFormEvents() {
+    document.addEventListener('whm:analytics', function (e) {
+      var detail = e.detail || {};
+      if (detail.event !== 'form_start' && detail.event !== 'form_submit_error') return;
+      if (typeof gtag !== 'function') return;
+
+      gtag('event', detail.event, {
+        event_category: 'formularz',
+        event_label: detail.serviceType || 'unknown',
+        service_type: detail.serviceType || '',
+        form_location: detail.formLocation || '',
+        form_context: detail.formContext || '',
+        page_path: location.pathname
+      });
+    });
+
+    document.addEventListener('whm:form_success', function (e) {
+      if (typeof gtag !== 'function') return;
+      var detail = e.detail || {};
+      gtag('event', 'generate_lead', {
+        event_category: 'formularz',
+        event_label: detail.serviceType || 'unknown',
+        form_id: detail.formId || 'unknown',
+        service_type: detail.serviceType || '',
+        form_location: detail.formLocation || '',
+        form_context: detail.formContext || '',
+        page_path: location.pathname
+      });
+    });
+  }
+
+  function trackCtaClicks() {
+    document.addEventListener('whm:analytics', function (e) {
+      var detail = e.detail || {};
+      if (detail.event !== 'cta_click') return;
+      if (typeof gtag !== 'function') return;
+      gtag('event', 'cta_click', {
+        event_category: 'engagement',
+        event_label: detail.cta_location || 'unknown',
+        cta_location: detail.cta_location || 'unknown',
+        page_path: location.pathname
+      });
+    });
+  }
+
+  function trackScrollDepth() {
+    var thresholds = [25, 50, 75, 100];
+    var fired = {};
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(function () {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          if (docHeight > 0) {
+            var pct = Math.round((scrollTop / docHeight) * 100);
+            for (var i = 0; i < thresholds.length; i++) {
+              var t = thresholds[i];
+              if (pct >= t && !fired[t] && typeof gtag === 'function') {
+                fired[t] = true;
+                gtag('event', 'scroll_depth', {
+                  event_category: 'zaangazowanie',
+                  event_label: t + '%',
+                  value: t,
+                  page_path: location.pathname
+                });
+              }
+            }
+          }
+          ticking = false;
+        });
+      }
+    }, { passive: true });
+  }
+
+  function trackEngagedTime() {
+    var milestones = [15, 30, 60];
+    var firedTime = {};
+    milestones.forEach(function (sec) {
+      setTimeout(function () {
+        if (document.visibilityState === 'hidden') return;
+        if (firedTime[sec] || typeof gtag !== 'function') return;
+        firedTime[sec] = true;
+        gtag('event', 'engaged_time', {
+          event_category: 'zaangazowanie',
+          event_label: sec + 's',
+          value: sec,
+          page_path: location.pathname
+        });
+      }, sec * 1000);
+    });
+  }
+})();
+</script>

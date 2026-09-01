@@ -1,0 +1,176 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SubpageHero from '../../components/SubpageHero.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import { site } from '../../data/site';
+import { pianinaPage as page } from '../../data/services';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Strona główna', item: site.domain },
+        { '@type': 'ListItem', position: 2, name: 'Transport specjalistyczny', item: `${site.domain}transport-specjalistyczny/` },
+        { '@type': 'ListItem', position: 3, name: 'Pianina i fortepiany', item: page.seo.canonical },
+      ],
+    },
+    {
+      '@type': 'Service',
+      name: 'Transport pianin i fortepianów Kielce',
+      description: page.seo.description,
+      provider: {
+        '@type': 'LocalBusiness',
+        name: site.brand,
+        telephone: site.phone,
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: site.address.street,
+          addressLocality: site.address.city,
+          postalCode: site.address.postalCode,
+          addressCountry: 'PL',
+        },
+      },
+      areaServed: { '@type': 'State', name: 'województwo świętokrzyskie' },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: page.faq.map((q) => ({
+        '@type': 'Question',
+        name: q.question,
+        acceptedAnswer: { '@type': 'Answer', text: q.answer },
+      })),
+    },
+  ],
+};
+---
+
+<Layout title={page.seo.title} description={page.seo.description} robots="index, follow">
+  <link slot="head" rel="canonical" href={page.seo.canonical} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <SubpageHero
+    heading={page.hero.heading}
+    lead={page.hero.lead}
+    breadcrumbs={page.breadcrumbs}
+    ctaLabel={page.hero.ctaLabel}
+    heroImage={page.hero.image}
+  />
+
+  <!-- WHY -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading label={page.why.eyebrow} title={page.why.heading} />
+      <ul class="simple-list">
+        {page.why.items.map((item) => (
+          <li class="simple-list__item">{item}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- CLIENT INFO -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading label={page.clientInfo.eyebrow} title={page.clientInfo.heading} />
+      <ul class="simple-list">
+        {page.clientInfo.items.map((item) => (
+          <li class="simple-list__item">{item}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- PROTECTION -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading label={page.protection.eyebrow} title={page.protection.heading} description={page.protection.text} />
+    </div>
+  </section>
+
+  <!-- PHOTOS -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading label={page.photos.eyebrow} title={page.photos.heading} />
+      <div class="photo-grid photo-grid--3">
+        {page.photos.items.map((photo) => (
+          <div class="photo-grid__item">
+            <img src={photo.src} alt={photo.alt} width="600" height="450" loading="lazy" decoding="async" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- STAIRS -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="info-block">
+        <SectionHeading label={page.stairs.eyebrow} title={page.stairs.heading} />
+        <p class="info-block__text">{page.stairs.text}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOT INCLUDED -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading label={page.notIncluded.eyebrow} title={page.notIncluded.heading} />
+      <ul class="simple-list">
+        {page.notIncluded.items.map((item) => (
+          <li class="simple-list__item">{item}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- QUICK VALUATION LINKS -->
+  <section class="section section--sm">
+    <div class="container">
+      <SectionHeading label="Szybka wycena" title="Wyceń konkretną usługę" />
+      <div class="related-links">
+        <a href="/lp/transport-pianina-kielce/" class="arrow-link">Wyceń transport pianina</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading label="Najczęstsze pytania" title="Odpowiedzi na pytania o transport pianin i fortepianów" />
+      <div class="faq-list">
+        {page.faq.map((item) => (
+          <details class="faq-item">
+            <summary class="faq-item__question">{item.question}</summary>
+            <div class="faq-item__answer">
+              <p>{item.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="container">
+      <div class="final-cta__inner">
+        <h2 class="final-cta__heading">{page.finalCta.heading}</h2>
+        <p class="final-cta__text">{page.finalCta.text}</p>
+        <div class="final-cta__actions">
+          <a href="/wycena/" class="btn btn--primary btn--lg">{page.finalCta.ctaLabel}</a>
+          <a href={`tel:${site.phoneRaw}`} class="btn btn--secondary btn--lg">Zadzwoń: 720 719 022</a>
+        </div>
+        <p class="final-cta__hours">Pn–Pt: {site.hours.weekdays} &middot; Sob: {site.hours.saturday}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BACK LINK -->
+  <section class="section--sm">
+    <div class="container">
+      <a href="/transport-specjalistyczny/" class="back-link">Transport specjalistyczny</a>
+    </div>
+  </section>
+</Layout>

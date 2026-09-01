@@ -1,0 +1,119 @@
+---
+import Breadcrumbs from './Breadcrumbs.astro';
+import { site } from '../data/site';
+
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  heading: string;
+  lead: string;
+  breadcrumbs: BreadcrumbItem[];
+  ctaLabel?: string;
+  ctaHref?: string;
+  ctaDownload?: boolean;
+  ctaSecondaryLabel?: string;
+  ctaSecondaryHref?: string;
+  note?: string;
+  heroImage?: string;
+}
+
+const {
+  heading,
+  lead,
+  breadcrumbs,
+  ctaLabel = 'Poproś o wycenę',
+  ctaHref = '/wycena/',
+  ctaDownload = false,
+  ctaSecondaryLabel,
+  ctaSecondaryHref,
+  note,
+  heroImage,
+} = Astro.props;
+
+const defaultHeroImages = [
+  '/images/hero/hero-1.webp',
+  '/images/hero/hero-2.webp',
+  '/images/hero/hero-3.webp',
+  '/images/hero/hero-4.webp',
+];
+
+const useCustom = !!heroImage;
+---
+
+<section class="subpage-hero" aria-label={heading}>
+  <div class="subpage-hero__bg">
+    {useCustom ? (
+      <img
+        src={heroImage}
+        alt=""
+        role="presentation"
+        width="1920"
+        height="1080"
+        class="subpage-hero__img subpage-hero__img--active"
+        fetchpriority="high"
+        decoding="async"
+      />
+    ) : (
+      defaultHeroImages.map((src, i) => (
+        <img
+          src={src}
+          alt=""
+          role="presentation"
+          width="1920"
+          height="1080"
+          class:list={['subpage-hero__img', { 'subpage-hero__img--active': i === 0 }]}
+          data-slide-index={i}
+          fetchpriority={i === 0 ? 'high' : undefined}
+          loading={i === 0 ? undefined : 'lazy'}
+          decoding="async"
+        />
+      ))
+    )}
+    <div class="subpage-hero__overlay"></div>
+  </div>
+  <div class="container subpage-hero__container">
+    <div class="subpage-hero__breadcrumbs">
+      <Breadcrumbs items={breadcrumbs} />
+    </div>
+    <div class="subpage-hero__content">
+      <h1 class="subpage-hero__heading">{heading}</h1>
+      <p class="subpage-hero__lead">{lead}</p>
+      <div class="subpage-hero__actions">
+        <a href={ctaHref} class="btn btn--primary btn--lg" target={ctaHref.startsWith('http') ? '_blank' : undefined} rel={ctaHref.startsWith('http') ? 'noopener noreferrer' : undefined} download={ctaDownload ? '' : undefined}>{ctaLabel}</a>
+        {ctaSecondaryLabel && ctaSecondaryHref ? (
+          <a href={ctaSecondaryHref} class="btn btn--hero-secondary btn--lg" target={ctaSecondaryHref.startsWith('http') ? '_blank' : undefined} rel={ctaSecondaryHref.startsWith('http') ? 'noopener noreferrer' : undefined}>{ctaSecondaryLabel}</a>
+        ) : (
+          <a href={`tel:${site.phoneRaw}`} class="btn btn--hero-secondary btn--lg">Zadzwoń: {site.phone}</a>
+        )}
+      </div>
+      {note && <p class="subpage-hero__note">{note}</p>}
+    </div>
+  </div>
+</section>
+
+<script>
+  function initHeroSlideshow() {
+    const heroes = document.querySelectorAll('.subpage-hero');
+    if (!heroes.length) return;
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    heroes.forEach((hero) => {
+      const images = hero.querySelectorAll<HTMLImageElement>('.subpage-hero__img[data-slide-index]');
+      if (images.length < 2) return;
+
+      let current = 0;
+      setInterval(() => {
+        images[current].classList.remove('subpage-hero__img--active');
+        current = (current + 1) % images.length;
+        images[current].classList.add('subpage-hero__img--active');
+      }, 3000);
+    });
+  }
+
+  initHeroSlideshow();
+</script>

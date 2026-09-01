@@ -1,0 +1,20 @@
+---
+import { site } from '../data/site';
+
+interface Props {
+  heading: string;
+  text: string;
+}
+
+const { heading, text } = Astro.props;
+---
+
+<section class="final-cta" aria-label={heading}>
+  <div class="container">
+    <h2 class="final-cta__heading">{heading}</h2>
+    <p class="final-cta__text">{text}</p>
+    <a href={`tel:${site.phoneRaw}`} class="btn btn--primary btn--lg" data-cta-click data-cta-location="final-cta">
+      Zadzwoń: {site.phone}
+    </a>
+  </div>
+</section>

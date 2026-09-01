@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://przeprowadzkikielce.pl/sitemap.xml

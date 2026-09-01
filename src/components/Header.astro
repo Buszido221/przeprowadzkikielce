@@ -1,0 +1,170 @@
+---
+import { site } from '../data/site';
+
+const currentPath = Astro.url.pathname;
+
+const mainNav = [
+  { name: 'Przeprowadzki', slug: '/przeprowadzki/' },
+  { name: 'Dla firm i instytucji', slug: '/przeprowadzki-firm-i-instytucji/' },
+  { name: 'Transport specjalistyczny', slug: '/transport-specjalistyczny/' },
+  { name: 'Magazyny WHM', slug: '/magazyny/' },
+  { name: 'Standard WHM', slug: '/standard-whm/' },
+  { name: 'Realizacje', slug: '/realizacje/' },
+  { name: 'O nas', slug: '/o-nas/' },
+];
+
+const secondaryNav = [
+  { name: 'Poradnik', slug: '/poradnik/' },
+  { name: 'Kontakt', slug: '/kontakt/' },
+  { name: 'WHM Shop', slug: '/whm-shop/' },
+];
+---
+
+<div class="top-bar">
+  <div class="container">
+    <div class="top-bar__links">
+      {secondaryNav.map((item) => (
+        <a href={item.slug}>{item.name}</a>
+      ))}
+    </div>
+    <a href={`tel:${site.phoneRaw}`} class="top-bar__phone">{site.phone}</a>
+  </div>
+</div>
+
+<header class="site-header" id="site-header">
+  <div class="container">
+    <div class="header-main">
+      <a href="/" class="header-brand" aria-label="WHM Przeprowadzki - strona główna">
+        <img src="/images/LOGO_WHM.svg" alt="WHM Przeprowadzki" width="120" height="32" />
+      </a>
+
+      <nav class="desktop-nav" aria-label="Menu główne">
+        <ul class="desktop-nav__list">
+          {mainNav.map((item) => (
+            <li>
+              <a
+                href={item.slug}
+                class="desktop-nav__link"
+                aria-current={currentPath === item.slug ? 'page' : undefined}
+              >
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="header-cta">
+        <a href={`tel:${site.phoneRaw}`} class="header-cta__phone">{site.phone}</a>
+        <a href="/wycena/" class="btn btn--primary btn--sm">Poproś o wycenę</a>
+      </div>
+
+      <button
+        class="mobile-nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        aria-label="Otwórz menu"
+        id="mobile-nav-toggle"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line class="hamburger-top" x1="4" y1="6" x2="20" y2="6" />
+          <line class="hamburger-mid" x1="4" y1="12" x2="20" y2="12" />
+          <line class="hamburger-bot" x1="4" y1="18" x2="20" y2="18" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <nav id="mobile-nav" class="mobile-nav" data-open="false" aria-label="Menu mobilne">
+    <div class="mobile-nav__section">
+      <p class="mobile-nav__section-title">Usługi</p>
+      {mainNav.map((item) => (
+        <a
+          href={item.slug}
+          class="mobile-nav__link"
+          aria-current={currentPath === item.slug ? 'page' : undefined}
+        >
+          {item.name}
+        </a>
+      ))}
+    </div>
+
+    <div class="mobile-nav__section">
+      <p class="mobile-nav__section-title">Więcej</p>
+      {secondaryNav.map((item) => (
+        <a
+          href={item.slug}
+          class="mobile-nav__link"
+          aria-current={currentPath === item.slug ? 'page' : undefined}
+        >
+          {item.name}
+        </a>
+      ))}
+    </div>
+
+    <div class="mobile-nav__cta">
+      <a href="/wycena/" class="btn btn--primary btn--lg" style="width: 100%;">Poproś o wycenę</a>
+      <a href={`tel:${site.phoneRaw}`} class="btn btn--secondary btn--lg" style="width: 100%; margin-top: 0.5rem;">
+        Zadzwoń: {site.phone}
+      </a>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-nav-toggle') as HTMLButtonElement | null;
+  const nav = document.getElementById('mobile-nav');
+  const header = document.getElementById('site-header');
+
+  function closeMenu() {
+    if (!toggle || !nav) return;
+    nav.dataset.open = 'false';
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Otwórz menu');
+    document.body.style.overflow = '';
+  }
+
+  function openMenu() {
+    if (!toggle || !nav) return;
+    nav.dataset.open = 'true';
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Zamknij menu');
+    document.body.style.overflow = 'hidden';
+  }
+
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => {
+      const isOpen = nav.dataset.open === 'true';
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    nav.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav.dataset.open === 'true') {
+        closeMenu();
+        toggle.focus();
+      }
+    });
+  }
+
+  if (header) {
+    let lastScrollY = 0;
+    const onScroll = () => {
+      const scrolled = window.scrollY > 8;
+      header.classList.toggle('site-header--scrolled', scrolled);
+      lastScrollY = window.scrollY;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+</script>

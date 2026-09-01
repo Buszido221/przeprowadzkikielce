@@ -1,0 +1,39 @@
+---
+import SectionHeading from './SectionHeading.astro';
+
+interface StandardImage {
+  src: string;
+  alt: string;
+  caption: string;
+}
+
+interface Props {
+  heading: string;
+  text: string;
+  images: StandardImage[];
+}
+
+const { heading, text, images } = Astro.props;
+---
+
+<section class="standard-whm" aria-label={heading}>
+  <div class="container">
+    <SectionHeading title={heading} description={text} />
+    <div class="standard-whm__grid">
+      {images.map((img, i) => (
+        <figure class:list={['standard-whm__figure', { 'standard-whm__figure--large': i === 0 }]}>
+          <img
+            src={img.src}
+            alt={img.alt}
+            width="640"
+            height="480"
+            loading={i === 0 ? undefined : 'lazy'}
+            decoding="async"
+            class="standard-whm__img"
+          />
+          <figcaption class="standard-whm__caption">{img.caption}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

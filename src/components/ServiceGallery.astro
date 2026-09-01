@@ -1,0 +1,37 @@
+---
+import SectionHeading from './SectionHeading.astro';
+
+interface GalleryImage {
+  src: string;
+  alt: string;
+}
+
+interface Props {
+  heading: string;
+  eyebrow?: string;
+  images: GalleryImage[];
+}
+
+const { heading, eyebrow, images } = Astro.props;
+---
+
+<section class="service-gallery" aria-label={heading}>
+  <div class="container">
+    <SectionHeading label={eyebrow} title={heading} />
+    <div class="service-gallery__scroll">
+      {images.map((img) => (
+        <figure class="service-gallery__figure">
+          <img
+            src={img.src}
+            alt={img.alt}
+            width="480"
+            height="360"
+            loading="lazy"
+            decoding="async"
+            class="service-gallery__img"
+          />
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

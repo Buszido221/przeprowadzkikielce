@@ -1,0 +1,66 @@
+---
+import Breadcrumbs from './Breadcrumbs.astro';
+import { site } from '../data/site';
+
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  eyebrow: string;
+  heading: string;
+  lead: string;
+  breadcrumbs: BreadcrumbItem[];
+  heroImage: string;
+  heroAlt: string;
+  primaryCtaLabel?: string;
+  primaryCtaHref?: string;
+  secondaryCtaLabel?: string;
+  secondaryCtaHref?: string;
+  note?: string;
+}
+
+const {
+  eyebrow,
+  heading,
+  lead,
+  breadcrumbs,
+  heroImage,
+  heroAlt,
+  primaryCtaLabel = `Zadzwoń: ${site.phone}`,
+  primaryCtaHref = `tel:${site.phoneRaw}`,
+  secondaryCtaLabel = 'Poproś o wycenę',
+  secondaryCtaHref = '#wycena',
+  note,
+} = Astro.props;
+---
+
+<section class="service-hero" aria-label={heading}>
+  <div class="service-hero__grid">
+    <div class="service-hero__content">
+      <div class="service-hero__breadcrumbs">
+        <Breadcrumbs items={breadcrumbs} />
+      </div>
+      <span class="service-hero__eyebrow">{eyebrow}</span>
+      <h1 class="service-hero__heading">{heading}</h1>
+      <p class="service-hero__lead">{lead}</p>
+      <div class="service-hero__actions">
+        <a href={primaryCtaHref} class="btn btn--primary btn--lg" data-cta-click data-cta-location="hero">{primaryCtaLabel}</a>
+        <a href={secondaryCtaHref} class="btn btn--hero-secondary btn--lg">{secondaryCtaLabel}</a>
+      </div>
+      {note && <p class="service-hero__note">{note}</p>}
+    </div>
+    <div class="service-hero__image">
+      <img
+        src={heroImage}
+        alt={heroAlt}
+        width="960"
+        height="720"
+        fetchpriority="high"
+        decoding="async"
+        class="service-hero__img"
+      />
+    </div>
+  </div>
+</section>

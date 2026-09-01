@@ -1,0 +1,85 @@
+---
+import { site } from '../data/site';
+
+const serviceLinks = [
+  { name: 'Przeprowadzki', slug: '/przeprowadzki/' },
+  { name: 'Przeprowadzki firm i instytucji', slug: '/przeprowadzki-firm-i-instytucji/' },
+  { name: 'Pakowanie i zabezpieczanie', slug: '/pakowanie-i-zabezpieczanie/' },
+  { name: 'Transport specjalistyczny', slug: '/transport-specjalistyczny/' },
+  { name: 'Transport pianin i fortepianów', slug: '/transport-pianin-i-fortepianow-kielce/' },
+  { name: 'Transport gabarytowy', slug: '/transport-gabarytowy-kielce/' },
+];
+
+const whmLinks = [
+  { name: 'Standard WHM', slug: '/standard-whm/' },
+  { name: 'Magazyny WHM', slug: '/magazyny/' },
+  { name: 'WHM Shop', slug: '/whm-shop/' },
+  { name: 'Realizacje', slug: '/realizacje/' },
+  { name: 'Jak to działa', slug: '/jak-to-dziala/' },
+  { name: 'O nas', slug: '/o-nas/' },
+  { name: 'Poradnik', slug: '/poradnik/' },
+];
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <p class="footer-section__title">Kontakt</p>
+        <div class="footer-section__list">
+          <div class="footer-contact-item">
+            <span class="footer-contact-label">Tel.</span>
+            <a href={`tel:${site.phoneRaw}`}>{site.phone}</a>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-label">SMS</span>
+            <a href={`sms:${site.phoneRaw}`}>{site.phone}</a>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-label">E-mail</span>
+            <a href={`mailto:${site.email}`}>{site.email}</a>
+          </div>
+        </div>
+        <div style="margin-top: var(--space-4);">
+          <p>{site.address.full}</p>
+        </div>
+        <div class="footer-hours">
+          <p>Pn–Pt: {site.hours.weekdays}</p>
+          <p>Sob: {site.hours.saturday}</p>
+        </div>
+        <p class="footer-note">{site.hours.note}</p>
+      </div>
+
+      <div class="footer-section">
+        <p class="footer-section__title">Usługi</p>
+        <ul class="footer-section__list">
+          {serviceLinks.map((link) => (
+            <li><a href={link.slug}>{link.name}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <p class="footer-section__title">WHM</p>
+        <ul class="footer-section__list">
+          {whmLinks.map((link) => (
+            <li><a href={link.slug}>{link.name}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <p class="footer-section__title">Dokumenty</p>
+        <ul class="footer-section__list">
+          <li><a href="/polityka-prywatnosci/">Polityka prywatności</a></li>
+          <li><a href="/kontakt/">Kontakt</a></li>
+          <li><a href="/wycena/">Poproś o wycenę</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>{site.legalName} &middot; NIP: {site.nip}</p>
+    </div>
+  </div>
+</footer>

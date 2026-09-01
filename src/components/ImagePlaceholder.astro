@@ -1,0 +1,29 @@
+---
+interface Props {
+  filename: string;
+  alt?: string;
+  aspect?: 'landscape' | 'portrait' | 'square';
+}
+
+const { filename, alt, aspect = 'landscape' } = Astro.props;
+
+if (!filename) {
+  return;
+}
+
+const aspectRatios: Record<string, string> = {
+  landscape: '16 / 9',
+  portrait: '3 / 4',
+  square: '1 / 1',
+};
+---
+
+<div
+  class="image-placeholder"
+  style={`aspect-ratio: ${aspectRatios[aspect]};`}
+  role="img"
+  aria-label={alt ? `Placeholder: ${alt}` : `Placeholder: ${filename}`}
+>
+  <span class="image-placeholder__label">DOCELOWE ZDJĘCIE: {filename}</span>
+  {alt && <span class="image-placeholder__desc">{alt}</span>}
+</div>

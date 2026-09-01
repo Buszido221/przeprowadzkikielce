@@ -1,0 +1,171 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import { site } from '../../data/site';
+import { magazynyPage as page } from '../../data/services';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Strona główna', item: site.domain },
+        { '@type': 'ListItem', position: 2, name: 'Magazyny WHM', item: page.seo.canonical },
+      ],
+    },
+    {
+      '@type': 'Service',
+      name: 'Magazyny WHM - przechowywanie mienia',
+      description: page.seo.description,
+      provider: {
+        '@type': 'LocalBusiness',
+        name: site.brand,
+        telephone: site.phone,
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: site.address.street,
+          addressLocality: site.address.city,
+          postalCode: site.address.postalCode,
+          addressCountry: 'PL',
+        },
+      },
+      areaServed: { '@type': 'State', name: 'województwo świętokrzyskie' },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: page.faq.map((q) => ({
+        '@type': 'Question',
+        name: q.question,
+        acceptedAnswer: { '@type': 'Answer', text: q.answer },
+      })),
+    },
+  ],
+};
+---
+
+<Layout title={page.seo.title} description={page.seo.description} robots="noindex, follow">
+  <link slot="head" rel="canonical" href={page.seo.canonical} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <!-- TEXT HERO (no image) -->
+  <section class="text-hero">
+    <div class="text-hero__bg"></div>
+    <div class="container text-hero__container">
+      <div class="text-hero__breadcrumbs">
+        <Breadcrumbs items={page.breadcrumbs} />
+      </div>
+      <div class="text-hero__content">
+        <h1 class="text-hero__heading">{page.hero.heading}</h1>
+        <p class="text-hero__lead">{page.hero.lead}</p>
+        <p class="text-hero__status">{page.status}</p>
+        <div class="text-hero__actions">
+          <a href={page.hero.ctaHref} class="btn btn--primary btn--lg">{page.hero.ctaLabel}</a>
+          <a href={`tel:${site.phoneRaw}`} class="btn btn--hero-secondary btn--lg">Zadzwoń: {site.phone}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AS PART OF PROCESS -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading label={page.asPart.eyebrow} title={page.asPart.heading} />
+      <ul class="simple-list">
+        {page.asPart.items.map((item) => (
+          <li class="simple-list__item">{item}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading label={page.features.eyebrow} title={page.features.heading} />
+      <ul class="simple-list">
+        {page.features.items.map((item) => (
+          <li class="simple-list__item">{item}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- WHAT TO STORE -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading label={page.whatToStore.eyebrow} title={page.whatToStore.heading} />
+      <ul class="simple-list">
+        {page.whatToStore.items.map((item) => (
+          <li class="simple-list__item">{item}</li>
+        ))}
+      </ul>
+      <p class="notice-box">{page.whatToStore.note}</p>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading label={page.process.eyebrow} title={page.process.heading} />
+      <div class="process-steps process-steps--6">
+        {page.process.steps.map((step) => (
+          <div class="process-step">
+            <span class="process-step__number">{step.number}</span>
+            <div>
+              <p class="process-step__title">{step.title}</p>
+              <p class="process-step__desc">{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading label={page.location.eyebrow} title={page.location.heading} />
+      <div class="info-block">
+        <p class="info-block__text">
+          <strong>{page.location.address}</strong><br />
+          {page.location.visitNote}<br />
+          {page.location.hoursNote}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading label="Najczęstsze pytania" title="Odpowiedzi na pytania o Magazyny WHM" />
+      <div class="faq-list">
+        {page.faq.map((item) => (
+          <details class="faq-item">
+            <summary class="faq-item__question">{item.question}</summary>
+            <div class="faq-item__answer">
+              <p>{item.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="container">
+      <div class="final-cta__inner">
+        <h2 class="final-cta__heading">{page.finalCta.heading}</h2>
+        <p class="final-cta__text">{page.finalCta.text}</p>
+        <div class="final-cta__actions">
+          <a href="/kontakt/" class="btn btn--primary btn--lg">{page.hero.ctaLabel}</a>
+          <a href={`tel:${site.phoneRaw}`} class="btn btn--secondary btn--lg">Zadzwoń: 720 719 022</a>
+        </div>
+        <p class="final-cta__hours">Pn–Pt: {site.hours.weekdays} &middot; Sob: {site.hours.saturday}</p>
+      </div>
+    </div>
+  </section>
+</Layout>

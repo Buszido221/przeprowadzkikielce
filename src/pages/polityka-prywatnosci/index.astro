@@ -1,0 +1,60 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SubpageHero from '../../components/SubpageHero.astro';
+import { site } from '../../data/site';
+import { politykaPage as page, privacyPolicyFinalized } from '../../data/services';
+
+const isDev = import.meta.env.DEV;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Strona główna', item: site.domain },
+        { '@type': 'ListItem', position: 2, name: 'Polityka prywatności', item: page.seo.canonical },
+      ],
+    },
+  ],
+};
+---
+
+<Layout title={page.seo.title} description={page.seo.description} robots="noindex, follow">
+  <link slot="head" rel="canonical" href={page.seo.canonical} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <SubpageHero
+    heading={page.hero.heading}
+    lead={page.hero.lead}
+    breadcrumbs={page.breadcrumbs}
+  />
+
+  <section class="section">
+    <div class="container">
+      {isDev && !privacyPolicyFinalized && (
+        <p style="padding: var(--space-3) var(--space-4); background: var(--color-surface-dark); color: rgba(255,255,255,0.6); border-radius: var(--radius-md); font-size: var(--text-xs); margin-bottom: var(--space-6); text-align: center;">
+          Dokument w stanie roboczy - finalizacja po wdrożeniu formularza i analityki.
+        </p>
+      )}
+
+      <div class="privacy-section">
+        <h2 class="privacy-section__heading">{page.administrator.name}</h2>
+        <div class="privacy-section__content">
+          <p>NIP: {page.administrator.nip}</p>
+          <p>Adres rejestrowy: {page.administrator.registeredAddress}</p>
+          <p>E-mail: <a href={`mailto:${page.administrator.email}`} style="color: var(--color-red); text-decoration: underline;">{page.administrator.email}</a></p>
+        </div>
+      </div>
+
+      {page.sections.map((section) => (
+        <div class="privacy-section">
+          <h2 class="privacy-section__heading">{section.heading}</h2>
+          <div class="privacy-section__content">
+            <p>{section.content}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</Layout>

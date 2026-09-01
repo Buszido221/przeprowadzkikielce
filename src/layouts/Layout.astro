@@ -1,0 +1,71 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Analytics from '../components/Analytics.astro';
+import GoogleTagHead from '../components/GoogleTagHead.astro';
+import CampaignAttribution from '../components/CampaignAttribution.astro';
+import { site } from '../data/site';
+import { isStaging } from '../lib/environment';
+import '../styles/base.css';
+import '../styles/main.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  robots?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = 'WHM Przeprowadzki - profesjonalne przeprowadzki w Kielcach i województwie świętokrzyskim.',
+  robots = 'noindex, follow',
+  ogImage = '/images/hero/hero-1.webp',
+} = Astro.props;
+
+const robotsContent = isStaging ? 'noindex, nofollow, noarchive' : robots;
+const canonicalUrl = Astro.url.href;
+const ogImageUrl = new URL(ogImage, site.domain).href;
+---
+
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content={robotsContent} />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/images/LOGO_WHM.svg" />
+    <title>{title}</title>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:site_name" content={site.brand} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1920" />
+    <meta property="og:image:height" content="1080" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <GoogleTagHead />
+    <CampaignAttribution />
+    <slot name="head" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Przejdź do treści</a>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+    {isStaging ? null : <Analytics />}
+  </body>
+</html>

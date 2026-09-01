@@ -1,0 +1,8 @@
+---
+import SalesLandingLayout from '../../../layouts/SalesLandingLayout.astro';
+import { getLandingPage } from '../../../data/landingPages';
+
+const page = getLandingPage('transport-gabarytowy-kielce')!;
+---
+
+<SalesLandingLayout page={page} />

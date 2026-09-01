@@ -1,0 +1,608 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { site } from '../data/site';
+import {
+  hero,
+  trustFacts,
+  introSection,
+  servicesSection,
+  standardSection,
+  realizationsSection,
+  specialTransportSection,
+  testimonials,
+  ecosystemSection,
+  processSection,
+  guideSection,
+  faqItems,
+  finalCta,
+} from '../data/home';
+---
+
+<Layout
+  title="Przeprowadzki Kielce | WHM Przeprowadzki"
+  description="Profesjonalne przeprowadzki mieszkań, domów, firm i instytucji w Kielcach. Pakowanie, zabezpieczanie mienia, transport specjalistyczny i magazynowanie."
+  robots="index, follow"
+>
+  <link slot="head" rel="canonical" href={site.domain} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'MovingCompany',
+    name: site.brand,
+    legalName: site.legalName,
+    url: site.domain,
+    telephone: site.phone,
+    email: site.email,
+    logo: `${site.domain}images/LOGO_WHM.svg`,
+    image: `${site.domain}images/hero/hero-1.webp`,
+    description: 'Profesjonalne przeprowadzki mieszkań, domów, firm i instytucji w Kielcach. Pakowanie, zabezpieczanie mienia, transport specjalistyczny i magazynowanie.',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: site.address.street,
+      addressLocality: site.address.city,
+      postalCode: site.address.postalCode,
+      addressCountry: 'PL',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 50.8823,
+      longitude: 20.6856,
+    },
+    areaServed: {
+      '@type': 'GeoCircle',
+      geoMidpoint: {
+        '@type': 'GeoCoordinates',
+        latitude: 50.8661,
+        longitude: 20.6286,
+      },
+      geoRadius: '50000',
+    },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '08:00',
+        closes: '20:00',
+      },
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: 'Saturday',
+        opens: '08:00',
+        closes: '18:00',
+      },
+    ],
+    priceRange: '$',
+    sameAs: [],
+  })} />
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__bg">
+      {hero.images.map((src, i) => (
+        <img
+          src={src}
+          alt="Samochód WHM Przeprowadzki przy realizacji zlecenia"
+          width="1920"
+          height="1080"
+          class:list={['hero__slide', { 'hero__slide--active': i === 0 }]}
+          data-slide-index={i}
+          fetchpriority={i === 0 ? 'high' : undefined}
+          loading={i === 0 ? undefined : 'lazy'}
+          decoding="async"
+        />
+      ))}
+      <div class="hero__overlay"></div>
+    </div>
+    <div class="container">
+      <div class="hero__content">
+        <p class="hero__eyebrow">{hero.eyebrow}</p>
+        <h1 class="hero__heading">{hero.heading}</h1>
+        <p class="hero__lead">{hero.lead}</p>
+        <div class="hero__actions">
+          <a href="/wycena/" class="btn btn--primary btn--lg">Poproś o wycenę</a>
+          <a href={`tel:${site.phoneRaw}`} class="btn btn--hero-secondary btn--lg">Zadzwoń: {site.phone}</a>
+        </div>
+        <p class="hero__note">{hero.contactNote}</p>
+      </div>
+    </div>
+    <div class="hero__trust">
+      <div class="container">
+        <div class="hero__trust-grid">
+          {trustFacts.map((fact) => (
+            <div class="hero__trust-item">
+              <p class="hero__trust-title">{fact.title}</p>
+              <p class="hero__trust-desc">{fact.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="section">
+    <div class="container">
+      <div class="split-section">
+        <div class="split-section__content">
+          <SectionHeading
+            label={introSection.eyebrow}
+            title={introSection.heading}
+            description={introSection.text}
+          />
+          <ul class="check-list">
+            {introSection.points.map((point) => (
+              <li class="check-list__item">{point}</li>
+            ))}
+          </ul>
+          <div class="section-cta">
+            <a href={introSection.cta.href} class="arrow-link">{introSection.cta.label}</a>
+          </div>
+        </div>
+        <div class="split-section__media">
+          <img
+            src={introSection.image}
+            alt="Pracownik WHM zabezpiecza wyposażenie do transportu"
+            width="800"
+            height="600"
+            loading="lazy"
+            decoding="async"
+            class="section-img"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading
+        label={servicesSection.eyebrow}
+        title={servicesSection.heading}
+        description={servicesSection.intro}
+      />
+      <div class="services-grid">
+        {servicesSection.items.map((item) => (
+          <a href={item.href} class="service-card">
+            <div class="service-card__media">
+              <img
+                src={item.image}
+                alt={item.title}
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="service-card__body">
+              <h3 class="service-card__title">{item.title}</h3>
+              <p class="service-card__desc">{item.desc}</p>
+              <span class="service-card__link">Dowiedz się więcej</span>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="section-cta section-cta--center">
+        <a href={servicesSection.cta.href} class="arrow-link">{servicesSection.cta.label}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STANDARD WHM -->
+  <section class="section">
+    <div class="container">
+      <div class="split-section split-section--reverse">
+        <div class="split-section__content">
+          <SectionHeading
+            label={standardSection.eyebrow}
+            title={standardSection.heading}
+            description={standardSection.text}
+          />
+          <div class="standard-steps">
+            {standardSection.steps.map((step, i) => (
+              <div class="standard-step">
+                <span class="standard-step__number">{String(i + 1).padStart(2, '0')}</span>
+                <div>
+                  <p class="standard-step__title">{step.title}</p>
+                  <p class="standard-step__desc">{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div class="section-cta">
+            <a href={standardSection.cta.href} class="arrow-link">{standardSection.cta.label}</a>
+          </div>
+        </div>
+        <div class="split-section__media split-section__media--stack">
+          <img
+            src={standardSection.images[0]}
+            alt="Starannie zabezpieczone elementy wyposażenia przed transportem"
+            width="800"
+            height="600"
+            loading="lazy"
+            decoding="async"
+            class="section-img"
+          />
+          <img
+            src={standardSection.images[1]}
+            alt="Profesjonalny demontaż mebli przed przeprowadzką"
+            width="800"
+            height="600"
+            loading="lazy"
+            decoding="async"
+            class="section-img"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REALIZATIONS -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading
+        label={realizationsSection.eyebrow}
+        title={realizationsSection.heading}
+        description={realizationsSection.text}
+      />
+      <div class="realizations-grid">
+        {realizationsSection.categories.map((cat) => (
+          <div class="realization-card">
+            <div class="realization-card__media">
+              <img
+                src={cat.image}
+                alt={cat.label}
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <p class="realization-card__label">{cat.label}</p>
+          </div>
+        ))}
+      </div>
+      <div class="section-cta section-cta--center">
+        <a href={realizationsSection.cta.href} class="arrow-link">{realizationsSection.cta.label}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECIAL TRANSPORT -->
+  <section class="section">
+    <div class="container">
+      <div class="split-section">
+        <div class="split-section__content">
+          <SectionHeading
+            label={specialTransportSection.eyebrow}
+            title={specialTransportSection.heading}
+            description={specialTransportSection.text}
+          />
+          <ul class="tag-list">
+            {specialTransportSection.categories.map((cat) => (
+              <li class="tag-list__item">{cat}</li>
+            ))}
+          </ul>
+          <div class="notice-box">
+            <p>{specialTransportSection.notice}</p>
+          </div>
+          <div class="section-cta" style="display: flex; flex-wrap: wrap; gap: var(--space-4);">
+            <a href={specialTransportSection.cta.href} class="btn btn--primary">{specialTransportSection.cta.label}</a>
+            <a href={specialTransportSection.ctaSecondary.href} class="btn btn--secondary">{specialTransportSection.ctaSecondary.label}</a>
+          </div>
+        </div>
+        <div class="split-section__media split-section__media--stack">
+          <img
+            src={specialTransportSection.images[0]}
+            alt="Wykorzystanie schodołazu przy transporcie ciężkiego ładunku"
+            width="800"
+            height="600"
+            loading="lazy"
+            decoding="async"
+            class="section-img"
+          />
+          <img
+            src={specialTransportSection.images[1]}
+            alt="Transport instrumentu muzycznego przez zespół WHM"
+            width="800"
+            height="600"
+            loading="lazy"
+            decoding="async"
+            class="section-img"
+          />
+          <img
+            src={specialTransportSection.images[2]}
+            alt="Praca z dużym wyposażeniem biurowym"
+            width="800"
+            height="600"
+            loading="lazy"
+            decoding="async"
+            class="section-img"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  {testimonials.length > 0 && (
+    <section class="section section--alt testimonials-section">
+      <div class="container">
+        <SectionHeading label="Opinie klientów" title="Sprawdź, co mówią o nas klienci." />
+        <div class="testimonials-carousel" id="testimonials-carousel" aria-roledescription="karuzela" aria-label="Opinie klientów">
+          <div class="testimonials-carousel__track" id="testimonials-track">
+            {testimonials.map((t, i) => (
+              <div
+                class:list={['testimonial-card', { 'testimonial-card--active': i === 0 }]}
+                role="group"
+                aria-roledescription="slajd"
+                aria-label={`Opinia ${i + 1} z ${testimonials.length}`}
+                data-testimonial-index={i}
+              >
+                <div class="testimonial-card__stars" aria-label="Ocena 5 na 5">
+                  {[...Array(5)].map(() => (
+                    <svg class="testimonial-card__star" viewBox="0 0 20 20" fill="currentColor" width="18" height="18" aria-hidden="true">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118l-3.37-2.448a1 1 0 00-1.176 0l-3.37 2.448c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.063 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.286-3.957z" />
+                    </svg>
+                  ))}
+                </div>
+                <blockquote class="testimonial-card__text">{t.text}</blockquote>
+                <p class="testimonial-card__author">
+                  {t.author}
+                  {t.source && <span class="testimonial-card__source"> &middot; {t.source}</span>}
+                </p>
+              </div>
+            ))}
+          </div>
+          <div class="testimonials-carousel__dots" id="testimonials-dots">
+            {testimonials.map((_, i) => (
+              <button
+                type="button"
+                class:list={['testimonials-carousel__dot', { 'testimonials-carousel__dot--active': i === 0 }]}
+                data-dot-index={i}
+                aria-label={`Przejdź do opinii ${i + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+        <div class="section-cta section-cta--center" style="margin-top: var(--space-6);">
+          <a href="https://maps.app.goo.gl/G3BqHNabtfWtzAhk7" target="_blank" rel="noopener noreferrer" class="arrow-link">
+            Zobacz wszystkie opinie na Google
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ECOSYSTEM -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading
+        label={ecosystemSection.eyebrow}
+        title={ecosystemSection.heading}
+      />
+      <div class="ecosystem-grid">
+        <div class="ecosystem-card ecosystem-card--storage">
+          <div class="ecosystem-card__body">
+            <div class="ecosystem-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="14" width="40" height="26" rx="2" />
+                <path d="M4 22h40" />
+                <path d="M4 30h40" />
+                <path d="M16 14V8h16v6" />
+                <circle cx="24" cy="18" r="1.5" fill="currentColor" stroke="none" />
+                <circle cx="24" cy="26" r="1.5" fill="currentColor" stroke="none" />
+                <circle cx="24" cy="34" r="1.5" fill="currentColor" stroke="none" />
+              </svg>
+            </div>
+            <h3>{ecosystemSection.storage.title}</h3>
+            <p>{ecosystemSection.storage.text}</p>
+            <p class="ecosystem-card__note">Obiekt w Masłowie jest w trakcie przygotowania. Zdjęcia pojawią się po zakończeniu prac.</p>
+            <div class="section-cta">
+              <a href={ecosystemSection.storage.cta.href} class="arrow-link">{ecosystemSection.storage.cta.label}</a>
+            </div>
+          </div>
+        </div>
+        <div class="ecosystem-card">
+          <div class="ecosystem-card__media">
+            <img
+              src={ecosystemSection.shop.image}
+              alt="Zapas kartonów i materiałów do przeprowadzki w WHM Shop"
+              width="600"
+              height="400"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="ecosystem-card__body">
+            <h3>{ecosystemSection.shop.title}</h3>
+            <p>{ecosystemSection.shop.text}</p>
+            <div class="section-cta">
+              <a href={ecosystemSection.shop.cta.href} class="arrow-link">{ecosystemSection.shop.cta.label}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading
+        label={processSection.eyebrow}
+        title={processSection.heading}
+      />
+      <div class="process-steps">
+        {processSection.steps.map((step) => (
+          <div class="process-step">
+            <span class="process-step__number">{step.number}</span>
+            <div>
+              <p class="process-step__title">{step.title}</p>
+              <p class="process-step__desc">{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="section-cta section-cta--center">
+        <a href={processSection.cta.href} class="arrow-link">{processSection.cta.label}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUIDE -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="split-section">
+        <div class="split-section__content">
+          <SectionHeading
+            label={guideSection.eyebrow}
+            title={guideSection.heading}
+            description={guideSection.text}
+          />
+          <div class="section-cta">
+            <a href={guideSection.cta.href} class="arrow-link">{guideSection.cta.label}</a>
+          </div>
+        </div>
+        <div class="split-section__media">
+          <img
+            src={guideSection.image}
+            alt="Poradnik przygotowania do przeprowadzki WHM"
+            width="800"
+            height="600"
+            loading="lazy"
+            decoding="async"
+            class="section-img"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading
+        label="Najczęstsze pytania"
+        title="Odpowiedzi na pytania, które słyszymy najczęściej."
+      />
+      <div class="faq-list">
+        {faqItems.map((item) => (
+          <details class="faq-item">
+            <summary class="faq-item__question">{item.question}</summary>
+            <div class="faq-item__answer">
+              <p>{item.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK VALUATION HUB -->
+  <section class="section section--sm">
+    <div class="container">
+      <SectionHeading label="Szybka wycena" title="Wyceń konkretną usługę" />
+      <div class="related-links">
+        <a href="/przeprowadzki/" class="arrow-link">Wyceń przeprowadzkę w Kielcach</a>
+        <a href="/przeprowadzki/" class="arrow-link">Sprawdź, co wpływa na cenę przeprowadzki</a>
+        <a href="/lp/przeprowadzki-firm-kielce/" class="arrow-link">Omów relokację firmy</a>
+        <a href="/lp/utylizacja-mebli-kielce/" class="arrow-link">Wyceń wywóz starych mebli</a>
+        <a href="/lp/transport-pianina-kielce/" class="arrow-link">Wyceń transport pianina</a>
+        <a href="/lp/transport-specjalistyczny-kielce/" class="arrow-link">Wyceń transport specjalistyczny</a>
+        <a href="/lp/transport-gabarytowy-kielce/" class="arrow-link">Wyceń transport gabarytowy</a>
+        <a href="/przeprowadzki/" class="arrow-link">Wyceń transport lodówki</a>
+        <a href="/przeprowadzki/" class="arrow-link">Wyceń transport AGD</a>
+        <a href="/lp/pakowanie-przeprowadzki-kielce/" class="arrow-link">Zamów pakowanie do przeprowadzki</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="container">
+      <div class="final-cta__inner">
+        <h2 class="final-cta__heading">{finalCta.heading}</h2>
+        <p class="final-cta__text">{finalCta.text}</p>
+        <div class="final-cta__actions">
+          <a href="/wycena/" class="btn btn--primary btn--lg">Poproś o wycenę</a>
+          <a href={`tel:${site.phoneRaw}`} class="btn btn--secondary btn--lg">Zadzwoń: {site.phone}</a>
+          <a href={`sms:${site.phoneRaw}`} class="btn btn--secondary btn--lg">Wyślij SMS</a>
+        </div>
+        <p class="final-cta__hours">
+          Pn–Pt: {site.hours.weekdays} &middot; Sob: {site.hours.saturday}
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  function initHeroSlideshow() {
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    const slides = hero.querySelectorAll<HTMLImageElement>('.hero__slide[data-slide-index]');
+    if (slides.length < 2) return;
+
+    let current = 0;
+    setInterval(() => {
+      slides[current].classList.remove('hero__slide--active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('hero__slide--active');
+    }, 3000);
+  }
+
+  initHeroSlideshow();
+
+  function initTestimonialsCarousel() {
+    const carousel = document.getElementById('testimonials-carousel');
+    if (!carousel) return;
+
+    const cards = carousel.querySelectorAll<HTMLElement>('[data-testimonial-index]');
+    const dots = carousel.querySelectorAll<HTMLButtonElement>('[data-dot-index]');
+    if (cards.length < 2) return;
+
+    let current = 0;
+    let interval: ReturnType<typeof setInterval>;
+
+    function goTo(index: number) {
+      cards[current].classList.remove('testimonial-card--active');
+      dots[current].classList.remove('testimonials-carousel__dot--active');
+      current = index;
+      cards[current].classList.add('testimonial-card--active');
+      dots[current].classList.add('testimonials-carousel__dot--active');
+    }
+
+    function next() {
+      goTo((current + 1) % cards.length);
+    }
+
+    function startAutoplay() {
+      interval = setInterval(next, 5000);
+    }
+
+    function resetAutoplay() {
+      clearInterval(interval);
+      startAutoplay();
+    }
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const idx = Number(dot.dataset.dotIndex);
+        if (idx !== current) {
+          goTo(idx);
+          resetAutoplay();
+        }
+      });
+    });
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReduced) startAutoplay();
+  }
+
+  initTestimonialsCarousel();
+</script>

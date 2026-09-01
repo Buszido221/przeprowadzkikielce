@@ -1,0 +1,13 @@
+# Redirects for consolidated pages — 301 permanent
+# Source pages removed during /przeprowadzki/ rebuild
+
+/przeprowadzki-mieszkan-i-domow/    /przeprowadzki/    301
+/przeprowadzki-mieszkan-i-domow     /przeprowadzki/    301
+/lp/przeprowadzki-kielce/           /przeprowadzki/    301
+/lp/przeprowadzki-kielce            /przeprowadzki/    301
+/lp/przeprowadzki-cena/             /przeprowadzki/    301
+/lp/przeprowadzki-cena              /przeprowadzki/    301
+/lp/transport-agd-kielce/          /przeprowadzki/    301
+/lp/transport-agd-kielce           /przeprowadzki/    301
+/lp/transport-lodowki-kielce/      /przeprowadzki/    301
+/lp/transport-lodowki-kielce       /przeprowadzki/    301

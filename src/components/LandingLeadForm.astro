@@ -1,0 +1,26 @@
+---
+import LeadForm from './forms/LeadForm.astro';
+
+export interface Props {
+  formId: string;
+  serviceType: string;
+  variant?: 'przeprowadzka' | 'firma' | 'pianino' | 'specjalistyczny' | 'gabarytowy' | 'lodowka' | 'agd' | 'pakowanie' | 'utylizacja' | 'meble';
+  placeholder?: string;
+  submitLabel?: string;
+}
+
+const { formId, serviceType, variant = 'przeprowadzka', placeholder = '', submitLabel = 'Poproś o wycenę' } = Astro.props;
+
+const context = variant === 'firma' ? 'business' : 'consumer';
+---
+
+<LeadForm
+  formId={formId}
+  serviceType={serviceType}
+  variant={variant}
+  presentation="landing"
+  context={context}
+  formLocation="lp-hero"
+  placeholder={placeholder}
+  submitLabel={submitLabel}
+/>

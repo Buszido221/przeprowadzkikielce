@@ -1,0 +1,166 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SubpageHero from '../../components/SubpageHero.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import { site } from '../../data/site';
+import { shopPage as page } from '../../data/services';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Strona główna', item: site.domain },
+        { '@type': 'ListItem', position: 2, name: 'WHM Shop', item: page.seo.canonical },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: page.faq.map((q) => ({
+        '@type': 'Question',
+        name: q.question,
+        acceptedAnswer: { '@type': 'Answer', text: q.answer },
+      })),
+    },
+  ],
+};
+---
+
+<Layout title={page.seo.title} description={page.seo.description} robots="index, follow">
+  <link slot="head" rel="canonical" href={page.seo.canonical} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <SubpageHero
+    heading={page.hero.heading}
+    lead={page.hero.lead}
+    breadcrumbs={page.breadcrumbs}
+    ctaLabel={page.hero.ctaLabel}
+    ctaHref={page.hero.ctaHref}
+    ctaSecondaryLabel={page.hero.ctaSecondaryLabel}
+    ctaSecondaryHref={page.hero.ctaSecondaryHref}
+    heroImage={page.hero.image}
+  />
+
+  <!-- EXPERIENCE -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading label={page.experience.eyebrow} title={page.experience.heading} description={page.experience.text} />
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading label={page.categories.eyebrow} title={page.categories.heading} />
+      <ul class="simple-list">
+        {page.categories.items.map((item) => (
+          <li class="simple-list__item">{item}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- BOXES -->
+  <section class="section">
+    <div class="container">
+      <div class="split-section">
+        <div class="split-section__content">
+          <SectionHeading label={page.boxes.eyebrow} title={page.boxes.heading} />
+          <ul class="simple-list">
+            {page.boxes.items.map((item) => (
+              <li class="simple-list__item">{item}</li>
+            ))}
+          </ul>
+          <div class="section-cta">
+            <a href={page.boxes.cta.href} class="arrow-link" target="_blank" rel="noopener noreferrer">{page.boxes.cta.label}</a>
+          </div>
+        </div>
+        <div class="split-section__media">
+          <img src={page.boxes.image} alt={page.boxes.imageAlt} width="800" height="600" loading="lazy" decoding="async" class="section-img" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATERIALS -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="split-section split-section--reverse">
+        <div class="split-section__content">
+          <SectionHeading label={page.materials.eyebrow} title={page.materials.heading} />
+        </div>
+        <div class="split-section__media">
+          <img src={page.materials.image} alt={page.materials.imageAlt} width="800" height="600" loading="lazy" decoding="async" class="section-img" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VS SERVICE -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading label={page.vsService.eyebrow} title={page.vsService.heading} />
+      <div class="options-grid">
+        {page.vsService.options.map((opt) => (
+          <div class="option-card">
+            <p class="option-card__title">{opt.title}</p>
+            <p class="option-card__text" style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed); margin-bottom: var(--space-4);">{opt.text}</p>
+            {opt.link && (
+              <a href={opt.link.href} class="arrow-link">{opt.link.label}</a>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FOR BUSINESS -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading label={page.forBusiness.eyebrow} title={page.forBusiness.heading} description={page.forBusiness.text} />
+      <div class="section-cta">
+        <a href={page.forBusiness.cta.href} class="arrow-link" target="_blank" rel="noopener noreferrer">{page.forBusiness.cta.label}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- IN USE -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading label={page.inUse.eyebrow} title={page.inUse.heading} />
+      <img src={page.inUse.image} alt={page.inUse.imageAlt} width="1200" height="800" loading="lazy" decoding="async" class="section-img" />
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading label="Najczęstsze pytania" title="Odpowiedzi na pytania o WHM Shop" />
+      <div class="faq-list">
+        {page.faq.map((item) => (
+          <details class="faq-item">
+            <summary class="faq-item__question">{item.question}</summary>
+            <div class="faq-item__answer">
+              <p>{item.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="container">
+      <div class="final-cta__inner">
+        <h2 class="final-cta__heading">{page.finalCta.heading}</h2>
+        <div class="dual-cta">
+          <a href={page.finalCta.primaryCta.href} class="btn btn--primary btn--lg" target="_blank" rel="noopener noreferrer">{page.finalCta.primaryCta.label}</a>
+          <a href={page.finalCta.secondaryCta.href} class="btn btn--secondary btn--lg">{page.finalCta.secondaryCta.label}</a>
+        </div>
+        <p class="final-cta__hours">Pn–Pt: {site.hours.weekdays} &middot; Sob: {site.hours.saturday}</p>
+      </div>
+    </div>
+  </section>
+</Layout>

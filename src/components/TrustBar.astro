@@ -1,0 +1,25 @@
+---
+interface Fact {
+  title: string;
+  desc: string;
+}
+
+interface Props {
+  facts: Fact[];
+}
+
+const { facts } = Astro.props;
+---
+
+<section class="trust-bar" aria-label="Dlaczego WHM">
+  <div class="container">
+    <div class="trust-bar__grid">
+      {facts.map((fact) => (
+        <div class="trust-bar__item">
+          <h3 class="trust-bar__title">{fact.title}</h3>
+          <p class="trust-bar__desc">{fact.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

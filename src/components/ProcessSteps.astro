@@ -1,0 +1,33 @@
+---
+import SectionHeading from './SectionHeading.astro';
+
+interface Step {
+  number: string;
+  title: string;
+  desc: string;
+}
+
+interface Props {
+  heading: string;
+  steps: Step[];
+}
+
+const { heading, steps } = Astro.props;
+---
+
+<section class="process-section" aria-label={heading}>
+  <div class="container">
+    <SectionHeading title={heading} />
+    <ol class="process-steps process-steps--4">
+      {steps.map((step) => (
+        <li class="process-step">
+          <span class="process-step__number">{step.number}</span>
+          <div>
+            <h3 class="process-step__title">{step.title}</h3>
+            <p class="process-step__desc">{step.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

@@ -1,0 +1,256 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SubpageHero from '../../components/SubpageHero.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import { site } from '../../data/site';
+import { firmaPage as page } from '../../data/services';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Strona główna', item: site.domain },
+        { '@type': 'ListItem', position: 2, name: 'Przeprowadzki', item: `${site.domain}przeprowadzki/` },
+        { '@type': 'ListItem', position: 3, name: 'Firmy i instytucje', item: page.seo.canonical },
+      ],
+    },
+    {
+      '@type': 'Service',
+      name: 'Przeprowadzki firm i instytucji Kielce',
+      description: page.seo.description,
+      provider: {
+        '@type': 'LocalBusiness',
+        name: site.brand,
+        telephone: site.phone,
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: site.address.street,
+          addressLocality: site.address.city,
+          postalCode: site.address.postalCode,
+          addressCountry: 'PL',
+        },
+      },
+      areaServed: { '@type': 'State', name: 'województwo świętokrzyskie' },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: page.faq.map((q) => ({
+        '@type': 'Question',
+        name: q.question,
+        acceptedAnswer: { '@type': 'Answer', text: q.answer },
+      })),
+    },
+  ],
+};
+---
+
+<Layout title={page.seo.title} description={page.seo.description} robots="index, follow">
+  <link slot="head" rel="canonical" href={page.seo.canonical} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <SubpageHero
+    heading={page.hero.heading}
+    lead={page.hero.lead}
+    breadcrumbs={page.breadcrumbs}
+    ctaLabel={page.hero.ctaLabel}
+    note={page.hero.note}
+  />
+
+  <!-- TWO NEEDS -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading label={page.needs.eyebrow} title={page.needs.heading} />
+      <div class="needs-grid">
+        {page.needs.items.map((item) => (
+          <div class="needs-card">
+            <h3 class="needs-card__title">{item.title}</h3>
+            <p class="needs-card__text">{item.text}</p>
+            <div class="needs-card__links">
+              {item.links.map((link) => (
+                <a href={link.href} class="needs-card__link">{link.label}</a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SCOPE FIRST -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading label={page.scopeFirst.eyebrow} title={page.scopeFirst.heading} description={page.scopeFirst.text} />
+      <ol class="scope-list">
+        {page.scopeFirst.items.map((item) => (
+          <li class="scope-list__item">{item}</li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- SERVICE SCOPE -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading label={page.serviceScope.eyebrow} title={page.serviceScope.heading} description={page.serviceScope.text} />
+      <ol class="scope-list">
+        {page.serviceScope.items.map((item) => (
+          <li class="scope-list__item">{item}</li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- DOWNTIME -->
+  <section class="section">
+    <div class="container">
+      <div class="info-block">
+        <SectionHeading label={page.downtime.eyebrow} title={page.downtime.heading} />
+        <p class="info-block__text">{page.downtime.text}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LABELING -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading label={page.labeling.eyebrow} title={page.labeling.heading} description={page.labeling.text} />
+    </div>
+  </section>
+
+  <!-- DOCUMENTS -->
+  <section class="section">
+    <div class="container">
+      <div class="split-section">
+        <div class="split-section__content">
+          <SectionHeading label={page.documents.eyebrow} title={page.documents.heading} description={page.documents.text} />
+        </div>
+        <div class="split-section__media">
+          <img
+            src={page.documents.image}
+            alt={page.documents.imageAlt}
+            width="800"
+            height="600"
+            loading="lazy"
+            decoding="async"
+            class="section-img"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EQUIPMENT -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading label={page.equipment.eyebrow} title={page.equipment.heading} description={page.equipment.text} />
+      <div class="section-cta">
+        <a href={page.equipment.link.href} class="arrow-link">{page.equipment.link.label}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading label={page.process.eyebrow} title={page.process.heading} />
+      <div class="process-steps process-steps--6">
+        {page.process.steps.map((step) => (
+          <div class="process-step">
+            <span class="process-step__number">{step.number}</span>
+            <div>
+              <p class="process-step__title">{step.title}</p>
+              <p class="process-step__desc">{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTOS: ORGANIZATION -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading label={page.photosOrganization.eyebrow} title="Tak wygląda nasza praca" />
+      <div class="photo-grid photo-grid--3">
+        {page.photosOrganization.items.map((photo) => (
+          <div class="photo-grid__item">
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              width="600"
+              height="450"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTOS: EQUIPMENT -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading label={page.photosEquipment.eyebrow} title="Wyposażenie i większe elementy" />
+      <div class="photo-grid photo-grid--2">
+        {page.photosEquipment.items.map((photo) => (
+          <div class="photo-grid__item">
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              width="800"
+              height="600"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading label="Najczęstsze pytania" title="Odpowiedzi na pytania o przeprowadzki firm i instytucji" />
+      <div class="faq-list">
+        {page.faq.map((item) => (
+          <details class="faq-item">
+            <summary class="faq-item__question">{item.question}</summary>
+            <div class="faq-item__answer">
+              <p>{item.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK VALUATION LINKS -->
+  <section class="section section--sm">
+    <div class="container">
+      <SectionHeading label="Szybka wycena" title="Wyceń konkretną usługę" />
+      <div class="related-links">
+        <a href="/lp/przeprowadzki-firm-kielce/" class="arrow-link">Omów relokację firmy</a>
+        <a href="/lp/utylizacja-mebli-kielce/" class="arrow-link">Wyceń wywóz starych mebli</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="container">
+      <div class="final-cta__inner">
+        <h2 class="final-cta__heading">Zacznijmy od zakresu i warunków realizacji</h2>
+        <p class="final-cta__text">Opisz, co ma zostać przeniesione, pomiędzy jakimi lokalizacjami i w jakich warunkach będziemy pracować. Na tej podstawie ustalimy dalszy sposób działania.</p>
+        <div class="final-cta__actions">
+          <a href="/wycena/" class="btn btn--primary btn--lg">Omów przeprowadzkę</a>
+          <a href={`tel:${site.phoneRaw}`} class="btn btn--secondary btn--lg">Zadzwoń: 720 719 022</a>
+        </div>
+        <p class="final-cta__hours">Pn–Pt: {site.hours.weekdays} &middot; Sob: {site.hours.saturday}</p>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,191 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SubpageHero from '../../components/SubpageHero.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import { site } from '../../data/site';
+import { transportSpecPage as page } from '../../data/services';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Strona główna', item: site.domain },
+        { '@type': 'ListItem', position: 2, name: 'Transport specjalistyczny', item: page.seo.canonical },
+      ],
+    },
+    {
+      '@type': 'Service',
+      name: 'Transport specjalistyczny Kielce',
+      description: page.seo.description,
+      provider: {
+        '@type': 'LocalBusiness',
+        name: site.brand,
+        telephone: site.phone,
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: site.address.street,
+          addressLocality: site.address.city,
+          postalCode: site.address.postalCode,
+          addressCountry: 'PL',
+        },
+      },
+      areaServed: { '@type': 'State', name: 'województwo świętokrzyskie' },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: page.faq.map((q) => ({
+        '@type': 'Question',
+        name: q.question,
+        acceptedAnswer: { '@type': 'Answer', text: q.answer },
+      })),
+    },
+  ],
+};
+---
+
+<Layout title={page.seo.title} description={page.seo.description} robots="index, follow">
+  <link slot="head" rel="canonical" href={page.seo.canonical} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <SubpageHero
+    heading={page.hero.heading}
+    lead={page.hero.lead}
+    breadcrumbs={page.breadcrumbs}
+    ctaLabel={page.hero.ctaLabel}
+    note={page.hero.note}
+    heroImage={page.hero.image}
+  />
+
+  <!-- CATEGORIES -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading label={page.categories.eyebrow} title={page.categories.heading} />
+      <ul class="simple-list">
+        {page.categories.items.map((item) => (
+          <li class="simple-list__item">{item}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- TWO SERVICES -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading label={page.services.eyebrow} title={page.services.heading} />
+      <div class="services-grid services-grid--2col">
+        {page.services.items.map((item) => (
+          <a href={item.href} class="service-card">
+            <div class="service-card__media">
+              <img src={item.image} alt={item.alt} width="600" height="400" loading="lazy" decoding="async" />
+            </div>
+            <div class="service-card__body">
+              <h3 class="service-card__title">{item.title}</h3>
+              <p class="service-card__desc">{item.desc}</p>
+              <span class="service-card__link">Dowiedz się więcej</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ASSESSMENT -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading label={page.assessment.eyebrow} title={page.assessment.heading} />
+      <ol class="scope-list">
+        {page.assessment.items.map((item) => (
+          <li class="scope-list__item">{item}</li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- EQUIPMENT -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading label={page.equipment.eyebrow} title={page.equipment.heading} description={page.equipment.text} />
+      <div class="equipment-notice">{page.equipment.notice}</div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading label={page.gallery.eyebrow} title={page.gallery.heading} />
+      <div class="photo-grid photo-grid--3">
+        {page.gallery.items.map((photo) => (
+          <div class="photo-grid__item">
+            <img src={photo.src} alt={photo.alt} width="600" height="450" loading="lazy" decoding="async" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading label={page.process.eyebrow} title={page.process.heading} />
+      <div class="process-steps">
+        {page.process.steps.map((step) => (
+          <div class="process-step">
+            <span class="process-step__number">{step.number}</span>
+            <div>
+              <p class="process-step__title">{step.title}</p>
+              <p class="process-step__desc">{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK VALUATION LINKS -->
+  <section class="section section--sm">
+    <div class="container">
+      <SectionHeading label="Szybka wycena" title="Wyceń konkretną usługę" />
+      <div class="related-links">
+        <a href="/lp/transport-specjalistyczny-kielce/" class="arrow-link">Wyceń transport specjalistyczny</a>
+        <a href="/lp/transport-gabarytowy-kielce/" class="arrow-link">Wyceń transport gabarytowy</a>
+        <a href="/lp/transport-pianina-kielce/" class="arrow-link">Wyceń transport pianina</a>
+        <a href="/przeprowadzki/" class="arrow-link">Wyceń transport lodówki</a>
+        <a href="/przeprowadzki/" class="arrow-link">Wyceń transport AGD</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading label="Najczęstsze pytania" title="Odpowiedzi na pytania o transport specjalistyczny" />
+      <div class="faq-list">
+        {page.faq.map((item) => (
+          <details class="faq-item">
+            <summary class="faq-item__question">{item.question}</summary>
+            <div class="faq-item__answer">
+              <p>{item.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="container">
+      <div class="final-cta__inner">
+        <h2 class="final-cta__heading">{page.finalCta.heading}</h2>
+        <p class="final-cta__text">{page.finalCta.text}</p>
+        <div class="final-cta__actions">
+          <a href="/wycena/" class="btn btn--primary btn--lg">{page.finalCta.ctaLabel}</a>
+          <a href={`tel:${site.phoneRaw}`} class="btn btn--secondary btn--lg">Zadzwoń: 720 719 022</a>
+        </div>
+        <p class="final-cta__hours">Pn–Pt: {site.hours.weekdays} &middot; Sob: {site.hours.saturday}</p>
+      </div>
+    </div>
+  </section>
+</Layout>

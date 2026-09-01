@@ -1,0 +1,325 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import TrustBar from '../../components/TrustBar.astro';
+import StandardWhm from '../../components/StandardWhm.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import ServiceGallery from '../../components/ServiceGallery.astro';
+import ServiceFaq from '../../components/ServiceFaq.astro';
+import FinalCta from '../../components/FinalCta.astro';
+import MobileStickyCta from '../../components/MobileStickyCta.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import LeadForm from '../../components/forms/LeadForm.astro';
+import { site } from '../../data/site';
+import { testimonials } from '../../data/home';
+
+const title = 'Przeprowadzki Kielce – bezpieczna przeprowadzka | WHM';
+const description = 'Przeprowadzki mieszkań i domów w Kielcach, woj. świętokrzyskim i całej Polsce. Zabezpieczenie, pakowanie, montaż i bezpłatne oględziny większych zleceń.';
+const canonical = `${site.domain}przeprowadzki/`;
+
+const breadcrumbs = [{ label: 'Przeprowadzki' }];
+
+const faqItems = [
+  {
+    question: 'Od czego zależy cena przeprowadzki?',
+    answer: 'Cena zależy od zakresu rzeczy, dostępu do budynków, liczby kondygnacji i windy, odległości między adresami, zakresu pakowania, demontażu i montażu oraz potrzeby użycia specjalistycznego sprzętu. Dlatego wycenę przygotowujemy po poznaniu zlecenia, a nie z gotowej tabeli.',
+  },
+  {
+    question: 'Czy WHM zabezpiecza meble i sprzęt?',
+    answer: 'Tak. Zabezpieczenie mienia to podstawa naszej pracy. Używamy koców, gum, dedykowanych pokrowców szytych pod konkretne meble, pasów transportowych i suchej przestrzeni ładunkowej. Nie owijamy mebli folią stretch — stosujemy rozwiązania wielorazowe i dopasowane.',
+  },
+  {
+    question: 'Czy możecie zdemontować i ponownie złożyć meble?',
+    answer: 'Tak. Jeżeli demontaż jest potrzebny do bezpiecznego wyniesienia, uwzględniamy go w zakresie. Po transporcie montujemy meble we wskazanym miejscu. Odpowiedzialność za cały proces spoczywa na tym samym zespole.',
+  },
+  {
+    question: 'Czy można zlecić pakowanie całego mieszkania?',
+    answer: 'Tak. Pakowanie jest usługą dodatkową — można zlecić pełne pakowanie, wybrane elementy albo przygotować rzeczy samodzielnie. Używamy papieru pakowego, wielorazowych kartonów i innych profesjonalnych materiałów. Przy przeprowadzkach lokalnych możliwe jest udostępnienie kartonów wielokrotnego użytku.',
+  },
+  {
+    question: 'Czy wykonujecie przeprowadzki poza Kielcami?',
+    answer: 'Tak. Działamy w Kielcach, województwie świętokrzyskim i realizujemy przeprowadzki ogólnopolskie. Zasięg i odległość wpływają na wycenę — opisz nam swoją sytuację.',
+  },
+  {
+    question: 'Czy przed większą przeprowadzką można umówić oględziny?',
+    answer: 'Tak. Przy większych lub bardziej złożonych zleceniach możemy wcześniej wykonać bezpłatne oględziny i dopiero wtedy przygotować rzetelną wycenę.',
+  },
+  {
+    question: 'Czy przewozicie pojedyncze meble lub sprzęt AGD?',
+    answer: 'Tak. Pojedyncze elementy wyposażenia — meble, lodówki, pralki czy inne sprzęty — to część tej samej kompetencji. Nie musisz tworzyć osobnej usługi ani szukać innej firmy.',
+  },
+  {
+    question: 'Jak przekazać zdjęcia do wyceny?',
+    answer: 'Zdjęcia możesz dosłać po zgłoszeniu SMS-em lub e-mailem. Pomagają nam ocenić zakres, dostęp i ewentualne elementy wymagające szczególnej uwagi.',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Przeprowadzki mieszkań i domów',
+  provider: {
+    '@type': 'LocalBusiness',
+    name: 'WHM Przeprowadzki',
+    telephone: site.phone,
+    areaServed: ['Kielce', 'Województwo świętokrzyskie', 'Polska'],
+  },
+  areaServed: ['Kielce', 'Województwo świętokrzyskie', 'Polska'],
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Strona główna', item: site.domain },
+    { '@type': 'ListItem', position: 2, name: 'Przeprowadzki', item: canonical },
+  ],
+};
+
+const selectedTestimonials = testimonials.filter((t) =>
+  t.author === 'Zbigniew Pakuła' ||
+  t.author === 'Marzena' ||
+  t.author === 'Wiola' ||
+  t.author === 'Lidia Gurba'
+);
+---
+
+<Layout title={title} description={description} robots="index, follow">
+  <head>
+    <link rel="canonical" href={canonical} />
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </head>
+
+  <ServiceHero
+    eyebrow="Przeprowadzki w Kielcach i całej Polsce"
+    heading="Przeprowadzka bez improwizacji"
+    lead="Przenosimy mieszkania i domy z pełną odpowiedzialnością za cały proces — od zabezpieczenia i demontażu po transport, wniesienie i ponowny montaż."
+    breadcrumbs={breadcrumbs}
+    heroImage="/images/home-moving/przeprowadzki-domow-kielce-3.webp"
+    heroAlt="Zabezpieczone wyposażenie przygotowane do transportu przy domu"
+    note="Kielce • woj. świętokrzyskie • przeprowadzki ogólnopolskie"
+  />
+
+  <TrustBar facts={[
+    { title: 'Ubezpieczenie do 1 mln zł', desc: 'Każda przeprowadzka jest objęta ubezpieczeniem do 1 000 000 zł.' },
+    { title: 'Bezpłatne oględziny większych zleceń', desc: 'Przy większych lub złożonych przeprowadzkach przyjeżdżamy, by ocenić zakres na miejscu.' },
+    { title: 'Profesjonalne zabezpieczenia w standardzie', desc: 'Koce, gumy, dedykowane pokrowce i pasy — nie jako opcja, ale jako podstawa.' },
+  ]} />
+
+  <section class="perspective-section" aria-label="Przeprowadzka to nie tylko przewóz">
+    <div class="container">
+      <SectionHeading title="Przeprowadzka to nie tylko przewóz z punktu A do B" />
+      <div class="perspective-section__content">
+        <p>Cena ma znaczenie. Jeszcze większe znaczenie ma jednak to, w jakim stanie Twoje rzeczy dotrą na miejsce i czy cały proces nie zamieni się w serię dodatkowych problemów. Dlatego wycenę opieramy na realnym zakresie pracy, a nie na obietnicy najniższej stawki bez poznania zlecenia.</p>
+        <p>Uszkodzone meble, zarysowane ściany i klatka schodowa, źle zabezpieczony sprzęt czy improwizacja przy demontażu — to koszty, które nie zawsze widać w najtańszej ofercie. Dodatkowe kursy wynikające ze złego wykorzystania przestrzeni auta i brak jasnej odpowiedzialności za cały proces potrafią przewyższyć pozorną oszczędność.</p>
+        <p>Dlatego pracujemy inaczej: jeden zespół odpowiada za demontaż, zabezpieczenie, przeniesienie i ponowny montaż. Wykorzystujemy busy z zabudową meblarską i suchą przestrzenią ładunkową, a sprzęt — koce, gumy, pokrowce, pasy i dwa schodołazy — dobieramy do konkretnych przedmiotów, a nie odwrotnie.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-scope" aria-label="Zakres przeprowadzki">
+    <div class="container">
+      <SectionHeading title="Możemy przejąć tyle, ile potrzebujesz" description="Nie musisz wybierać gotowego pakietu. Decydujesz, które elementy przejmuje WHM — resztą zajmujesz się sam." />
+      <div class="service-scope__grid">
+        <div class="service-scope__group">
+          <h3 class="service-scope__group-title">Organizacja i transport</h3>
+          <ul class="service-scope__list">
+            <li>Plan realizacji dopasowany do Twojej sytuacji</li>
+            <li>Znoszenie i wnoszenie</li>
+            <li>Transport między adresami</li>
+            <li>Przeprowadzki lokalne i ogólnopolskie</li>
+            <li>Pojedyncze elementy wyposażenia jako część tej samej kompetencji</li>
+          </ul>
+        </div>
+        <div class="service-scope__group">
+          <h3 class="service-scope__group-title">Zabezpieczenie mienia</h3>
+          <ul class="service-scope__list">
+            <li>Koce, gumy i dedykowane pokrowce</li>
+            <li>Zabezpieczenie sprzętu, mebli i wyposażenia</li>
+            <li>Suche przestrzenie ładunkowe</li>
+            <li>Wielorazowe rozwiązania zamiast folii stretch</li>
+          </ul>
+        </div>
+        <div class="service-scope__group">
+          <h3 class="service-scope__group-title">Demontaż i montaż</h3>
+          <ul class="service-scope__list">
+            <li>Meble nowe i używane</li>
+            <li>Demontaż, gdy jest potrzebny do bezpiecznego wyniesienia</li>
+            <li>Ponowny montaż we wskazanym miejscu</li>
+            <li>Odpowiedzialność tego samego zespołu za cały proces</li>
+          </ul>
+        </div>
+        <div class="service-scope__group">
+          <h3 class="service-scope__group-title">Pakowanie jako usługa dodatkowa</h3>
+          <ul class="service-scope__list">
+            <li>Możliwość zlecenia pełnego pakowania</li>
+            <li>Papier pakowy i materiały wysokiej jakości</li>
+            <li>Kartony wielokrotnego użytku przy przeprowadzkach lokalnych</li>
+            <li>Możliwość samodzielnego przygotowania rzeczy</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <StandardWhm
+    heading="Bezpieczeństwo nie jest dodatkowo płatną opcją"
+    text="Zabezpieczenie mienia traktujemy jako podstawę dobrze wykonanej przeprowadzki. Dobieramy sposób przenoszenia, ochrony i mocowania do konkretnych przedmiotów — zamiast liczyć, że uniwersalne rozwiązanie wystarczy do wszystkiego."
+    images={[
+      { src: '/images/kielce-moving/przeprowadzki-kielce-4.webp', alt: 'Zabezpieczony i ustabilizowany ładunek w samochodzie WHM', caption: 'Zabudowa przestrzeni ładunkowej i stabilizacja pasami' },
+      { src: '/images/kielce-moving/przeprowadzki-kielce-8.webp', alt: 'Przenoszenie dużego zabezpieczonego elementu przez zespół WHM', caption: 'Praca zespołu przy prawdziwej realizacji' },
+      { src: '/images/packing-services/pakowanie-przeprowadzki-kielce-1.webp', alt: 'Dokładnie zabezpieczone elementy wyposażenia przed transportem', caption: 'Dedykowane pokrowce i koce ochronne' },
+      { src: '/images/moving-boxes/kartony-do-przeprowadzki-4.webp', alt: 'Oznaczone kartony przeprowadzkowe przygotowane do transportu', caption: 'Kartony wielokrotnego użytku' },
+      { src: '/images/transport-gabarytow/transport-gabarytow-kielce-1.webp', alt: 'Profesjonalny sprzęt i zabezpieczony ładunek wewnątrz samochodu WHM', caption: 'Pasy transportowe i uprzęże do ciężkich przedmiotów' },
+    ]}
+  />
+
+  <ProcessSteps
+    heading="Najpierw poznajemy zakres. Potem bierzemy odpowiedzialność za realizację."
+    steps={[
+      { number: '01', title: 'Rozmowa i zakres', desc: 'Klient dzwoni lub wysyła krótki opis zlecenia.' },
+      { number: '02', title: 'Wycena lub oględziny', desc: 'Przy większym zleceniu możliwe są bezpłatne oględziny.' },
+      { number: '03', title: 'Zabezpieczenie i przeprowadzka', desc: 'Zespół realizuje ustalony zakres — od zabezpieczenia po transport.' },
+      { number: '04', title: 'Wniesienie i ustawienie', desc: 'Rzeczy trafiają do wskazanych pomieszczeń, a uzgodnione meble są ponownie montowane.' },
+    ]}
+  />
+
+  <section class="pricing-section" aria-label="Wycena przeprowadzki">
+    <div class="container">
+      <SectionHeading title="Uczciwa wycena zaczyna się od poznania zlecenia" description="Nie pokazujemy wymyślonego cennika. Cena zależy od realnych czynników, które poznajemy przed wyceną." />
+      <ul class="pricing-section__factors">
+        <li>Zakresu rzeczy do przewiezienia</li>
+        <li>Dostępu do budynków</li>
+        <li>Liczby kondygnacji i windy</li>
+        <li>Odległości między adresami</li>
+        <li>Zakresu pakowania, demontażu i montażu</li>
+        <li>Potrzeby użycia specjalistycznego sprzętu</li>
+      </ul>
+      <p class="pricing-section__note">Przy większych lub niestandardowych przeprowadzkach możemy wcześniej wykonać bezpłatne oględziny i dopiero wtedy przygotować rzetelną wycenę.</p>
+      <div class="pricing-section__cta">
+        <a href={`tel:${site.phoneRaw}`} class="btn btn--primary btn--lg" data-cta-click data-cta-location="pricing">Zadzwoń: {site.phone}</a>
+        <a href="#wycena" class="btn btn--hero-secondary btn--lg">Poproś o wycenę</a>
+      </div>
+    </div>
+  </section>
+
+  <ServiceGallery
+    eyebrow="Prawdziwe zdjęcia realizacji"
+    heading="Tak wygląda nasza praca"
+    images={[
+      { src: '/images/home-moving/przeprowadzki-domow-kielce-1.webp', alt: 'Kartony i zabezpieczone wyposażenie w samochodzie WHM' },
+      { src: '/images/home-moving/przeprowadzki-domow-kielce-2.webp', alt: 'Przenoszenie mebli na klatce schodowej przez zespół WHM' },
+      { src: '/images/kielce-moving/przeprowadzki-kielce-1.webp', alt: 'Samochód WHM podczas realizacji w Kielcach' },
+      { src: '/images/kielce-moving/przeprowadzki-kielce-5.webp', alt: 'Zabezpieczone meble przygotowane do wyniesienia' },
+      { src: '/images/kielce-moving/przeprowadzki-kielce-6.webp', alt: 'Załadunek zabezpieczonego wyposażenia do samochodu WHM' },
+      { src: '/images/kielce-moving/przeprowadzki-kielce-7.webp', alt: 'Praca zespołu WHM podczas przeprowadzki' },
+    ]}
+  />
+
+  <section class="testimonials-section" aria-label="Opinie klientów">
+    <div class="container">
+      <SectionHeading title="Co mówią klienci" />
+      <div class="testimonials-grid">
+        {selectedTestimonials.map((t) => (
+          <figure class="testimonial-simple">
+            <blockquote class="testimonial-simple__text">{t.text}</blockquote>
+            <figcaption class="testimonial-simple__author">— {t.author}{t.source ? `, ${t.source}` : ''}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="service-area" aria-label="Obszar działania">
+    <div class="container">
+      <SectionHeading title="Z Kielc — tam, gdzie prowadzi przeprowadzka" />
+      <div class="service-area__levels">
+        <div class="service-area__level">
+          <h3>Kielce i okolice</h3>
+          <p>Lokalny rdzeń naszej działalności. Znamy miasto, osiedla i charakterystyczne budynki.</p>
+        </div>
+        <div class="service-area__level">
+          <h3>Województwo świętokrzyskie</h3>
+          <p>Działamy w całym regionie — od mniejszych miejscowości po większe ośrodki.</p>
+        </div>
+        <div class="service-area__level">
+          <h3>Przeprowadzki ogólnopolskie</h3>
+          <p>Realizujemy przeprowadzki między miastami w całej Polsce. Odległość wpływa na wycenę.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ServiceFaq items={faqItems} />
+
+  <section id="wycena" class="form-section" aria-label="Formularz wyceny">
+    <div class="container">
+      <SectionHeading title="Poproś o wycenę" description="Zostaw telefon lub e-mail i krótko opisz zlecenie. Wrócimy z pytaniami potrzebnymi do przygotowania wyceny." />
+      <div class="form-section__grid">
+        <div class="form-section__phone-card">
+          <h3>Szybsza ścieżka</h3>
+          <a href={`tel:${site.phoneRaw}`} data-cta-click data-cta-location="form-section">{site.phone}</a>
+          <p class="form-section__phone-note">Jeżeli nie możemy odebrać od razu, wracamy z kontaktem zwykle w ciągu 1–2 godzin w godzinach pracy. Wiadomości wieczorne obsługujemy rano.</p>
+        </div>
+        <LeadForm
+          formId="przeprowadzki-form"
+          serviceType="Przeprowadzka mieszkania lub domu"
+          variant="przeprowadzka"
+          presentation="page"
+          context="consumer"
+          formLocation="przeprowadzki"
+          heading="Opowiedz nam, czego potrzebujesz"
+          intro="Zostaw telefon lub e-mail i krótko opisz zlecenie. Wrócimy z pytaniami potrzebnymi do przygotowania wyceny."
+        />
+      </div>
+    </div>
+  </section>
+
+  <FinalCta
+    heading="Zaplanuj przeprowadzkę bez zgadywania"
+    text="Zadzwoń i opowiedz, co trzeba przenieść. Jeżeli zakres wymaga dokładniejszej oceny, umówimy bezpłatne oględziny."
+  />
+
+  <MobileStickyCta />
+</Layout>
+
+<style>
+  .testimonials-section {
+    padding: var(--space-16) 0;
+    background: var(--color-bg-white);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    gap: var(--space-6);
+    margin-top: var(--space-8);
+  }
+
+  @media (min-width: 768px) {
+    .testimonials-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .testimonial-simple {
+    padding: var(--space-6);
+    background: var(--color-bg);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-light);
+  }
+
+  .testimonial-simple__text {
+    font-size: var(--text-md);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text);
+    font-style: italic;
+    margin-bottom: var(--space-4);
+  }
+
+  .testimonial-simple__author {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text-secondary);
+  }
+</style>
