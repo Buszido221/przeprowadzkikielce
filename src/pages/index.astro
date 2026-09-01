@@ -9,7 +9,7 @@ import {
   introSection,
   servicesSection,
   standardSection,
-  realizationsSection,
+  featuredRealizations,
   specialTransportSection,
   testimonials,
   ecosystemSection,
@@ -26,6 +26,8 @@ import {
   robots="index, follow"
 >
   <link slot="head" rel="canonical" href={site.domain} />
+  <link rel="preload" href="/fonts/manrope-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/manrope-latin-ext-700-normal.woff2" as="font" type="font/woff2" crossorigin />
   <script slot="head" type="application/ld+json" set:html={JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'MovingCompany',
@@ -62,21 +64,17 @@ import {
   })} />
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero hero--single">
     <div class="hero__bg">
-      {hero.images.map((src, i) => (
-        <img
-          src={src}
-          alt="Samochód WHM Przeprowadzki przy realizacji zlecenia"
-          width="1920"
-          height="1080"
-          class:list={['hero__slide', { 'hero__slide--active': i === 0 }]}
-          data-slide-index={i}
-          fetchpriority={i === 0 ? 'high' : undefined}
-          loading={i === 0 ? undefined : 'lazy'}
-          decoding="async"
-        />
-      ))}
+      <img
+        src={hero.image}
+        alt={hero.imageAlt}
+        width="1920"
+        height="1080"
+        class="hero__img"
+        fetchpriority="high"
+        decoding="async"
+      />
       <div class="hero__overlay"></div>
     </div>
     <div class="container">
@@ -91,20 +89,23 @@ import {
         <p class="hero__note">{hero.contactNote}</p>
       </div>
     </div>
-    <div class="hero__trust">
-      <div class="container">
-        <div class="hero__trust-grid">
-          {trustFacts.map((fact) => (
-            <div class="hero__trust-item">
-              <p class="hero__trust-title">{fact.title}</p>
-              <p class="hero__trust-desc">{fact.desc}</p>
-            </div>
-          ))}
-        </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <section class="trust-strip">
+    <div class="container">
+      <div class="trust-strip__grid">
+        {trustFacts.map((fact) => (
+          <div class="trust-strip__item">
+            <p class="trust-strip__title">{fact.title}</p>
+            <p class="trust-strip__desc">{fact.desc}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
+  <!-- B2B -->
   <section class="section home-business">
     <div class="container">
       <div class="split-section split-section--reverse">
@@ -124,7 +125,7 @@ import {
   </section>
 
   <!-- INTRO -->
-  <section class="section">
+  <section class="section section--alt">
     <div class="container">
       <div class="split-section">
         <div class="split-section__content">
@@ -158,7 +159,7 @@ import {
   </section>
 
   <!-- SERVICES -->
-  <section class="section section--alt">
+  <section class="section">
     <div class="container">
       <SectionHeading
         label={servicesSection.eyebrow}
@@ -193,87 +194,70 @@ import {
   </section>
 
   <!-- STANDARD WHM -->
-  <section class="section">
-    <div class="container">
-      <div class="split-section split-section--reverse">
-        <div class="split-section__content">
-          <SectionHeading
-            label={standardSection.eyebrow}
-            title={standardSection.heading}
-            description={standardSection.text}
-          />
-          <div class="standard-steps">
-            {standardSection.steps.map((step, i) => (
-              <div class="standard-step">
-                <span class="standard-step__number">{String(i + 1).padStart(2, '0')}</span>
-                <div>
-                  <p class="standard-step__title">{step.title}</p>
-                  <p class="standard-step__desc">{step.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div class="section-cta">
-            <a href={standardSection.cta.href} class="arrow-link">{standardSection.cta.label}</a>
-          </div>
-        </div>
-        <div class="split-section__media split-section__media--stack">
-          <img
-            src={standardSection.images[0]}
-            alt="Starannie zabezpieczone elementy wyposażenia przed transportem"
-            width="800"
-            height="600"
-            loading="lazy"
-            decoding="async"
-            class="section-img"
-          />
-          <img
-            src={standardSection.images[1]}
-            alt="Profesjonalny demontaż mebli przed przeprowadzką"
-            width="800"
-            height="600"
-            loading="lazy"
-            decoding="async"
-            class="section-img"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- REALIZATIONS -->
   <section class="section section--alt">
     <div class="container">
       <SectionHeading
-        label={realizationsSection.eyebrow}
-        title={realizationsSection.heading}
-        description={realizationsSection.text}
+        label={standardSection.eyebrow}
+        title={standardSection.heading}
+        description={standardSection.text}
       />
-      <div class="realizations-grid">
-        {realizationsSection.categories.map((cat) => (
-          <div class="realization-card">
-            <div class="realization-card__media">
-              <img
-                src={cat.image}
-                alt={cat.label}
-                width="600"
-                height="400"
-                loading="lazy"
-                decoding="async"
-              />
+      <div class="equipment-grid">
+        {standardSection.equipmentModules.map((mod) => (
+          <div class="equipment-card">
+            <div class="equipment-card__media">
+              <img src={mod.image} alt={mod.name} width="600" height="400" loading="lazy" decoding="async" />
             </div>
-            <p class="realization-card__label">{cat.label}</p>
+            <div class="equipment-card__body">
+              <h3 class="equipment-card__name">{mod.name}</h3>
+              <p class="equipment-card__benefit">{mod.benefit}</p>
+            </div>
           </div>
         ))}
       </div>
       <div class="section-cta section-cta--center">
-        <a href={realizationsSection.cta.href} class="arrow-link">{realizationsSection.cta.label}</a>
+        <a href={standardSection.cta.href} class="arrow-link">{standardSection.cta.label}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED REALIZATIONS -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading
+        label="Prawdziwe realizacje"
+        title="Nie pokazujemy zdjęć stockowych. Pokazujemy swoją pracę."
+        description="Każde zdjęcie na stronie pochodzi z naszych realizacji. Zobaczysz prawdziwy sprzęt, prawdziwe zabezpieczenia i efekty prawdziwej pracy."
+      />
+      <div class="featured-realizations">
+        {featuredRealizations.map((real) => (
+          <a class="featured-realization" href={real.href}>
+            <div class="featured-realization__media">
+              <img src={real.image} alt={real.title} width="600" height="400" loading="lazy" decoding="async" />
+            </div>
+            <div class="featured-realization__body">
+              <span class="featured-realization__label">{real.label}</span>
+              <h3 class="featured-realization__title">{real.title}</h3>
+              <p class="featured-realization__location">{real.location}</p>
+              <ul class="featured-realization__params">
+                {real.params.map((param) => <li>{param}</li>)}
+              </ul>
+              <div class="featured-realization__challenge">
+                <p><strong>Wyzwanie:</strong> {real.challenge}</p>
+                <p><strong>Rezultat:</strong> {real.result}</p>
+              </div>
+              <span class="arrow-link">Poznaj przebieg realizacji</span>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="section-cta section-cta--center">
+        <a href="/realizacje/" class="arrow-link">Zobacz wszystkie realizacje</a>
       </div>
     </div>
   </section>
 
   <!-- SPECIAL TRANSPORT -->
-  <section class="section">
+  <section class="section section--alt">
     <div class="container">
       <div class="split-section">
         <div class="split-section__content">
@@ -328,46 +312,28 @@ import {
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
+  <!-- TESTIMONIALS (static) -->
   {testimonials.length > 0 && (
-    <section class="section section--alt testimonials-section">
+    <section class="section testimonials-static">
       <div class="container">
         <SectionHeading label="Opinie klientów" title="Sprawdź, co mówią o nas klienci." />
-        <div class="testimonials-carousel" id="testimonials-carousel" aria-roledescription="karuzela" aria-label="Opinie klientów">
-          <div class="testimonials-carousel__track" id="testimonials-track">
-            {testimonials.map((t, i) => (
-              <div
-                class:list={['testimonial-card', { 'testimonial-card--active': i === 0 }]}
-                role="group"
-                aria-roledescription="slajd"
-                aria-label={`Opinia ${i + 1} z ${testimonials.length}`}
-                data-testimonial-index={i}
-              >
-                <div class="testimonial-card__stars" aria-label="Ocena 5 na 5">
-                  {[...Array(5)].map(() => (
-                    <svg class="testimonial-card__star" viewBox="0 0 20 20" fill="currentColor" width="18" height="18" aria-hidden="true">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118l-3.37-2.448a1 1 0 00-1.176 0l-3.37 2.448c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.063 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.286-3.957z" />
-                    </svg>
-                  ))}
-                </div>
-                <blockquote class="testimonial-card__text">{t.text}</blockquote>
-                <p class="testimonial-card__author">
-                  {t.author}
-                  {t.source && <span class="testimonial-card__source"> &middot; {t.source}</span>}
-                </p>
+        <div class="testimonials-static__grid">
+          {testimonials.map((t) => (
+            <div class="testimonial-static">
+              <div class="testimonial-static__stars" aria-label="Ocena 5 na 5">
+                {[...Array(5)].map(() => (
+                  <svg class="testimonial-static__star" viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118l-3.37-2.448a1 1 0 00-1.176 0l-3.37 2.448c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.063 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.286-3.957z" />
+                  </svg>
+                ))}
               </div>
-            ))}
-          </div>
-          <div class="testimonials-carousel__dots" id="testimonials-dots">
-            {testimonials.map((_, i) => (
-              <button
-                type="button"
-                class:list={['testimonials-carousel__dot', { 'testimonials-carousel__dot--active': i === 0 }]}
-                data-dot-index={i}
-                aria-label={`Przejdź do opinii ${i + 1}`}
-              />
-            ))}
-          </div>
+              <blockquote class="testimonial-static__text">{t.text}</blockquote>
+              <p class="testimonial-static__author">
+                {t.author}
+                {t.source && <span class="testimonial-static__source"> · {t.source}</span>}
+              </p>
+            </div>
+          ))}
         </div>
         <div class="section-cta section-cta--center" style="margin-top: var(--space-6);">
           <a href="https://maps.app.goo.gl/G3BqHNabtfWtzAhk7" target="_blank" rel="noopener noreferrer" class="arrow-link">
@@ -534,80 +500,10 @@ import {
           <a href={`sms:${site.phoneRaw}`} class="btn btn--secondary btn--lg">Wyślij SMS</a>
         </div>
         <p class="final-cta__hours">
-          Pn–Pt: {site.hours.weekdays} &middot; Sob: {site.hours.saturday}
+          Pn–Pt: {site.hours.weekdays} · Sob: {site.hours.saturday}
         </p>
       </div>
     </div>
   </section>
   <MobileStickyCta formHref="/wycena/" />
 </Layout>
-
-<script>
-  function initHeroSlideshow() {
-    const hero = document.querySelector('.hero');
-    if (!hero) return;
-
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) return;
-
-    const slides = hero.querySelectorAll<HTMLImageElement>('.hero__slide[data-slide-index]');
-    if (slides.length < 2) return;
-
-    let current = 0;
-    setInterval(() => {
-      slides[current].classList.remove('hero__slide--active');
-      current = (current + 1) % slides.length;
-      slides[current].classList.add('hero__slide--active');
-    }, 3000);
-  }
-
-  initHeroSlideshow();
-
-  function initTestimonialsCarousel() {
-    const carousel = document.getElementById('testimonials-carousel');
-    if (!carousel) return;
-
-    const cards = carousel.querySelectorAll<HTMLElement>('[data-testimonial-index]');
-    const dots = carousel.querySelectorAll<HTMLButtonElement>('[data-dot-index]');
-    if (cards.length < 2) return;
-
-    let current = 0;
-    let interval: ReturnType<typeof setInterval>;
-
-    function goTo(index: number) {
-      cards[current].classList.remove('testimonial-card--active');
-      dots[current].classList.remove('testimonials-carousel__dot--active');
-      current = index;
-      cards[current].classList.add('testimonial-card--active');
-      dots[current].classList.add('testimonials-carousel__dot--active');
-    }
-
-    function next() {
-      goTo((current + 1) % cards.length);
-    }
-
-    function startAutoplay() {
-      interval = setInterval(next, 5000);
-    }
-
-    function resetAutoplay() {
-      clearInterval(interval);
-      startAutoplay();
-    }
-
-    dots.forEach((dot) => {
-      dot.addEventListener('click', () => {
-        const idx = Number(dot.dataset.dotIndex);
-        if (idx !== current) {
-          goTo(idx);
-          resetAutoplay();
-        }
-      });
-    });
-
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!prefersReduced) startAutoplay();
-  }
-
-  initTestimonialsCarousel();
-</script>

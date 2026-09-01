@@ -2,14 +2,9 @@ export const hero = {
   eyebrow: 'WHM Przeprowadzki \u2022 Kielce i województwo świętokrzyskie',
   heading: 'Przeprowadzka bez stresu. Z zespołem, któremu naprawdę możesz zaufać.',
   lead: 'Od zabezpieczenia pierwszego mebla po ustawienie ostatniego kartonu. Zajmiemy się organizacją, pakowaniem, transportem i wniesieniem, aby cała przeprowadzka przebiegła sprawnie, bezpiecznie i zgodnie z planem.',
-  contactNote: 'Zadzwoń, napisz SMS lub wyślij zdjęcia - odezwiemy się szybko.',
+  contactNote: 'Zadzwoń, napisz SMS lub wyślij zdjęcia — odezwiemy się szybko.',
   image: '/images/hero/hero-1.webp',
-  images: [
-    '/images/hero/hero-1.webp',
-    '/images/hero/hero-2.webp',
-    '/images/hero/hero-3.webp',
-    '/images/hero/hero-4.webp',
-  ],
+  imageAlt: 'Samochód WHM Przeprowadzki przy realizacji zlecenia w Kielcach',
 };
 
 export const trustFacts = [
@@ -18,23 +13,23 @@ export const trustFacts = [
     desc: 'Rozwijamy system przeprowadzek, transportu i magazynowania.',
   },
   {
-    title: 'Wszystko w jednym miejscu',
-    desc: 'Pakowanie, transport, montaż, a nawet przechowywanie.',
+    title: 'Ochrona do 1 mln zł',
+    desc: 'Ochrona ubezpieczeniowa mienia — warunki potwierdzane dla zlecenia.',
   },
   {
-    title: 'Profesjonalny sprzęt',
-    desc: 'Wózki, schodołaz, windy załadunkowe, pokrowce i pasy.',
+    title: 'Bezpłatne oględziny',
+    desc: 'Przy większych projektach oględziny i plan realizacji bez opłat.',
   },
   {
-    title: 'Odpowiada zespół WHM',
-    desc: 'Jedna marka odpowiada za ustalony zakres i realizację.',
+    title: 'Kielce — cała Polska',
+    desc: 'Działamy w województwie świętokrzyskim i realizujemy trasy krajowe.',
   },
 ];
 
 export const introSection = {
   eyebrow: 'Więcej niż przewóz',
   heading: 'Dobra przeprowadzka zaczyna się od rozmowy, nie od pakowania.',
-  text: 'Zanim przyjadą samochody, poznajemy Twoją sytuację - co przewozisz, dokąd, jakie są warunki dostępu i na czym Ci najbardziej zależy. Dzięki temu w dniu przeprowadzki nie ma niespodzianek, a Ty możesz skupić się na nowym miejscu.',
+  text: 'Zanim przyjadą samochody, poznajemy Twoją sytuację — co przewozisz, dokąd, jakie są warunki dostępu i na czym Ci najbardziej zależy. Dzięki temu w dniu przeprowadzki nie ma niespodzianek, a Ty możesz skupić się na nowym miejscu.',
   points: [
     'Dokładne poznanie zakresu i warunków',
     'Plan kolejności prac dostosowany do sytuacji',
@@ -47,8 +42,8 @@ export const introSection = {
 
 export const servicesSection = {
   eyebrow: 'Oferta WHM',
-  heading: 'Jedna firma, cały proces - od początku do końca.',
-  intro: 'Niezależnie od tego, czy przenosisz mieszkanie, firmę czy pojedynczy ciężki przedmiot - dopasujemy zakres do Twojej sytuacji.',
+  heading: 'Jedna firma, cały proces — od początku do końca.',
+  intro: 'Niezależnie od tego, czy przenosisz mieszkanie, firmę czy pojedynczy ciężki przedmiot — dopasujemy zakres do Twojej sytuacji.',
   items: [
     {
       title: 'Przeprowadzki mieszkań i domów',
@@ -64,13 +59,13 @@ export const servicesSection = {
     },
     {
       title: 'Transport specjalistyczny',
-      desc: 'Pianina, sejfy, duże urządzenia - bezpiecznie przewieziemy to, czego inni się nie podejmują.',
+      desc: 'Pianina, sejfy, duże urządzenia — bezpiecznie przewieziemy to, czego inni się nie podejmują.',
       href: '/transport-specjalistyczny/',
       image: '/images/transport-gabarytow/transport-gabarytow-kielce-7.webp',
     },
     {
       title: 'Pakowanie i zabezpieczanie',
-      desc: 'Profesjonalne materiały i doświadczony zespół - Twoje rzeczy dotrą w takim stanie, w jakim nam je powierzysz.',
+      desc: 'Profesjonalne materiały i doświadczony zespół — Twoje rzeczy dotrą w takim stanie, w jakim nam je powierzysz.',
       href: '/pakowanie-i-zabezpieczanie/',
       image: '/images/packing-services/pakowanie-przeprowadzki-kielce-3.webp',
     },
@@ -80,44 +75,75 @@ export const servicesSection = {
 
 export const standardSection = {
   eyebrow: 'Standard WHM',
-  heading: 'Bezpieczeństwo Twojego mienia to nie opcja - to nasz standard.',
-  text: 'Każdą przeprowadzkę realizujemy z pełnym zabezpieczeniem. Pokrowce, koce, pasy, wózki i odpowiedni sprzęt - to dla nas norma, nie dodatek.',
-  steps: [
+  heading: 'Bezpieczeństwo Twojego mienia to nie opcja — to nasz standard.',
+  text: 'Każdą przeprowadzkę realizujemy z pełnym zabezpieczeniem. Pokrowce, koce, pasy, wózki i odpowiedni sprzęt — to dla nas norma, nie dodatek.',
+  equipmentModules: [
     {
-      title: 'Przygotowanie',
-      desc: 'Rozmawiamy o tym, co wymaga szczególnej uwagi, demontażu lub dodatkowej ochrony.',
+      name: 'Dedykowane pokrowce',
+      benefit: 'Chronią meble przed rysami i otarciami w trakcie przenoszenia i transportu.',
+      image: '/images/packing-services/pakowanie-przeprowadzki-kielce-1.webp',
     },
     {
-      title: 'Zabezpieczenie',
-      desc: 'Dobieramy pokrowce, koce i materiały ochronne do każdego rodzaju mienia.',
+      name: 'Koce i gumy mocujące',
+      benefit: 'Zabezpieczają krawędzie, rogi i delikatne powierzchnie przed uszkodzeniem.',
+      image: '/images/packing-services/pakowanie-przeprowadzki-kielce-2.webp',
     },
     {
-      title: 'Transport',
-      desc: 'Ładunek stabilizujemy pasami, a sprzęt dobieramy do warunków drogi.',
+      name: 'Pasy i uprzęże transportowe',
+      benefit: 'Stabilizują ładunek w samochodzie, żeby nic nie przesunęło się na trasie.',
+      image: '/images/furniture-assembly/montaz-demontaz-mebli-1.webp',
     },
     {
-      title: 'Ustawienie',
-      desc: 'Wnosimy i ustawiamy rzeczy zgodnie z Twoimi wskazówkami.',
+      name: 'Dwa schodołazy elektryczne',
+      benefit: 'Pozwalają bezpiecznie przenosić ciężkie ładunki po schodach bez ryzyka uszkodzenia.',
+      image: '/images/transport-gabarytow/transport-gabarytow-kielce-5.webp',
+    },
+    {
+      name: 'Wózki i plombowane pojemniki',
+      benefit: 'Pojemniki około 70 l z możliwością plombowania — mienie zorganizowane i chronione.',
+      image: '/images/moving-boxes/kartony-do-przeprowadzki-3.webp',
+    },
+    {
+      name: 'Zabudowa meblarska i suche przestrzenie',
+      benefit: 'Samochody z zabudową i suchą przestrzenią ładunkową — mienie jedzie w odpowiednich warunkach.',
+      image: '/images/kielce-moving/przeprowadzki-kielce-3.webp',
     },
   ],
   cta: { label: 'Poznaj Standard WHM', href: '/standard-whm/' },
-  images: [
-    '/images/packing-services/pakowanie-przeprowadzki-kielce-1.webp',
-    '/images/furniture-assembly/montaz-demontaz-mebli-1.webp',
-  ],
 };
 
-export const realizationsSection = {
-  eyebrow: 'Prawdziwe realizacje',
-  heading: 'Nie pokazujemy zdjęć stockowych. Pokazujemy swoją pracę.',
-  text: 'Każde zdjęcie na stronie pochodzi z naszych realizacji. Zobaczysz prawdziwy sprzęt, prawdziwe zabezpieczenia i efekty prawdziwej pracy.',
-  categories: [
-    { label: 'Przeprowadzki prywatne', image: '/images/kielce-moving/przeprowadzki-kielce-5.webp' },
-    { label: 'Relokacje firm i instytucji', image: '/images/institution-moving/przeprowadzki-instytucji-2.webp' },
-    { label: 'Przeprowadzki mieszkań i domów', image: '/images/home-moving/przeprowadzki-domow-kielce-2.webp' },
-  ],
-  cta: { label: 'Zobacz nasze realizacje', href: '/realizacje/' },
-};
+export const featuredRealizations = [
+  {
+    label: 'Relokacja instytucji publicznej',
+    title: 'Relokacja Prokuratur Kielce-Wschód i Zachód',
+    location: 'Kielce',
+    params: ['4 kondygnacje + piwnica', 'Ponad 100 pracowników', 'Ciągłość działania instytucji'],
+    challenge: 'Przenieść wyposażenie instytucji bez przerywania jej pracy.',
+    result: 'Budynek opróżniony, mienie rozdysponowane, praca kontynuowana.',
+    href: '/realizacje/relokacja-prokuratur-kielce/',
+    image: '/images/institution-moving/przeprowadzki-instytucji-4.webp',
+  },
+  {
+    label: 'Relokacja instytucji kultury',
+    title: 'Relokacja Teatru im. Stefana Żeromskiego',
+    location: 'Kielce',
+    params: ['Niemal 50 pełnych samochodów', 'Scenografia i kostiumy', 'Dwa fortepiany'],
+    challenge: 'Zebrać rozproszone zasoby z kilku lokalizacji w jednej siedzibie.',
+    result: 'Rozproszone zasoby wróciły do odnowionego historycznego budynku.',
+    href: '/realizacje/relokacja-teatru-zeromskiego-kielce/',
+    image: '/images/institution-moving/przeprowadzki-instytucji-2.webp',
+  },
+  {
+    label: 'Transport dzieła sztuki',
+    title: 'Transport zabytkowego obrazu z Zamku Szydłowieckich',
+    location: 'Szydłowiec',
+    params: ['Ok. 4,3 m długości', 'Zakaz pionowania', 'Wjazd przez okno'],
+    challenge: 'Opuszczony z drugiego piętra obraz, którego nie wolno ustawić pionowo.',
+    result: 'Dzieło trafiło do muzeum bez naruszenia wymaganej pozycji.',
+    href: '/realizacje/transport-zabytkowego-obrazu-zamek-szydlowieckich/',
+    image: '/images/transport-gabarytow/transport-gabarytow-kielce-6.webp',
+  },
+];
 
 export const specialTransportSection = {
   eyebrow: 'Transport specjalistyczny',
@@ -162,7 +188,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     author: 'Wiola',
-    text: 'Panowie super, bardzo cierpliwi, spokojni, wszystko zorganizowane na czas. Pełen profesjonalizm i zrozumienie. Wszystko zabezpieczone - od mebli, przez szkło, a na kwiatach kończąc. Polecam z całego serca.',
+    text: 'Panowie super, bardzo cierpliwi, spokojni, wszystko zorganizowane na czas. Pełen profesjonalizm i zrozumienie. Wszystko zabezpieczone — od mebli, przez szkło, a na kwiatach kończąc. Polecam z całego serca.',
     source: 'Google',
   },
   {
@@ -170,26 +196,11 @@ export const testimonials: Testimonial[] = [
     text: 'Podarowaliśmy pianino do Klubu Seniora. Bardzo sprawnie, szybko i punktualnie. Na pewno będę osobiście korzystał z usług WHM w jakichkolwiek potrzebach przeprowadzkowych.',
     source: 'Google',
   },
-  {
-    author: 'Rafał Najduchowski',
-    text: 'Najlepsza firma, która zapakuje i przetransportuje wszystko i wszędzie. Pan Mateusz i jego chłopaki to przykład zgranej ekipy, w której każdy wie, co robić. Bardzo polecam!',
-    source: 'Google',
-  },
-  {
-    author: 'Piotr MS',
-    text: 'Firma bardzo solidna, świetna komunikacja z właścicielem, pracownicy bardzo rzetelni o wysokim stopniu kultury osobistej. Z pełnym przekonaniem polecam wszystkim usługi firmy WHM Przeprowadzki.',
-    source: 'Google',
-  },
-  {
-    author: 'Lidia Gurba',
-    text: 'Podczas przeprowadzki z Kielc do Katowic zostaliśmy obsłużeni na najwyższym poziomie. Cały proces przebiegł sprawnie, profesjonalnie i bez żadnych problemów. Świetna organizacja i dbałość o nasze rzeczy. Polecamy każdemu!',
-    source: 'Google',
-  },
 ];
 
 export const ecosystemSection = {
   eyebrow: 'Cały ekosystem WHM',
-  heading: 'Przeprowadzka, przechowanie i materiały - wszystko w jednym miejscu.',
+  heading: 'Przeprowadzka, przechowanie i materiały — wszystko w jednym miejscu.',
   storage: {
     title: 'Magazyny WHM',
     text: 'Ogrzewane boksy od 2 do 9 m² wspierają przeprowadzki, remonty i relokacje etapowe. Obiekt jest gotowy i częściowo zajęty.',
@@ -197,7 +208,7 @@ export const ecosystemSection = {
   },
   shop: {
     title: 'WHM Shop',
-    text: 'Kartony, pokrowce, koce i materiały zabezpieczające - te same, których sami używamy podczas przeprowadzek. Dostępne dla każdego.',
+    text: 'Kartony, pokrowce, koce i materiały zabezpieczające — te same, których sami używamy podczas przeprowadzek. Dostępne dla każdego.',
     cta: { label: 'Przejdź do WHM Shop', href: '/whm-shop/' },
     image: '/images/moving-boxes/kartony-do-przeprowadzki-3.webp',
   },
@@ -222,7 +233,7 @@ export const processSteps = [
   {
     number: '04',
     title: 'Realizujemy przeprowadzkę',
-    desc: 'Zabezpieczamy, pakujemy, przewozimy i wnosimy - zgodnie z planem.',
+    desc: 'Zabezpieczamy, pakujemy, przewozimy i wnosimy — zgodnie z planem.',
   },
   {
     number: '05',
@@ -241,7 +252,7 @@ export const processSection = {
 export const guideSection = {
   eyebrow: 'Poradniki WHM',
   heading: 'Przygotuj się do przeprowadzki spokojnie i bez chaosu.',
-  text: 'Praktyczny poradnik pomoże Ci zaplanować przeprowadzkę krok po kroku - od pierwszych przygotowań po dzień transportu.',
+  text: 'Praktyczny poradnik pomoże Ci zaplanować przeprowadzkę krok po kroku — od pierwszych przygotowań po dzień transportu.',
   cta: { label: 'Przeczytaj poradnik', href: '/poradniki/' },
   image: '/images/guides/poradnik-jak-przygotowac-sie-do-przeprowadzki.webp',
 };
@@ -253,7 +264,7 @@ export const faqItems = [
   },
   {
     question: 'Czy WHM może spakować moje rzeczy?',
-    answer: 'Tak - możemy spakować całe mieszkanie lub tylko wybrane elementy. Materiały dobieramy do rodzaju Twoich rzeczy, żeby dotarły bezpiecznie.',
+    answer: 'Tak — możemy spakować całe mieszkanie lub tylko wybrane elementy. Materiały dobieramy do rodzaju Twoich rzeczy, żeby dotarły bezpiecznie.',
   },
   {
     question: 'Czy wykonujecie demontaż i montaż mebli?',
@@ -265,15 +276,15 @@ export const faqItems = [
   },
   {
     question: 'Czy obsługujecie firmy i instytucje?',
-    answer: 'Tak. Przenosimy biura, firmy i instytucje - również etapami, żeby ograniczyć przestoje w pracy organizacji.',
+    answer: 'Tak. Przenosimy biura, firmy i instytucje — również etapami, żeby ograniczyć przestoje w pracy organizacji.',
   },
   {
     question: 'Gdzie działa WHM?',
-    answer: 'Działamy w Kielcach i województwie świętokrzyskim. Realizujemy też przeprowadzki międzymiastowe - wystarczy, że opiszesz swoją sytuację.',
+    answer: 'Działamy w Kielcach i województwie świętokrzyskim. Realizujemy też przeprowadzki międzymiastowe — wystarczy, że opiszesz swoją sytuację.',
   },
 ];
 
 export const finalCta = {
   heading: 'Porozmawiajmy o Twojej przeprowadzce.',
-  text: 'Powiedz nam, co i dokąd przewozisz - resztą zajmiemy się my. Jeśli masz zdjęcia lub dodatkowe pytania, chętnie je przyjmiemy.',
+  text: 'Powiedz nam, co i dokąd przewozisz — resztą zajmiemy się my. Jeśli masz zdjęcia lub dodatkowe pytania, chętnie je przyjmiemy.',
 };
