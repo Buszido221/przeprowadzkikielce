@@ -36,7 +36,7 @@ Na desktopie sprawdzono stronę główną i hub B2B. Na viewport mobile sprawdzo
 - `/magazyny-kielce/`,
 - `/realizacje/`,
 - `/kontakt/`,
-- `/wycena/`.
+- `/kontakt/`.
 
 Każda z tych stron miała jeden H1, jeden canonical, właściwe stagingowe robots, co najmniej jeden link telefoniczny, zero błędnie załadowanych obrazów i zero poziomego overflow. Nie wykryto błędów ani ostrzeżeń w konsoli.
 

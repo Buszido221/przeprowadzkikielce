@@ -20,7 +20,7 @@ Nie umieszczać prywatnych kluczy ani danych klientów w repozytorium. Klucz pub
 1. Zbudować projekt w trybie staging i potwierdzić `noindex, nofollow, noarchive` oraz brak requestów Google.
 2. Zbudować lokalnie z `PUBLIC_SITE_ENV=production` i potwierdzić:
    - docelowe robots dla zwykłych stron,
-   - `noindex, follow` dla `/wycena/` i polityki prywatności,
+   - `noindex, follow` dla `/kontakt/` i polityki prywatności,
    - obecność tagu Google wyłącznie w produkcji,
    - jeden canonical, jeden H1 i poprawny JSON-LD,
    - działanie zgody cookies.

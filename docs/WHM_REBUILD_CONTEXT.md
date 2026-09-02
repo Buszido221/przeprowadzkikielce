@@ -1,3 +1,6 @@
+<!-- AKTUALIZACJA 2026-09: /kontakt/ i /wycena/ zostały scalone w jedną stronę /kontakt/.
+Stara /wycena/ przekierowuje 301 do /kontakt/. Poniższe odniesienia do osobnej strony wyceny są nieaktualne. -->
+
 # WHM Przeprowadzki Kielce — główne źródło prawdy przebudowy
 
 **Status dokumentu:** wiążący kontekst projektu  

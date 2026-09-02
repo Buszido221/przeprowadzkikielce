@@ -1316,10 +1316,6 @@ export const quoteFormEnabled = true;
 export const consentText =
   'Wyrażam zgodę na wykorzystanie podanych danych w celu obsługi mojego zapytania. Szczegóły znajdują się w polityce prywatności.';
 
-export const wycenaPage = {
-  consentText,
-};
-
 /* ===================================================
    /kontakt/
    =================================================== */
@@ -1403,7 +1399,7 @@ export const politykaPage = {
     },
     {
       heading: 'Analityka i pliki cookies',
-      content: 'Serwis korzysta z Google Analytics 4 w trybie zgody (Consent Mode v2). Narzędzie analityczne jest uruchamiane dopiero po wyrażeniu zgody za pomocą banera cookies. Przed wyrażeniem zgody żadne dane analityczne nie są zbierane. Google Analytics wykorzystuje pliki cookies do analizy sposobu korzystania z serwisu. Dane analityczne są anonimowe i nie pozwalają na identyfikację konkretnych osób. Możesz odrzucić pliki cookies - serwis będzie działał prawidłowo bez nich.',
+      content: 'Strona korzysta z Google Analytics 4 do zrozumienia, jak odwiedzający korzystają z serwisu. Skrypt analityczny ładuje się dopiero po wyrażeniu zgody w banerze cookies. Po odrzuceniu analityki analityka nie jest uruchamiana. Użytkownik może zmienić decyzję w dowolnym momencie, korzystając z linku „Ustawienia cookies” w stopce. Dane analityczne są zbierane w celu agregacyjnym i służą do ulepszania treści oraz nawigacji.',
     },
     {
       heading: 'Dostawcy usług',

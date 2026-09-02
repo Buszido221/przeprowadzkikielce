@@ -72,10 +72,12 @@ const breadcrumbSchema = {
   <TrustBar facts={page.trust} />
 
   <section class="editorial-intro">
-    <div class="container editorial-intro__grid">
-      <SectionHeading title={page.intro.heading} />
-      <div class="editorial-intro__copy">
-        {page.intro.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+    <div class="container">
+      <div class="editorial-single-column">
+        <SectionHeading title={page.intro.heading} />
+        <div class="editorial-single-column__copy">
+          {page.intro.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
       </div>
     </div>
   </section>
