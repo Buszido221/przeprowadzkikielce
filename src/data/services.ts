@@ -231,7 +231,7 @@ export const firmaPage = {
   photosOrganization: {
     eyebrow: 'Organizacja pracy',
     items: [
-      { src: '/images/institution-moving/przeprowadzki-instytucji-1.webp', alt: 'Pogrupowane i oznaczone pojemniki przygotowane do transportu' },
+      { src: '/images/institution-moving/przeprowadzki-instytucji-3.webp', alt: 'Samochody WHM podczas realizacji przy obiekcie instytucjonalnym' },
       { src: '/images/institution-moving/przeprowadzki-instytucji-6.webp', alt: 'Uporządkowane zbiory zabezpieczone przed transportem' },
       { src: '/images/office-moving/przeprowadzki-biura-2.webp', alt: 'Zabezpieczone wyposażenie biura przygotowane do przeniesienia' },
     ],
@@ -350,7 +350,7 @@ export const transportSpecPage = {
     eyebrow: 'Galeria zakresu specjalistycznego',
     heading: 'Tak wygląda zabezpieczenie i transport',
     items: [
-      { src: '/images/transport-agd/transport-agd-kielce-1.webp', alt: 'Zabezpieczony sprzęt AGD przygotowany do transportu' },
+      { src: '/images/transport-lodowki/transport-lodowki-kielce-1.webp', alt: 'Zabezpieczona lodówka przygotowana do transportu' },
       { src: '/images/transport-lodowki/transport-lodowki-kielce-2.webp', alt: 'Zabezpieczona lodówka przygotowana do przeniesienia' },
       { src: '/images/transport-mebli/transport-mebli-kielce-1.webp', alt: 'Mebel przygotowany do przewozu z zabezpieczeniem ochronnym' },
       { src: '/images/transport-gabarytow/transport-gabarytow-kielce-6.webp', alt: 'Wyposażenie wymagające ostrożnego przeniesienia przez zespół WHM' },
@@ -786,7 +786,8 @@ export const standardPage = {
     heading: 'Standard WHM to sposób pracy, nie dodatkowy pakiet',
     lead: 'Jakość przeprowadzki wynika z decyzji podejmowanych przed transportem i podczas każdego etapu realizacji - od oceny warunków po zabezpieczenie oraz stabilizację mienia.',
     ctaLabel: 'Poproś o wycenę',
-    image: '/images/kielce-moving/przeprowadzki-kielce-4.webp',
+    image: '/images/standard-whm/zabezpieczenia-1.webp',
+    imageAlt: 'Pasy i zabezpieczenia stabilizujące ładunek',
   },
   arrangements: {
     eyebrow: 'Najpierw ustalenia',
@@ -1024,12 +1025,12 @@ export const realizacjePage = {
   hero: {
     heading: 'Prawdziwe realizacje zamiast zdjęć stockowych',
     lead: 'Pokazujemy pracę wykonywaną przez WHM: przygotowanie mienia, zabezpieczenia, wykorzystany sprzęt, transport i organizację bardziej wymagających realizacji.',
-    image: '/images/hero/hero-3.webp',
+    image: '/images/realizacje/zamek-szydlowieckich/zamek-szydlowieckich-2.webp',
   },
   categories: [
     { title: 'Przeprowadzki mieszkań i domów', desc: 'Zabezpieczone wyposażenie przygotowane do transportu przed domem.', image: '/images/home-moving/przeprowadzki-domow-kielce-3.webp', alt: 'Zabezpieczone wyposażenie przygotowane do transportu przed domem', href: '/przeprowadzki/' },
     { title: 'Przeprowadzki firm i biur', desc: 'Uporządkowane i zabezpieczone wyposażenie biurowe podczas realizacji.', image: '/images/office-moving/przeprowadzki-biura-2.webp', alt: 'Uporządkowane i zabezpieczone wyposażenie biurowe podczas realizacji', href: '/przeprowadzki-firm-i-instytucji/' },
-    { title: 'Obsługa instytucji', desc: 'Praca zespołu WHM przy obiekcie instytucjonalnym.', image: '/images/institution-moving/przeprowadzki-instytucji-2.webp', alt: 'Praca zespołu WHM przy obiekcie instytucjonalnym', href: '/przeprowadzki-firm-i-instytucji/' },
+    { title: 'Obsługa instytucji', desc: 'Praca zespołu WHM przy obiekcie instytucjonalnym.', image: '/images/institution-moving/przeprowadzki-instytucji-4.webp', alt: 'Zabezpieczone wyposażenie instytucji podczas relokacji WHM', href: '/przeprowadzki-firm-i-instytucji/' },
     { title: 'Pakowanie i zabezpieczanie', desc: 'Duży mebel zabezpieczony pokrowcem i pasami przed wyniesieniem.', image: '/images/packing-services/pakowanie-przeprowadzki-kielce-3.webp', alt: 'Duży mebel zabezpieczony pokrowcem i pasami przed wyniesieniem', href: '/pakowanie-i-zabezpieczanie/' },
     { title: 'Transport specjalistyczny', desc: 'Praca ze schodołazem podczas przenoszenia ciężkiego przedmiotu.', image: '/images/transport-gabarytow/transport-gabarytow-kielce-5.webp', alt: 'Praca ze schodołazem podczas przenoszenia ciężkiego przedmiotu', href: '/transport-specjalistyczny/' },
     { title: 'Transport pianin i fortepianów', desc: 'Zabezpieczony instrument gotowy do przeniesienia przez zespół WHM.', image: '/images/transport-pianin-i-fortepianow/transport-pianin-i-fortepianow-kielce-4.webp', alt: 'Zabezpieczony instrument gotowy do przeniesienia przez zespół WHM', href: '/transport-pianin-i-fortepianow-kielce/' },
@@ -1465,8 +1466,8 @@ export const pakowanePage = {
       { number: '05', title: 'Przygotowanie do wyniesienia', desc: 'Spakowane mienie ustawiamy w kolejności wnoszenia.' },
       { number: '06', title: 'Stabilizacja w transporcie', desc: 'Ładunek zabezpieczamy pasami i klinujemy w samochodzie.' },
     ],
-    image: '/images/packing-services/pakowanie-przeprowadzki-kielce-4.webp',
-    imageAlt: 'Pojemniki transportowe przygotowane do załadunku',
+    image: '/images/moving-boxes/pojemniki-przeprowadzkowe-1.webp',
+    imageAlt: 'Plombowane pojemniki transportowe WHM',
   },
   selfVsWhm: {
     eyebrow: 'Dwie drogi',

@@ -90,19 +90,21 @@ const breadcrumbSchema = {
     </div>
   </section>
 
+  {study.gallery.length > 0 && (
   <section class="case-study__gallery section--alt" aria-label="Zdjęcia przedstawiające sposób pracy WHM">
     <div class="container">
       <SectionHeading label="Zdjęcia z pracy WHM" title="Sposób pracy i zabezpieczenia" />
-      <div class="photo-grid photo-grid--3">
+      <div class={`photo-grid photo-grid--${Math.min(study.gallery.length, 3)}`}>
         {study.gallery.map((image) => (
           <figure class="photo-grid__item case-study__gallery-item">
-            <SafeImage src={image.src} alt={image.alt} width="600" height="450" loading="lazy" decoding="async" />
+            <SafeImage src={image.src} alt={image.alt} loading="lazy" decoding="async" displayRatio="4/3" />
             <figcaption>{image.caption}</figcaption>
           </figure>
         ))}
       </div>
     </div>
   </section>
+  )}
 
   <section class="case-study__related-services" aria-label="Powiązane usługi">
     <div class="container">

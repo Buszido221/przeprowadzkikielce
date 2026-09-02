@@ -1928,6 +1928,12 @@ main {
     margin-inline: auto;
   }
 
+  .photo-grid--1 {
+    grid-template-columns: 1fr;
+    max-width: 36rem;
+    margin-inline: auto;
+  }
+
   .photo-grid--2 {
     grid-template-columns: 1fr 1fr;
     max-width: 52rem;

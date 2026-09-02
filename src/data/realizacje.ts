@@ -44,8 +44,8 @@ export const caseStudies: CaseStudy[] = [
     eyebrow: 'Relokacja instytucji publicznej',
     heading: 'Dwie prokuratury, cztery kondygnacje i archiwum, którego porządku nie można było zgubić',
     lead: 'Relokacja Prokuratury Rejonowej Kielce-Wschód i Kielce-Zachód trwała około dwóch miesięcy i obejmowała wyposażenie ponad stu pracowników. Najważniejszym celem nie było wyłącznie opróżnienie budynku na czas remontu, lecz takie zorganizowanie całego procesu, aby praca instytucji nie została przerwana.',
-    heroImage: '/images/institution-moving/przeprowadzki-instytucji-4.webp',
-    heroAlt: 'Relokacja wyposażenia instytucji realizowana przez zespół WHM',
+    heroImage: '/images/realizacje/prokuratury-kielce/przeprowadzka-prokuratury-1.webp',
+    heroAlt: 'Relokacja wyposażenia Prokuratury realizowana przez zespół WHM',
     category: 'Firmy i instytucje',
     facts: [
       'dwie instytucje: Prokuratura Rejonowa Kielce-Wschód i Kielce-Zachód',
@@ -93,7 +93,7 @@ export const caseStudies: CaseStudy[] = [
     conclusionHeading: 'Co ta realizacja pokazuje?',
     conclusionText: 'Duża relokacja instytucji nie jest sumą pojedynczych transportów. Jest projektem operacyjnym, w którym trzeba połączyć ludzi, dokumentację, sprzęt, harmonogram i odpowiedzialność za działalność klienta.',
     gallery: [
-      { src: '/images/institution-moving/przeprowadzki-instytucji-4.webp', alt: 'Zabezpieczone wyposażenie instytucji podczas relokacji WHM', caption: 'Zabezpieczenie i organizacja wyposażenia na czas relokacji' },
+      { src: '/images/realizacje/prokuratury-kielce/przeprowadzka-prokuratury-1.webp', alt: 'Zabezpieczone wyposażenie instytucji podczas relokacji WHM', caption: 'Zabezpieczenie i organizacja wyposażenia na czas relokacji' },
       { src: '/images/institution-moving/przeprowadzki-instytucji-5.webp', alt: 'Transport szaf i wyposażenia biurowego przez zespół WHM', caption: 'Przenoszenie szaf i wyposażenia między kondygnacjami' },
       { src: '/images/institution-moving/przeprowadzki-instytucji-6.webp', alt: 'Zabezpieczone archiwa i dokumentacja podczas transportu', caption: 'Archiwum liczone w kilometrach bieżących akt' },
     ],
@@ -117,8 +117,8 @@ export const caseStudies: CaseStudy[] = [
     eyebrow: 'Relokacja instytucji kultury',
     heading: 'Powrót Teatru im. Stefana Żeromskiego do historycznej siedziby',
     lead: 'Po wieloletnim remoncie zasoby teatru były rozproszone w kilku lokalizacjach na terenie Kielc. Zadaniem WHM było zebrać scenografię, kostiumy, wyposażenie techniczne, bibliotekę, dwa fortepiany i mienie poszczególnych działów, a następnie wprowadzić je do odnowionego budynku zgodnie z ustalonym harmonogramem.',
-    heroImage: '/images/institution-moving/przeprowadzki-instytucji-2.webp',
-    heroAlt: 'Relokacja wyposażenia instytucji kultury przez zespół WHM',
+    heroImage: '/images/realizacje/teatr-zeromskiego/relokacja-teatru-1.webp',
+    heroAlt: 'Relokacja wyposażenia Teatru im. Żeromskiego przez WHM',
     category: 'Kultura i dzieła sztuki',
     facts: [
       'kilka lokalizacji początkowych na terenie Kielc',
@@ -173,7 +173,7 @@ export const caseStudies: CaseStudy[] = [
     conclusionHeading: 'Co ta realizacja pokazuje?',
     conclusionText: 'Skala relokacji nie zawsze wynika z jednego ciężkiego przedmiotu. Czasem polega na połączeniu dziesiątek transportów, kilku lokalizacji początkowych i różnorodnych kategorii mienia w jednym precyzyjnie organizowanym miejscu docelowym.',
     gallery: [
-      { src: '/images/institution-moving/przeprowadzki-instytucji-2.webp', alt: 'Transport wyposażenia instytucji kultury przez WHM', caption: 'Konsolidacja zasobów z kilku lokalizacji' },
+      { src: '/images/realizacje/teatr-zeromskiego/relokacja-teatru-2.webp', alt: 'Transport wyposażenia instytucji kultury przez WHM', caption: 'Transport wyposażenia instytucji kultury' },
       { src: '/images/institution-moving/przeprowadzki-instytucji-3.webp', alt: 'Zabezpieczone elementy scenografii i wyposażenia', caption: 'Różne kategorie mienia wymagały różnych metod zabezpieczenia' },
       { src: '/images/transport-pianin-i-fortepianow/transport-pianin-i-fortepianow-kielce-3.webp', alt: 'Zabezpieczony fortepian podczas transportu WHM', caption: 'Dwa fortepiany wśród przewożonego mienia' },
     ],
@@ -197,8 +197,8 @@ export const caseStudies: CaseStudy[] = [
     eyebrow: 'Archiwum i infrastruktura techniczna',
     heading: 'Relokacja TVP3 Kielce — dwadzieścia lat materiałów odtworzone co do półki',
     lead: 'Przeprowadzka kieleckiego oddziału TVP3 obejmowała niemal osiem tysięcy pozycji archiwum, wyposażenie studia oraz demontaż realizatorni z podłogą techniczną. Każdy etap wymagał rozróżnienia tego, co należało zachować, przewieźć albo usunąć bez naruszenia czynnych instalacji.',
-    heroImage: '/images/office-moving/przeprowadzki-biura-2.webp',
-    heroAlt: 'Relokacja wyposażenia i archiwum realizowana przez zespół WHM',
+    heroImage: '/images/realizacje/tvp3-kielce/relokacja-tvp-kielce.webp',
+    heroAlt: 'Relokacja wyposażenia i archiwum TVP3 Kielce przez WHM',
     category: 'Archiwa i księgozbiory',
     facts: [
       'niemal 8000 pozycji archiwum',
@@ -261,7 +261,7 @@ export const caseStudies: CaseStudy[] = [
     conclusionHeading: 'Co ta realizacja pokazuje?',
     conclusionText: 'Archiwum po przeprowadzce nadal musi być archiwum. Sukces nie polega na przewiezieniu pudeł, lecz na odtworzeniu uporządkowanego zasobu gotowego do dalszej pracy.',
     gallery: [
-      { src: '/images/office-moving/przeprowadzki-biura-2.webp', alt: 'Pakowanie i oznaczanie archiwum przez zespół WHM', caption: 'Pojemniki opisane datami i literami' },
+      { src: '/images/realizacje/tvp3-kielce/relokacja-tvp-kielce.webp', alt: 'Relokacja wyposażenia TVP3 Kielce przez WHM', caption: 'Pojemniki opisane datami i literami' },
       { src: '/images/office-moving/przeprowadzki-biura-3.webp', alt: 'Zabezpieczone wyposażenie techniczne studia', caption: 'Likwidacja studia i zabezpieczenie stołów' },
       { src: '/images/moving-boxes/kartony-do-przeprowadzki-1.webp', alt: 'Plastikowe pojemniki transportowe WHM', caption: 'Prawie cały zapas pojemników w użyciu' },
     ],
@@ -285,8 +285,8 @@ export const caseStudies: CaseStudy[] = [
     eyebrow: 'Relokacja księgozbioru',
     heading: 'Około 40 000 pozycji przeniesionych w obrębie Buska-Zdroju',
     lead: 'Dwie lokalizacje znajdowały się w tym samym mieście, ale krótka trasa nie zmniejszała skali zadania. W niespełna pięć dni należało przenieść księgozbiór, czasopisma, ponad trzymetrowe regały i całe wyposażenie filii, zachowując kolejność potrzebną do planowanego skontrum.',
-    heroImage: '/images/moving-boxes/kartony-do-przeprowadzki-3.webp',
-    heroAlt: 'Pojemniki transportowe używane podczas relokacji biblioteki przez WHM',
+    heroImage: '/images/realizacje/biblioteka-busko/biblioteka-busko-2.webp',
+    heroAlt: 'Relokacja księgozbioru biblioteki w Busku-Zdroju',
     category: 'Archiwa i księgozbiory',
     facts: [
       'dwie lokalizacje w obrębie Buska-Zdroju',
@@ -349,7 +349,7 @@ export const caseStudies: CaseStudy[] = [
     conclusionHeading: 'Co ta realizacja pokazuje?',
     conclusionText: 'Duży księgozbiór wymaga systemu, nie tysięcy jednorazowych kartonów. Rotacyjny model pracy z pojemnikami wielokrotnego użytku pozwala prowadzić pakowanie równolegle z transportem i odtwarzaniem układu.',
     gallery: [
-      { src: '/images/moving-boxes/kartony-do-przeprowadzki-3.webp', alt: 'Pojemniki transportowe WHM używane w relokacji biblioteki', caption: 'Prawie 300 pojemników w ciągłej rotacji' },
+      { src: '/images/realizacje/biblioteka-busko/biblioteka-busko-1.webp', alt: 'Pojemniki transportowe WHM podczas relokacji biblioteki', caption: 'Prawie 300 pojemników w ciągłej rotacji' },
       { src: '/images/moving-boxes/kartony-do-przeprowadzki-2.webp', alt: 'Pakowanie książek do pojemników transportowych', caption: 'Księgozbiór pakowany z zachowaniem kolejności' },
       { src: '/images/packing-services/pakowanie-przeprowadzki-kielce-2.webp', alt: 'Zabezpieczone regały i wyposażenie biblioteki', caption: 'Ponad trzymetrowe regały dostosowane do nowej przestrzeni' },
     ],
@@ -373,8 +373,8 @@ export const caseStudies: CaseStudy[] = [
     eyebrow: 'Transport dzieła sztuki',
     heading: 'Obraz, którego nie wolno było ustawić pionowo nawet na chwilę',
     lead: 'Kilkusetletnie dzieło miało około 4,3 m długości i znajdowało się na drugim piętrze Zamku Szydłowieckich. Standardowa droga przez klatkę schodową odpadała. WHM przygotowało operację obejmującą podnośnik koszowy, stałe utrzymanie konstrukcji w poziomie, częściowy demontaż zabezpieczeń oraz wprowadzenie obrazu do muzeum przez okno.',
-    heroImage: '/images/transport-gabarytow/transport-gabarytow-kielce-6.webp',
-    heroAlt: 'Transport specjalistyczny realizowany przez zespół WHM',
+    heroImage: '/images/realizacje/zamek-szydlowieckich/zamek-szydlowieckich-1.webp',
+    heroAlt: 'Transport zabytkowego obrazu z Zamku Szydłowieckich',
     category: 'Kultura i dzieła sztuki',
     facts: [
       'kilkusetletni obraz',
@@ -457,8 +457,8 @@ export const caseStudies: CaseStudy[] = [
     eyebrow: 'Instrumenty w obiekcie historycznym',
     heading: 'Dwa fortepiany i winda, która wymusiła niestandardowe rozwiązanie',
     lead: 'Podczas wcześniejszej realizacji w Zamku Szydłowieckich WHM relokowało dwa fortepiany. Jeden należało przenieść do sąsiedniego pomieszczenia, drugi do pobliskiego Muzeum Instrumentów Ludowych. Największym ograniczeniem okazała się ciasna winda.',
-    heroImage: '/images/transport-pianin-i-fortepianow/transport-pianin-i-fortepianow-kielce-3.webp',
-    heroAlt: 'Zabezpieczony fortepian podczas transportu realizowanego przez WHM',
+    heroImage: '/images/realizacje/zamek-szydlowieckich/zamek-szydlowieckich-2.webp',
+    heroAlt: 'Transport fortepianów w Zamku Szydłowieckich przez WHM',
     category: 'Pianina i fortepiany',
     facts: [
       'dwa fortepiany',
@@ -528,8 +528,8 @@ export const caseStudies: CaseStudy[] = [
     eyebrow: 'Instrument koncertowy',
     heading: 'Fazioli, koncert w tężni i transport zakończony około drugiej w nocy',
     lead: 'Gdy pierwotny przewoźnik nie mógł wykonać odbioru, WHM przejęło transport fortepianu koncertowego po wydarzeniu nagrywanym dla telewizji. Trzyosobowy zespół rozpoczął pracę dopiero po bisach, zabezpieczył instrument w nietypowej przestrzeni i nocą przewiózł go do szkoły muzycznej w Kielcach.',
-    heroImage: '/images/transport-pianin-i-fortepianow/transport-pianin-i-fortepianow-kielce-1.webp',
-    heroAlt: 'Transport fortepianu koncertowego realizowany przez zespół WHM',
+    heroImage: '/images/realizacje/fortepian-fazioli/fortepian-fazioli.webp',
+    heroAlt: 'Fortepian koncertowy Fazioli po transporcie nocnym',
     category: 'Pianina i fortepiany',
     facts: [
       'fortepian koncertowy marki Fazioli',
@@ -588,7 +588,7 @@ export const caseStudies: CaseStudy[] = [
     conclusionHeading: 'Co ta realizacja pokazuje?',
     conclusionText: 'Koncert się kończy. Odpowiedzialność za instrument nie kończy się. WHM obsługuje transporty pianin i fortepianów po wcześniejszej ocenie instrumentu oraz drogi, aby organizator wiedział, jak będzie wyglądał odbiór po wydarzeniu.',
     gallery: [
-      { src: '/images/transport-pianin-i-fortepianow/transport-pianin-i-fortepianow-kielce-1.webp', alt: 'Transport fortepianu koncertowego przez zespół WHM', caption: 'Samochód z windą samozaładowczą' },
+      { src: '/images/realizacje/fortepian-fazioli/fortepian-fazioli.webp', alt: 'Fortepian koncertowy Fazioli po transporcie nocnym', caption: 'Samochód z windą samozaładowczą' },
       { src: '/images/transport-pianin-i-fortepianow/transport-pianin-i-fortepianow-kielce-4.webp', alt: 'Zabezpieczony fortepian po transporcie nocnym', caption: 'Ustawienie na scenie około 2:00 w nocy' },
       { src: '/images/transport-pianin-i-fortepianow/transport-pianin-i-fortepianow-kielce-2.webp', alt: 'Przygotowanie instrumentu do transportu przez WHM', caption: 'Dedykowany pokrowiec, sanie i wózki transportowe' },
     ],

@@ -1,16 +1,19 @@
 ---
 import { publicAssetExists } from '../lib/public-assets';
+import { getImageAsset } from '../data/imageManifest';
 
 interface Props {
   src: string;
   alt?: string;
-  width: number | string;
-  height: number | string;
+  width?: number | string;
+  height?: number | string;
   class?: string;
   loading?: 'eager' | 'lazy';
   decoding?: 'sync' | 'async' | 'auto';
   fetchpriority?: 'high' | 'low' | 'auto';
   role?: string;
+  displayRatio?: string;
+  objectPosition?: string;
   placeholderLabel?: string;
   [key: `data-${string}`]: string | number | undefined;
 }
@@ -18,39 +21,47 @@ interface Props {
 const {
   src,
   alt = '',
-  width,
-  height,
+  width: widthProp,
+  height: heightProp,
   class: className,
   loading,
   decoding = 'async',
   fetchpriority,
   role,
+  displayRatio: displayRatioProp,
+  objectPosition: objectPositionProp,
   placeholderLabel = 'Zdjęcie w przygotowaniu',
   ...attributes
 } = Astro.props;
 
+const asset = getImageAsset(src);
+const intrinsicWidth = asset?.width ?? (widthProp ? Number(widthProp) : 800);
+const intrinsicHeight = asset?.height ?? (heightProp ? Number(heightProp) : 600);
+const ratio = displayRatioProp ?? asset?.displayRatio ?? `${intrinsicWidth}/${intrinsicHeight}`;
+const position = objectPositionProp ?? asset?.objectPosition ?? 'center center';
+
 const available = publicAssetExists(src);
 const decorative = role === 'presentation' || alt === '';
-const aspectRatio = `${width} / ${height}`;
 ---
 
 {available ? (
   <img
     src={src}
     alt={alt}
-    width={width}
-    height={height}
+    width={intrinsicWidth}
+    height={intrinsicHeight}
     class={className}
     loading={loading}
     decoding={decoding}
     fetchpriority={fetchpriority}
     role={role}
+    style={`object-fit: cover; object-position: ${position}`}
     {...attributes}
   />
 ) : (
   <div
     class:list={['media-placeholder', className]}
-    style={`aspect-ratio: ${aspectRatio}`}
+    style={`aspect-ratio: ${ratio}`}
     role={decorative ? 'presentation' : 'img'}
     aria-label={decorative ? undefined : alt}
     data-planned-image={src}
