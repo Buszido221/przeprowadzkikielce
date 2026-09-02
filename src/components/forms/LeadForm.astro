@@ -1,6 +1,8 @@
 ---
 import { site } from '../../data/site';
 import { consentText } from '../../data/services';
+import { ATTRIBUTION_FIELDS } from '../../lib/campaign';
+import { siteEnvironment } from '../../lib/environment';
 
 export interface Props {
   formId: string;
@@ -30,12 +32,9 @@ const {
 
 const isBusiness = context === 'business' || variant === 'firma';
 
-const emailjsServiceId = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID ?? '';
-const emailjsTemplateId = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID ?? '';
-const emailjsPublicKey = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY ?? '';
-const emailjsConfigured = Boolean(emailjsServiceId && emailjsTemplateId && emailjsPublicKey);
-
-const siteEnv = import.meta.env.PUBLIC_SITE_ENV === 'production' ? 'production' : 'staging';
+const attributionInputNames = ['ft', 'lt'].flatMap((prefix) =>
+  ATTRIBUTION_FIELDS.map((field) => `${prefix}_${field}`),
+);
 ---
 
 <div class={`lead-form lead-form--${presentation}`} data-form-id={formId}>
@@ -44,7 +43,7 @@ const siteEnv = import.meta.env.PUBLIC_SITE_ENV === 'production' ? 'production' 
     <p class="lead-form__intro">{intro}</p>
   </div>
 
-  <form data-phone={site.phone} class="lead-form__form" id={formId} autocomplete="on" novalidate data-service-type={serviceType} data-variant={variant} data-context={isBusiness ? 'business' : 'consumer'} data-location={formLocation}>
+  <form data-phone={site.phone} class="lead-form__form" id={formId} autocomplete="on" novalidate data-service-type={serviceType} data-variant={variant} data-context={isBusiness ? 'b2b' : 'b2c'} data-location={formLocation}>
     <div class="lead-form__field">
       <label class="lead-form__label lead-form__label--required" for={`${formId}_name`}>Imię i nazwisko</label>
       <input class="lead-form__input" type="text" id={`${formId}_name`} name="customer_name" required autocomplete="name" />
@@ -99,26 +98,9 @@ const siteEnv = import.meta.env.PUBLIC_SITE_ENV === 'production' ? 'production' 
     <input type="hidden" name="submitted_at" value="" />
     <input type="hidden" name="submitted_at_readable" value="" />
     <input type="hidden" name="lead_id" value="" />
-    <input type="hidden" name="site_env" value={siteEnv} />
+    <input type="hidden" name="site_env" value={siteEnvironment} />
     <input type="hidden" name="referrer" value="" />
-    <input type="hidden" name="ft_utm_source" value="" />
-    <input type="hidden" name="ft_utm_medium" value="" />
-    <input type="hidden" name="ft_utm_campaign" value="" />
-    <input type="hidden" name="ft_utm_term" value="" />
-    <input type="hidden" name="ft_utm_content" value="" />
-    <input type="hidden" name="ft_gclid" value="" />
-    <input type="hidden" name="ft_gbraid" value="" />
-    <input type="hidden" name="ft_wbraid" value="" />
-    <input type="hidden" name="ft_fbclid" value="" />
-    <input type="hidden" name="lt_utm_source" value="" />
-    <input type="hidden" name="lt_utm_medium" value="" />
-    <input type="hidden" name="lt_utm_campaign" value="" />
-    <input type="hidden" name="lt_utm_term" value="" />
-    <input type="hidden" name="lt_utm_content" value="" />
-    <input type="hidden" name="lt_gclid" value="" />
-    <input type="hidden" name="lt_gbraid" value="" />
-    <input type="hidden" name="lt_wbraid" value="" />
-    <input type="hidden" name="lt_fbclid" value="" />
+    {attributionInputNames.map((name) => <input type="hidden" name={name} value="" />)}
     <input type="hidden" name="origin" value="" />
     <input type="hidden" name="destination" value="" />
     <input type="hidden" name="preferred_date" value="" />

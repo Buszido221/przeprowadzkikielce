@@ -523,10 +523,6 @@ strong {
   accent-color: var(--color-red, #b91c1c);
 }
 
-.cookie-consent__setting input:disabled {
-  opacity: 0.5;
-}
-
 .cookie-consent__settings-actions {
   margin-top: 8px;
 }

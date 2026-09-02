@@ -1,8 +1,10 @@
----
-import { captureCampaignParams } from '../lib/campaign';
----
-
 <script>
-  import { captureCampaignParams } from '../lib/campaign';
+  import { captureCampaignParams, clearCampaignStorage } from '../lib/campaign';
   captureCampaignParams();
+
+  window.addEventListener('whm:consent-changed', (event) => {
+    const consent = (event as CustomEvent<{ ads?: boolean }>).detail;
+    if (consent?.ads) captureCampaignParams();
+    else clearCampaignStorage();
+  });
 </script>
