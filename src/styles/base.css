@@ -983,7 +983,7 @@ strong {
   align-items: center;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .service-hero__grid {
     grid-template-columns: 1fr 1fr;
     gap: var(--space-12);
@@ -1014,11 +1014,13 @@ strong {
   line-height: var(--leading-relaxed);
   margin-bottom: var(--space-6);
   max-width: 36rem;
+  margin-inline: auto;
 }
 
 .service-hero__actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: var(--space-3);
   margin-bottom: var(--space-4);
 }
@@ -1071,7 +1073,7 @@ strong {
 
 @media (min-width: 768px) {
   .trust-bar__grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: var(--space-8);
   }
 }
@@ -1102,14 +1104,16 @@ strong {
 
 @media (min-width: 640px) {
   .standard-whm__grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--space-6);
   }
 }
 
 @media (min-width: 1024px) {
   .standard-whm__grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    max-width: 64rem;
+    margin-inline: auto;
   }
 }
 
@@ -1118,6 +1122,7 @@ strong {
   border-radius: var(--radius-lg);
   overflow: hidden;
   background: var(--color-bg-white);
+  text-align: center;
 }
 
 .standard-whm__figure--large {
@@ -1357,13 +1362,15 @@ strong {
 
 @media (min-width: 768px) {
   .service-scope__grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   }
 }
 
 @media (min-width: 1024px) {
   .service-scope__grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    max-width: 72rem;
+    margin-inline: auto;
   }
 }
 
@@ -1372,6 +1379,7 @@ strong {
   background: var(--color-bg);
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border-light);
+  text-align: center;
 }
 
 .service-scope__group-title {
@@ -1414,6 +1422,7 @@ strong {
 
 .perspective-section__content {
   max-width: 48rem;
+  margin-inline: auto;
 }
 
 .perspective-section__content p {
@@ -1432,7 +1441,7 @@ strong {
   display: grid;
   gap: var(--space-2);
   max-width: 40rem;
-  margin: var(--space-6) 0;
+  margin: var(--space-6) auto;
 }
 
 .pricing-section__factors li {
@@ -1463,6 +1472,7 @@ strong {
 .pricing-section__cta {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: var(--space-3);
 }
 
@@ -1480,7 +1490,9 @@ strong {
 
 @media (min-width: 768px) {
   .service-area__levels {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    max-width: 64rem;
+    margin-inline: auto;
   }
 }
 
@@ -1489,6 +1501,7 @@ strong {
   background: var(--color-bg-white);
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border-light);
+  text-align: center;
 }
 
 .service-area__level h3 {
