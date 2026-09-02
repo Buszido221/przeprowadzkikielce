@@ -1,106 +1,29 @@
 ---
-import { gtmId, measurementEnabled } from '../lib/environment';
+import { isStaging } from '../lib/environment';
+
+const GTM_ID = import.meta.env.PUBLIC_GTM_ID ?? '';
+const hasGtm = GTM_ID && !isStaging;
 ---
 
-{measurementEnabled && (
-  <script is:inline define:vars={{ gtmId }}>
-    (function () {
-      var CONSENT_KEY = 'whm_consent_v3';
-      var CAMPAIGN_KEY = 'whm_campaign_v3';
-      var VERSION = 3;
-      var gtmLoaded = false;
-
-      window.dataLayer = window.dataLayer || [];
-
-      function consentCommand() {
-        window.dataLayer.push(arguments);
-      }
-
-      function readConsent() {
-        try {
-          var raw = window.localStorage.getItem(CONSENT_KEY);
-          if (!raw) return null;
-          var parsed = JSON.parse(raw);
-          if (
-            parsed.version !== VERSION ||
-            typeof parsed.analytics !== 'boolean' ||
-            typeof parsed.ads !== 'boolean'
-          ) return null;
-          return parsed;
-        } catch (_error) {
-          return null;
-        }
-      }
-
-      function consentSignals(consent) {
-        return {
-          analytics_storage: consent && consent.analytics ? 'granted' : 'denied',
-          ad_storage: consent && consent.ads ? 'granted' : 'denied',
-          ad_user_data: consent && consent.ads ? 'granted' : 'denied',
-          ad_personalization: 'denied'
-        };
-      }
-
-      function loadGtm() {
-        if (gtmLoaded || document.querySelector('script[data-whm-gtm]')) return;
-        gtmLoaded = true;
-        window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
-        var script = document.createElement('script');
-        script.async = true;
-        script.dataset.whmGtm = 'true';
-        script.src = 'https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(gtmId);
-        document.head.appendChild(script);
-      }
-
-      function removeCampaignData() {
-        try {
-          window.sessionStorage.removeItem(CAMPAIGN_KEY);
-        } catch (_error) {
-          // Storage can be unavailable in privacy modes.
-        }
-      }
-
-      function applyConsent(consent) {
-        consentCommand('consent', 'update', consentSignals(consent));
-        if (!consent.ads) removeCampaignData();
-        window.dispatchEvent(new CustomEvent('whm:consent-changed', { detail: consent }));
-        if (consent.analytics || consent.ads) loadGtm();
-      }
-
-      function saveConsent(analytics, ads) {
-        var previous = readConsent();
-        var consent = {
-          version: VERSION,
-          analytics: Boolean(analytics),
-          ads: Boolean(ads),
-          updated_at: new Date().toISOString()
-        };
-        try {
-          window.localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
-        } catch (_error) {
-          return false;
-        }
-        if (previous) {
-          if (!consent.ads) removeCampaignData();
-          window.location.reload();
-          return true;
-        }
-        applyConsent(consent);
-        return true;
-      }
-
-      consentCommand('consent', 'default', {
-        analytics_storage: 'denied',
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied',
-        wait_for_update: 500
-      });
-
-      var savedConsent = readConsent();
-      if (savedConsent) applyConsent(savedConsent);
-
-      window.whmConsent = { get: readConsent, save: saveConsent };
-    })();
-  </script>
+{hasGtm && (
+  <script is:inline set:html={`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
+    (function(w,d,s,l,i){
+      w[l]=w[l]||[];
+      w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+      j.async=true;
+      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+      f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','${GTM_ID}');
+  `} />
 )}

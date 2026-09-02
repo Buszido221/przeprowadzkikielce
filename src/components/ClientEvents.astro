@@ -1,10 +1,9 @@
-<script>
-  import { pushMeasurementEvent } from '../lib/measurement';
+<script is:inline>
+  (function () {
+    if (window.__whmLocalEventsReady) return;
+    window.__whmLocalEventsReady = true;
 
-  if (!document.documentElement.dataset.whmEventsReady) {
-    document.documentElement.dataset.whmEventsReady = 'true';
-
-    function locationFor(element: HTMLElement): string {
+    function locationFor(element) {
       if (element.closest('.mobile-sticky-cta')) return 'sticky';
       if (element.closest('.service-hero, .subpage-hero, .hero')) return 'hero';
       if (element.closest('.lead-form')) return 'form';
@@ -15,31 +14,13 @@
       return element.dataset.ctaLocation || 'content';
     }
 
-    function destinationFor(link: HTMLAnchorElement | HTMLButtonElement) {
-      if (link instanceof HTMLButtonElement) return 'internal_form' as const;
-      const href = link.getAttribute('href') || '';
-      if (href.startsWith('tel:')) return 'phone' as const;
-      if (href.startsWith('sms:')) return 'sms' as const;
-      if (href.startsWith('mailto:')) return 'email' as const;
-      if (href.includes('whmshop.pl')) return 'external_shop' as const;
-      if (href.startsWith('http')) return 'external' as const;
-      if (href.includes('#formularz') || href.startsWith('#')) return 'internal_form' as const;
-      return 'internal_page' as const;
-    }
-
-    function stableCtaId(link: HTMLElement, destination: string, location: string, serviceType: string): string {
-      const explicit = link.dataset.ctaId;
-      if (explicit) return explicit;
-      return [destination, serviceType, location].join('_').toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
-    }
-
     document.addEventListener('click', function (event) {
       var target = event.target instanceof Element ? event.target : null;
       if (!target) return;
-      var link = target.closest<HTMLAnchorElement | HTMLButtonElement>('a, button');
+      var link = target.closest('a, button');
       if (!link) return;
 
-      var eventName: 'phone_click' | 'sms_click' | 'email_click' | 'cta_click' | 'whm_shop_click' | '' = '';
+      var eventName = '';
       if (link.matches('a[href^="tel:"]')) {
         eventName = 'phone_click';
       } else if (link.matches('a[href^="sms:"]')) {
@@ -54,18 +35,14 @@
       if (!eventName) return;
 
       var clickLocation = locationFor(link);
-      var destination = destinationFor(link);
-      var serviceType = link.dataset.serviceType || document.body.dataset.serviceType || 'general';
-      var leadContext = link.dataset.leadContext === 'b2b' || document.body.dataset.leadContext === 'b2b' ? 'b2b' : 'b2c';
-
-      pushMeasurementEvent({
-        event: eventName,
-        interaction_location: clickLocation,
-        destination_type: destination,
-        cta_id: stableCtaId(link, destination, clickLocation, serviceType),
-        service_type: serviceType,
-        lead_context: leadContext,
-      });
+      document.dispatchEvent(new CustomEvent('whm:analytics', {
+        detail: {
+          event: eventName,
+          link_location: clickLocation,
+          cta_location: clickLocation,
+          page_path: window.location.pathname
+        }
+      }));
     });
-  }
+  })();
 </script>

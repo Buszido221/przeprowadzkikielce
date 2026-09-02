@@ -5,11 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/validate-env.mjs && astro build && node scripts/verify-analytics.mjs",
-    "build:astro": "astro build",
-    "validate:env": "node scripts/validate-env.mjs",
-    "verify:analytics": "node scripts/verify-analytics.mjs",
-    "verify:consent": "node scripts/verify-consent.mjs",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },

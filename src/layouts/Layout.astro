@@ -1,13 +1,12 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import ConsentManager from '../components/ConsentManager.astro';
+import Analytics from '../components/Analytics.astro';
 import GtmHead from '../components/GtmHead.astro';
 import CampaignAttribution from '../components/CampaignAttribution.astro';
 import ClientEvents from '../components/ClientEvents.astro';
 import { site } from '../data/site';
-import { isStaging, measurementEnabled } from '../lib/environment';
-import { getPageAnalyticsContext } from '../lib/page-analytics';
+import { isStaging } from '../lib/environment';
 import '../styles/base.css';
 import '../styles/main.css';
 
@@ -30,7 +29,6 @@ const {
 const robotsContent = isStaging ? 'noindex, nofollow, noarchive' : robots;
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, site.domain).href;
 const ogImageUrl = new URL(ogImage, site.domain).href;
-const pageAnalytics = getPageAnalyticsContext(Astro.url.pathname);
 ---
 
 <!doctype html>
@@ -66,13 +64,13 @@ const pageAnalytics = getPageAnalyticsContext(Astro.url.pathname);
     <ClientEvents />
     <slot name="head" />
   </head>
-  <body data-service-type={pageAnalytics.serviceType} data-lead-context={pageAnalytics.leadContext}>
+  <body>
     <a href="#main-content" class="skip-link">Przejdź do treści</a>
     <Header />
     <main id="main-content">
       <slot />
     </main>
     <Footer />
-    {measurementEnabled && <ConsentManager />}
+    {isStaging ? null : <Analytics />}
   </body>
 </html>

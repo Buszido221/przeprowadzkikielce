@@ -1399,11 +1399,11 @@ export const politykaPage = {
     },
     {
       heading: 'Analityka, pomiar reklam i pliki cookies',
-      content: 'Niezbędne funkcje serwisu, w tym formularz kontaktowy, działają bez zgody na narzędzia pomiarowe. Google Tag Manager jest warstwą zarządzającą tagami, ale jego skrypt oraz skrypty dostawców są pobierane dopiero po zgodzie na co najmniej jedną z dwóch niezależnych kategorii: analitykę (Google Analytics 4) albo pomiar reklam (Google Ads i Meta Pixel). Brak zgody na obie kategorie oznacza brak uruchomienia tych narzędzi. Zgoda na personalizację reklam pozostaje wyłączona; serwis nie wdraża obecnie remarketingu personalizowanego. Ustawienia można w każdej chwili ponownie otworzyć z linku „Ustawienia cookies” w stopce i zmienić lub wycofać zgodę.',
+      content: 'Strona korzysta z Google Tag Manager do zarządzania skryptami śledzącymi. Działają trzy kategorie plików cookie: niezbędne (zawsze aktywne), analityczne (Google Analytics 4) oraz pomiar reklam (Google Ads, Meta Pixel). Skrypty analityczne i reklamowe ładują się dopiero po udzieleniu odpowiedniej zgody w banerze cookies. Po odrzuceniu zgody skrypty nie są uruchamiane. Użytkownik może zmienić decyzję w dowolnym momencie, korzystając z linku „Ustawienia cookies” w stopce. Dane analityczne są zbierane w celu agregacyjnym i służą do ulepszania treści oraz nawigacji. Pomiar reklam służy do mierzenia skuteczności kampanii reklamowych.',
     },
     {
       heading: 'Dostawcy usług',
-      content: 'Serwis korzysta z EmailJS do przesyłania formularzy oraz z usług hostingowych. Po właściwej zgodzie może korzystać z usług Google (Google Tag Manager, Google Analytics 4 i Google Ads) oraz Meta (Meta Pixel) zgodnie z zasadami i warunkami tych dostawców. Meta Conversions API nie jest obecnie wdrożone i pozostaje możliwym przyszłym etapem. Do warstwy pomiarowej nie przekazujemy imienia, numeru telefonu, adresu e-mail, nazwy firmy ani treści wiadomości z formularza.',
+      content: 'W celu świadczenia usług korzystamy z następujących dostawców: Google LLC (Google Tag Manager, Google Analytics 4, Google Ads - analityka i pomiar reklam), Meta Platforms (Meta Pixel - pomiar reklam), EmailJS (przesyłanie formularzy kontaktowych), hosting serwisu. Każdy z dostawców przetwarza dane wyłącznie w zakresie niezbędnym do realizacji usługi.',
     },
     {
       heading: 'Aktualizacje polityki',

@@ -69,20 +69,8 @@ import { brandNavigation, businessNavigation, serviceNavigation } from '../data/
     </div>
 
     <div class="footer-bottom">
-      <p><a href="#cookie-consent" id="cookie-settings-link">Ustawienia cookies</a></p>
+    <p><a href="#" id="cookie-settings-link" onclick="if(window._whm_open_consent){window._whm_open_consent();}return false;">Ustawienia cookies</a></p>
       <p>{site.legalName} &middot; NIP: {site.nip}</p>
     </div>
   </div>
 </footer>
-
-<script is:inline>
-  (function () {
-    var link = document.getElementById('cookie-settings-link');
-    if (!link || link.dataset.listenerReady) return;
-    link.dataset.listenerReady = 'true';
-    link.addEventListener('click', function (event) {
-      event.preventDefault();
-      window.dispatchEvent(new CustomEvent('whm:open-consent'));
-    });
-  })();
-</script>
