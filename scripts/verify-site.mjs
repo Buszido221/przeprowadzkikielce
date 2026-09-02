@@ -54,7 +54,7 @@ for (const path of htmlFiles) {
   report((html.match(/<meta\s+name="robots"/gi) || []).length === 1, `${route}: niepoprawna liczba meta robots.`);
   const robots = html.match(/<meta\s+name="robots"\s+content="([^"]+)"/i)?.[1];
   const expectedRobots = productionBuild
-    ? route === '/polityka-prywatnosci/' || route === '/404.html' ? 'noindex, follow' : 'index, follow'
+    ? route === '/polityka-prywatnosci/' ? 'noindex, follow' : route === '/404.html' ? 'noindex, nofollow' : 'index, follow'
     : 'noindex, nofollow, noarchive';
   report(robots === expectedRobots, `${route}: robots to "${robots}", oczekiwano "${expectedRobots}".`);
   report((html.match(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi) || []).every((tag) => {

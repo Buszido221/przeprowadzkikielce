@@ -12,12 +12,20 @@ import SectionHeading from '../../components/SectionHeading.astro';
 import LeadForm from '../../components/forms/LeadForm.astro';
 import { site } from '../../data/site';
 import { testimonials } from '../../data/home';
+import { getSeo } from '../../data/seo';
+import { buildSchemaGraph, buildFaqSchema } from '../../lib/schema';
 
-const title = 'Przeprowadzki Kielce – bezpieczna przeprowadzka | WHM';
-const description = 'Przeprowadzki mieszkań i domów w Kielcach, woj. świętokrzyskim i całej Polsce. Zabezpieczenie, pakowanie, montaż i bezpłatne oględziny większych zleceń.';
-const canonical = `${site.domain}przeprowadzki/`;
+const seo = getSeo('/przeprowadzki/');
+const schemaGraph = buildSchemaGraph({ slug: '/przeprowadzki/', breadcrumbs: [{ name: 'Przeprowadzki' }] });
 
 const breadcrumbs = [{ label: 'Przeprowadzki' }];
+
+const selectedTestimonials = testimonials.filter((t) =>
+  t.author === 'Zbigniew Pakuła' ||
+  t.author === 'Marzena' ||
+  t.author === 'Wiola' ||
+  t.author === 'Lidia Gurba'
+);
 
 const faqItems = [
   {
@@ -53,40 +61,10 @@ const faqItems = [
     answer: 'Zdjęcia możesz dosłać po zgłoszeniu SMS-em lub e-mailem. Pomagają nam ocenić zakres, dostęp i ewentualne elementy wymagające szczególnej uwagi.',
   },
 ];
-
-const serviceSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  serviceType: 'Przeprowadzki mieszkań i domów',
-  provider: {
-    '@type': 'LocalBusiness',
-    name: 'WHM Przeprowadzki',
-    telephone: site.phone,
-    areaServed: ['Kielce', 'Województwo świętokrzyskie', 'Polska'],
-  },
-  areaServed: ['Kielce', 'Województwo świętokrzyskie', 'Polska'],
-};
-
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Strona główna', item: site.domain },
-    { '@type': 'ListItem', position: 2, name: 'Przeprowadzki', item: canonical },
-  ],
-};
-
-const selectedTestimonials = testimonials.filter((t) =>
-  t.author === 'Zbigniew Pakuła' ||
-  t.author === 'Marzena' ||
-  t.author === 'Wiola' ||
-  t.author === 'Lidia Gurba'
-);
+const faqSchema = buildFaqSchema(faqItems);
 ---
 
-<Layout title={title} description={description} robots="index, follow" canonical={canonical} ogImage="/images/home-moving/przeprowadzki-domow-kielce-3.webp">
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+<Layout seo={seo} schemaGraph={schemaGraph} faqSchema={faqSchema}>
 
   <ServiceHero
     eyebrow="Przeprowadzki w Kielcach i całej Polsce"

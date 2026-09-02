@@ -13,18 +13,6 @@ interface Props {
 }
 
 const { heading = 'Często zadawane pytania', eyebrow, items } = Astro.props;
-const faqJson = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: items.map((item) => ({
-    '@type': 'Question',
-    name: item.question,
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: item.answer,
-    },
-  })),
-});
 ---
 
 <section class="service-faq" aria-label={heading}>
@@ -45,5 +33,3 @@ const faqJson = JSON.stringify({
     </div>
   </div>
 </section>
-
-<script type="application/ld+json" set:html={faqJson} />

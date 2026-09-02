@@ -7,6 +7,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "verify:site": "node scripts/verify-site.mjs",
+    "verify:seo": "node scripts/verify-seo.mjs",
+    "verify:all": "npm run build && npm run verify:site && npm run verify:seo",
     "preview": "astro preview",
     "astro": "astro"
   },

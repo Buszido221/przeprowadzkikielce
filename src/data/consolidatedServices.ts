@@ -42,8 +42,8 @@ export interface ConsolidatedServicePage {
 
 export const transportMebliPage: ConsolidatedServicePage = {
   slug: '/transport-mebli-kielce/',
-  title: 'Transport mebli Kielce | Wyniesienie i montaż | WHM',
-  description: 'Transport mebli w Kielcach z zabezpieczeniem, wyniesieniem, wniesieniem oraz uzgodnionym demontażem i montażem.',
+  title: 'Transport mebli Kielce z wniesieniem i montażem | WHM',
+  description: 'Transport mebli w Kielcach z zabezpieczeniem, wyniesieniem, wniesieniem oraz uzgodnionym demontażem i ponownym montażem przez jeden zespół.',
   eyebrow: 'Transport mebli • Kielce i województwo świętokrzyskie',
   heading: 'Mebel bezpiecznie od miejsca odbioru do właściwego pomieszczenia',
   lead: 'Kanapa, szafa, stół lub większy zestaw — zabezpieczamy, wynosimy, przewozimy i wnosimy. Gdy droga tego wymaga, uzgadniamy demontaż i ponowny montaż.',
@@ -130,8 +130,8 @@ export const transportMebliPage: ConsolidatedServicePage = {
 
 export const oproznianiePage: ConsolidatedServicePage = {
   slug: '/oproznianie-mieszkan-i-wywoz-mebli/',
-  title: 'Opróżnianie mieszkań i wywóz starych mebli | WHM',
-  description: 'Opróżnianie mieszkań w Kielcach: wyniesienie i wywóz starych mebli oraz wyposażenia do PSZOK. Bez gruzu i odpadów budowlanych.',
+  title: 'Opróżnianie mieszkań i wywóz mebli Kielce | WHM',
+  description: 'Opróżnianie mieszkań w Kielcach: wyniesienie i wywóz uzgodnionych starych mebli oraz wyposażenia do PSZOK. Bez gruzu i odpadów budowlanych.',
   eyebrow: 'Opróżnianie mieszkań • Kielce i okolice',
   heading: 'Opróżnianie mieszkań i wywóz starych mebli',
   lead: 'Wynosimy uzgodnione meble i wyposażenie, ładujemy je i przewozimy do PSZOK. Przed terminem jasno potwierdzamy zakres oraz rzeczy, których usługa nie obejmuje.',

@@ -39,8 +39,8 @@ export interface CaseStudy {
 export const caseStudies: CaseStudy[] = [
   {
     slug: '/realizacje/relokacja-prokuratur-kielce/',
-    title: 'Relokacja Prokuratur Kielce-Wschód i Zachód | Realizacja WHM',
-    description: 'WHM przeprowadziło relokację obu kieleckich prokuratur: cztery piętra, piwnica, archiwa, wyposażenie ponad stu pracowników i ciągłość działania instytucji.',
+    title: 'Relokacja prokuratur w Kielcach | Realizacja WHM',
+    description: 'Relokacja Prokuratur Kielce-Wschód i Kielce-Zachód: cztery kondygnacje, piwnica, archiwa i wyposażenie ponad stu pracowników bez przerwy w działaniu.',
     eyebrow: 'Relokacja instytucji publicznej',
     heading: 'Dwie prokuratury, cztery kondygnacje i archiwum, którego porządku nie można było zgubić',
     lead: 'Relokacja Prokuratury Rejonowej Kielce-Wschód i Kielce-Zachód trwała około dwóch miesięcy i obejmowała wyposażenie ponad stu pracowników. Najważniejszym celem nie było wyłącznie opróżnienie budynku na czas remontu, lecz takie zorganizowanie całego procesu, aby praca instytucji nie została przerwana.',
@@ -112,8 +112,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: '/realizacje/relokacja-teatru-zeromskiego-kielce/',
-    title: 'Relokacja Teatru im. Stefana Żeromskiego | Realizacja WHM',
-    description: 'WHM zebrało rozproszone zasoby Teatru im. Stefana Żeromskiego i przeniosło je do historycznej siedziby: niemal 50 pełnych samochodów wyposażenia.',
+    title: 'Relokacja Teatru Żeromskiego w Kielcach | WHM',
+    description: 'WHM zebrało zasoby Teatru im. Stefana Żeromskiego z kilku lokalizacji w Kielcach i przeniosło je do historycznej siedziby — niemal 50 transportów.',
     eyebrow: 'Relokacja instytucji kultury',
     heading: 'Powrót Teatru im. Stefana Żeromskiego do historycznej siedziby',
     lead: 'Po wieloletnim remoncie zasoby teatru były rozproszone w kilku lokalizacjach na terenie Kielc. Zadaniem WHM było zebrać scenografię, kostiumy, wyposażenie techniczne, bibliotekę, dwa fortepiany i mienie poszczególnych działów, a następnie wprowadzić je do odnowionego budynku zgodnie z ustalonym harmonogramem.',
@@ -192,8 +192,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: '/realizacje/relokacja-tvp3-kielce/',
-    title: 'Relokacja TVP3 Kielce i archiwum 8000 pozycji | WHM',
-    description: 'Relokacja TVP3 Kielce do nowej siedziby: niemal 8000 pozycji archiwum, odtworzenie układu co do półki oraz demontaż starego studia i realizatorni.',
+    title: 'Relokacja TVP3 Kielce i archiwum | WHM',
+    description: 'Relokacja TVP3 Kielce: niemal 8000 pozycji archiwum odtworzonych co do półki, wyposażenie studia i demontaż realizatorni z podłogą techniczną.',
     eyebrow: 'Archiwum i infrastruktura techniczna',
     heading: 'Relokacja TVP3 Kielce — dwadzieścia lat materiałów odtworzone co do półki',
     lead: 'Przeprowadzka kieleckiego oddziału TVP3 obejmowała niemal osiem tysięcy pozycji archiwum, wyposażenie studia oraz demontaż realizatorni z podłogą techniczną. Każdy etap wymagał rozróżnienia tego, co należało zachować, przewieźć albo usunąć bez naruszenia czynnych instalacji.',
@@ -280,7 +280,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: '/realizacje/relokacja-biblioteki-busko-zdroj/',
-    title: 'Relokacja biblioteki w Busku-Zdroju — 40 000 pozycji | WHM',
+    title: 'Relokacja biblioteki w Busku-Zdroju | WHM',
     description: 'WHM przeniosło około 40 000 pozycji bibliotecznych pomiędzy dwiema lokalizacjami w Busku-Zdroju, zachowując kolejność księgozbioru w niespełna pięć dni.',
     eyebrow: 'Relokacja księgozbioru',
     heading: 'Około 40 000 pozycji przeniesionych w obrębie Buska-Zdroju',
@@ -368,8 +368,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: '/realizacje/transport-zabytkowego-obrazu-zamek-szydlowieckich/',
-    title: 'Transport zabytkowego obrazu z Zamku Szydłowieckich | WHM',
-    description: 'Zobacz, jak WHM przetransportowało około 4,3-metrowy zabytkowy obraz, którego nie wolno było pionować: podnośnik, demontaż okna i indywidualna trasa.',
+    title: 'Transport obrazu z Zamku Szydłowieckich | WHM',
+    description: 'Transport około 4,3-metrowego zabytkowego obrazu, którego nie wolno było pionować: demontaż okna, podnośnik i indywidualnie przygotowana trasa.',
     eyebrow: 'Transport dzieła sztuki',
     heading: 'Obraz, którego nie wolno było ustawić pionowo nawet na chwilę',
     lead: 'Kilkusetletnie dzieło miało około 4,3 m długości i znajdowało się na drugim piętrze Zamku Szydłowieckich. Standardowa droga przez klatkę schodową odpadała. WHM przygotowało operację obejmującą podnośnik koszowy, stałe utrzymanie konstrukcji w poziomie, częściowy demontaż zabezpieczeń oraz wprowadzenie obrazu do muzeum przez okno.',
@@ -452,8 +452,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: '/realizacje/transport-fortepianow-zamek-szydlowieckich/',
-    title: 'Relokacja fortepianów w Zamku Szydłowieckich | WHM',
-    description: 'Dwa fortepiany, ciasna winda i niestandardowa pozycja eksponatu. Zobacz wcześniejszą realizację WHM w Zamku Szydłowieckich.',
+    title: 'Transport fortepianów — Zamek Szydłowieckich | WHM',
+    description: 'Dwa fortepiany i ciasna winda wymagająca niestandardowej pozycji instrumentu. Zobacz realizację WHM przeprowadzoną w Zamku Szydłowieckich.',
     eyebrow: 'Instrumenty w obiekcie historycznym',
     heading: 'Dwa fortepiany i winda, która wymusiła niestandardowe rozwiązanie',
     lead: 'Podczas wcześniejszej realizacji w Zamku Szydłowieckich WHM relokowało dwa fortepiany. Jeden należało przenieść do sąsiedniego pomieszczenia, drugi do pobliskiego Muzeum Instrumentów Ludowych. Największym ograniczeniem okazała się ciasna winda.',
@@ -523,8 +523,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: '/realizacje/transport-fortepianu-fazioli/',
-    title: 'Nocny transport fortepianu Fazioli z Buska do Kielc | WHM',
-    description: 'WHM odebrało koncertowy fortepian Fazioli z tężni w Busku-Zdroju i około 2:00 w nocy ustawiło go na scenie szkoły muzycznej w Kielcach.',
+    title: 'Transport fortepianu Fazioli: Busko–Kielce | WHM',
+    description: 'Nocny transport koncertowego fortepianu Fazioli z tężni w Busku-Zdroju do szkoły muzycznej w Kielcach, zakończony ustawieniem około godziny 2:00.',
     eyebrow: 'Instrument koncertowy',
     heading: 'Fazioli, koncert w tężni i transport zakończony około drugiej w nocy',
     lead: 'Gdy pierwotny przewoźnik nie mógł wykonać odbioru, WHM przejęło transport fortepianu koncertowego po wydarzeniu nagrywanym dla telewizji. Trzyosobowy zespół rozpoczął pracę dopiero po bisach, zabezpieczył instrument w nietypowej przestrzeni i nocą przewiózł go do szkoły muzycznej w Kielcach.',
@@ -606,8 +606,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: '/realizacje/relokacje-techniczne-i-ciezkie-ladunki/',
-    title: 'Relokacje techniczne i transport ciężkich urządzeń | WHM',
-    description: 'Szafy pancerne, piece 350–450 kg, serwery, zbiorniki azotu i sprzęt laboratoryjny. Zobacz doświadczenie WHM w relokacjach technicznych.',
+    title: 'Transport ciężkich urządzeń i serwerów | WHM Kielce',
+    description: 'Realizacje WHM obejmujące piece 350–450 kg, szafy pancerne, serwery, zbiorniki azotu oraz sprzęt laboratoryjny wymagający specjalistycznego transportu.',
     eyebrow: 'Doświadczenie przekrojowe WHM',
     heading: 'Gdy przedmiot waży setki kilogramów, nie wystarczy wiedzieć, jak go podnieść',
     lead: 'WHM wielokrotnie transportowało szafy pancerne, piece na pellet, serwery, urządzenia laboratoryjne i inne ciężkie wyposażenie. Każdy taki projekt zaczyna się od masy i wymiarów, ale o powodzeniu decydują także środek ciężkości, droga, nośność podłoża, liczba osób, sposób asekuracji oraz precyzja ustawienia w miejscu docelowym.',

@@ -4,11 +4,11 @@ import ServiceHero from '../../components/ServiceHero.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import MobileStickyCta from '../../components/MobileStickyCta.astro';
 import SafeImage from '../../components/SafeImage.astro';
-import { site } from '../../data/site';
 import { getRoute, serviceNavigation } from '../../data/routes';
+import { getSeo } from '../../data/seo';
+import { buildSchemaGraph } from '../../lib/schema';
 
 const route = getRoute('/uslugi/');
-const canonical = `${site.domain}uslugi/`;
 const cards = [
   { slug: '/przeprowadzki/', image: '/images/home-moving/przeprowadzki-domow-kielce-3.webp', text: 'Mieszkania i domy: plan, pakowanie, zabezpieczenie, transport oraz uzgodniony montaż.' },
   { slug: '/transport-mebli-kielce/', image: '/images/transport-mebli/transport-mebli-kielce-1.webp', text: 'Pojedyncze meble i zestawy z wyniesieniem, wniesieniem oraz ochroną podczas transportu.' },
@@ -18,14 +18,15 @@ const cards = [
   { slug: '/oproznianie-mieszkan-i-wywoz-mebli/', image: '/images/furniture-assembly/montaz-demontaz-mebli-1.webp', text: 'Wyniesienie i wywóz starych mebli oraz wyposażenia do PSZOK, z jasnym zakresem wyłączeń.' },
 ];
 const cardData = cards.map((card) => ({ ...card, route: serviceNavigation.find((item) => item.slug === card.slug)! }));
-const schema = {
-  '@context': 'https://schema.org', '@type': 'ItemList', name: route.name, url: canonical,
-  itemListElement: cardData.map((card, index) => ({ '@type': 'ListItem', position: index + 1, name: card.route.name, url: `${site.domain}${card.slug.slice(1)}` })),
-};
+const seo = getSeo('/uslugi/');
+const schemaGraph = buildSchemaGraph({
+  slug: '/uslugi/',
+  breadcrumbs: [{ name: 'Usługi' }],
+  itemList: cardData.map((card) => ({ name: card.route.name, url: `https://przeprowadzkikielce.pl${card.slug}` })),
+});
 ---
 
-<Layout title={route.title} description={route.description} robots={route.robots} canonical={canonical} ogImage="/images/kielce-moving/przeprowadzki-kielce-1.webp">
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
+<Layout seo={seo} schemaGraph={schemaGraph}>
   <ServiceHero eyebrow="Usługi WHM" heading="Przeprowadzka i transport dopasowane do jednej rzeczywistej potrzeby" lead="Zamiast mnożyć podobne podstrony, porządkujemy ofertę w sześć czytelnych ścieżek. Jeśli zakres łączy kilka usług, koordynujemy je jako jeden proces." breadcrumbs={[{ label: route.name }]} heroImage="/images/kielce-moving/przeprowadzki-kielce-1.webp" heroAlt="Samochód i zespół WHM podczas realizacji przeprowadzki" secondaryCtaLabel="Przejdź do wyceny" secondaryCtaHref="/kontakt/#formularz" />
   <section class="section section--alt">
     <div class="container">

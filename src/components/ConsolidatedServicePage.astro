@@ -12,6 +12,8 @@ import SectionHeading from './SectionHeading.astro';
 import LeadForm from './forms/LeadForm.astro';
 import { testimonials } from '../data/home';
 import { site } from '../data/site';
+import { getSeo } from '../data/seo';
+import { buildSchemaGraph, buildFaqSchema } from '../lib/schema';
 import type { ConsolidatedServicePage as PageData } from '../data/consolidatedServices';
 
 interface Props {
@@ -19,45 +21,19 @@ interface Props {
 }
 
 const { page } = Astro.props;
-const canonical = new URL(page.slug.replace(/^\//, ''), site.domain).href;
-const selectedTestimonials = testimonials.filter((testimonial) => page.testimonialAuthors.includes(testimonial.author));
-
-const serviceSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  name: page.heading,
-  description: page.description,
-  url: canonical,
-  provider: {
-    '@type': 'MovingCompany',
-    name: site.brand,
-    telephone: site.phone,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: site.address.street,
-      postalCode: site.address.postalCode,
-      addressLocality: site.address.city,
-      addressCountry: 'PL',
-    },
-  },
-  areaServed: ['Kielce', 'Województwo świętokrzyskie'],
-};
-
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Strona główna', item: site.domain },
-    { '@type': 'ListItem', position: 2, name: 'Usługi', item: `${site.domain}uslugi/` },
-    { '@type': 'ListItem', position: 3, name: page.heading, item: canonical },
+const seo = getSeo(page.slug);
+const schemaGraph = buildSchemaGraph({
+  slug: page.slug,
+  breadcrumbs: [
+    { name: 'Usługi', url: 'https://przeprowadzkikielce.pl/uslugi/' },
+    { name: page.heading },
   ],
-};
+});
+const faqSchema = buildFaqSchema(page.faq);
+const selectedTestimonials = testimonials.filter((testimonial) => page.testimonialAuthors.includes(testimonial.author));
 ---
 
-<Layout title={page.title} description={page.description} robots="index, follow" canonical={canonical} ogImage={page.heroImage}>
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-
+<Layout seo={seo} schemaGraph={schemaGraph} faqSchema={faqSchema}>
   <ServiceHero
     eyebrow={page.eyebrow}
     heading={page.heading}

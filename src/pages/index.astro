@@ -4,7 +4,8 @@ import SectionHeading from '../components/SectionHeading.astro';
 import MobileStickyCta from '../components/MobileStickyCta.astro';
 import SafeImage from '../components/SafeImage.astro';
 import { site } from '../data/site';
-import { publicAssetExists } from '../lib/public-assets';
+import { getSeo } from '../data/seo';
+import { buildSchemaGraph, buildFaqSchema } from '../lib/schema';
 import {
   hero,
   trustFacts,
@@ -23,47 +24,12 @@ import {
 ---
 
 <Layout
-  title="Przeprowadzki Kielce | WHM Przeprowadzki"
-  description="Profesjonalne przeprowadzki mieszkań, domów, firm i instytucji w Kielcach. Pakowanie, zabezpieczanie mienia, transport specjalistyczny i magazynowanie."
-  robots="index, follow"
+  seo={getSeo('/')}
+  schemaGraph={buildSchemaGraph({ slug: '/' })}
+  faqSchema={buildFaqSchema(faqItems)}
 >
-  <link slot="head" rel="canonical" href={site.domain} />
   <link slot="head" rel="preload" href="/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link slot="head" rel="preload" href="/fonts/manrope-latin-ext.woff2" as="font" type="font/woff2" crossorigin />
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'MovingCompany',
-    name: site.brand,
-    legalName: site.legalName,
-    url: site.domain,
-    telephone: site.phone,
-    email: site.email,
-    ...(publicAssetExists('/images/LOGO_WHM.svg') ? { logo: `${site.domain}images/LOGO_WHM.svg` } : {}),
-    ...(publicAssetExists('/images/hero/hero-1.webp') ? { image: `${site.domain}images/hero/hero-1.webp` } : {}),
-    description: 'Profesjonalne przeprowadzki mieszkań, domów, firm i instytucji w Kielcach. Pakowanie, zabezpieczanie mienia, transport specjalistyczny i magazynowanie.',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: site.address.street,
-      addressLocality: site.address.city,
-      postalCode: site.address.postalCode,
-      addressCountry: 'PL',
-    },
-    areaServed: ['Kielce', 'Województwo świętokrzyskie', 'Polska'],
-    openingHoursSpecification: [
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-        opens: '08:00',
-        closes: '20:00',
-      },
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: 'Saturday',
-        opens: '08:00',
-        closes: '18:00',
-      },
-    ],
-  })} />
 
   <!-- HERO -->
   <section class="hero hero--single">
@@ -71,11 +37,10 @@ import {
       <SafeImage
         src={hero.image}
         alt={hero.imageAlt}
-        width="1920"
-        height="1080"
         class="hero__img"
         fetchpriority="high"
         decoding="async"
+        displayMode="hero"
       />
       <div class="hero__overlay"></div>
     </div>
@@ -149,11 +114,10 @@ import {
           <SafeImage
             src={introSection.image}
             alt="Pracownik WHM zabezpiecza wyposażenie do transportu"
-            width="800"
-            height="600"
             loading="lazy"
             decoding="async"
             class="section-img"
+            displayMode="section"
           />
         </div>
       </div>
@@ -175,8 +139,6 @@ import {
               <SafeImage
                 src={item.image}
                 alt={item.title}
-                width="600"
-                height="400"
                 loading="lazy"
                 decoding="async"
               />
@@ -285,29 +247,26 @@ import {
           <SafeImage
             src={specialTransportSection.images[0]}
             alt="Wykorzystanie schodołazu przy transporcie ciężkiego ładunku"
-            width="800"
-            height="600"
             loading="lazy"
             decoding="async"
             class="section-img"
+            displayMode="section"
           />
           <SafeImage
             src={specialTransportSection.images[1]}
             alt="Transport instrumentu muzycznego przez zespół WHM"
-            width="800"
-            height="600"
             loading="lazy"
             decoding="async"
             class="section-img"
+            displayMode="section"
           />
           <SafeImage
             src={specialTransportSection.images[2]}
             alt="Praca z dużym wyposażeniem biurowym"
-            width="800"
-            height="600"
             loading="lazy"
             decoding="async"
             class="section-img"
+            displayMode="section"
           />
         </div>
       </div>
@@ -374,8 +333,6 @@ import {
             <SafeImage
               src={ecosystemSection.shop.image}
               alt="Zapas kartonów i materiałów do przeprowadzki w WHM Shop"
-              width="600"
-              height="400"
               loading="lazy"
               decoding="async"
             />
@@ -434,11 +391,10 @@ import {
           <SafeImage
             src={guideSection.image}
             alt="Poradnik przygotowania do przeprowadzki WHM"
-            width="800"
-            height="600"
             loading="lazy"
             decoding="async"
             class="section-img"
+            displayMode="section"
           />
         </div>
       </div>

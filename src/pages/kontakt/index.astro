@@ -5,42 +5,14 @@ import SectionHeading from '../../components/SectionHeading.astro';
 import LeadForm from '../../components/forms/LeadForm.astro';
 import { site } from '../../data/site';
 import { kontaktPage as page } from '../../data/services';
+import { getSeo } from '../../data/seo';
+import { buildSchemaGraph } from '../../lib/schema';
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Strona główna', item: site.domain },
-        { '@type': 'ListItem', position: 2, name: 'Kontakt', item: page.seo.canonical },
-      ],
-    },
-    {
-      '@type': 'ContactPage',
-      name: page.seo.title,
-      description: page.seo.description,
-      mainEntity: {
-        '@type': 'LocalBusiness',
-        name: 'WHM TRANSPORT MATEUSZ KONDERA',
-        telephone: page.contact.phone,
-        email: page.contact.email,
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: 'Lotnicza 60A',
-          addressLocality: 'Masłów Pierwszy',
-          postalCode: '26-001',
-          addressCountry: 'PL',
-        },
-      },
-    },
-  ],
-};
+const seo = getSeo('/kontakt/');
+const schemaGraph = buildSchemaGraph({ slug: '/kontakt/', breadcrumbs: [{ name: 'Kontakt' }] });
 ---
 
-<Layout title={page.seo.title} description={page.seo.description} robots="index, follow">
-  <link slot="head" rel="canonical" href={page.seo.canonical} />
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+<Layout seo={seo} schemaGraph={schemaGraph}>
 
   <SubpageHero
     heading={page.hero.heading}

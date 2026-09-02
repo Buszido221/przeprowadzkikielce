@@ -5,41 +5,14 @@ import SectionHeading from '../../components/SectionHeading.astro';
 import SafeImage from '../../components/SafeImage.astro';
 import { site } from '../../data/site';
 import { oNasPage as page } from '../../data/services';
+import { getSeo } from '../../data/seo';
+import { buildSchemaGraph } from '../../lib/schema';
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Strona główna', item: site.domain },
-        { '@type': 'ListItem', position: 2, name: 'O nas', item: page.seo.canonical },
-      ],
-    },
-    {
-      '@type': 'AboutPage',
-      name: page.seo.title,
-      description: page.seo.description,
-      mainEntity: {
-        '@type': 'LocalBusiness',
-        name: 'WHM TRANSPORT MATEUSZ KONDERA',
-        telephone: page.companyData.phone,
-        email: page.companyData.email,
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: 'Lotnicza 60A',
-          addressLocality: 'Masłów Pierwszy',
-          postalCode: '26-001',
-          addressCountry: 'PL',
-        },
-      },
-    },
-  ],
-};
+const seo = getSeo('/o-nas/');
+const schemaGraph = buildSchemaGraph({ slug: '/o-nas/', breadcrumbs: [{ name: 'O nas' }] });
 ---
 
-<Layout title={page.seo.title} description={page.seo.description} robots="index, follow" canonical={page.seo.canonical} ogImage={page.hero.image}>
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+<Layout seo={seo} schemaGraph={schemaGraph}>
 
   <SubpageHero
     heading={page.hero.heading}

@@ -7,23 +7,19 @@ import MobileStickyCta from '../../components/MobileStickyCta.astro';
 import SafeImage from '../../components/SafeImage.astro';
 import { site } from '../../data/site';
 import { getRoute } from '../../data/routes';
+import { getSeo } from '../../data/seo';
+import { buildSchemaGraph, buildFaqSchema } from '../../lib/schema';
 
 const route = getRoute('/magazyny-kielce/');
-const canonical = `${site.domain}magazyny-kielce/`;
 const faq = [
   ['Jakie wielkości mają magazynki?', 'Oferujemy osobne boksy od 2 do 9 m². Dobór zależy od rodzaju i ilości mienia.'],
   ['Czy magazynki są ogrzewane?', 'Tak. Boksy znajdują się w ogrzewanym obiekcie w Masłowie Pierwszym koło Kielc.'],
   ['Czy magazynki są już dostępne?', 'Tak. Obiekt jest gotowy i częściowo zajęty. Dostępność konkretnego boksu potwierdzamy przy kontakcie.'],
   ['Czy WHM może przewieźć rzeczy do magazynu?', 'Tak. Magazynowanie może być samodzielną usługą albo częścią przeprowadzki i relokacji etapowej.'],
 ];
-const schema = { '@context': 'https://schema.org', '@graph': [
-  { '@type': 'SelfStorage', name: 'Magazyny WHM', description: route.description, url: canonical, telephone: site.phone, address: { '@type': 'PostalAddress', streetAddress: site.address.street, postalCode: site.address.postalCode, addressLocality: site.address.city, addressCountry: 'PL' } },
-  { '@type': 'FAQPage', mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
-] };
 ---
 
-<Layout title={route.title} description={route.description} robots={route.robots} canonical={canonical} ogImage="/images/moving-boxes/kartony-do-przeprowadzki-4.webp">
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
+<Layout seo={getSeo('/magazyny-kielce/')} schemaGraph={buildSchemaGraph({ slug: '/magazyny-kielce/', breadcrumbs: [{ name: 'Magazyny Kielce' }] })} faqSchema={buildFaqSchema(faq.map(([q, a]) => ({ question: q, answer: a })))}>
   <ServiceHero eyebrow="Magazynowanie WHM" heading="Ogrzewane boksy od 2 do 9 m² w Masłowie koło Kielc" lead="Dla osób prywatnych, firm i relokacji etapowych. Obiekt jest gotowy i częściowo zajęty, dlatego dostępność właściwego boksu potwierdzamy na bieżąco." breadcrumbs={[{ label: route.name }]} heroImage="/images/moving-boxes/kartony-do-przeprowadzki-4.webp" heroAlt="Zabezpieczone kartony wykorzystywane przez WHM do przeprowadzek i magazynowania" secondaryCtaLabel="Zapytaj o boks" secondaryCtaHref="#zapytaj" />
   <section class="section section--alt"><div class="container"><SectionHeading label="Dostępna przestrzeń" title="Boks dopasowany do zakresu, nie jedna sztywna wielkość" /><div class="items-grid items-grid--2x2"><article class="items-grid__item"><h2 class="items-grid__title">Od 2 do 9 m²</h2><p class="items-grid__desc">Osobne boksy w kilku wielkościach — od niewielkiego zapasu po większą część wyposażenia.</p></article><article class="items-grid__item"><h2 class="items-grid__title">Ogrzewany obiekt</h2><p class="items-grid__desc">Przestrzeń przeznaczona do kontrolowanego przechowywania mienia.</p></article><article class="items-grid__item"><h2 class="items-grid__title">B2C i B2B</h2><p class="items-grid__desc">Rozwiązanie dla domu, firmy, instytucji albo zarządcy nieruchomości.</p></article><article class="items-grid__item"><h2 class="items-grid__title">Transport WHM</h2><p class="items-grid__desc">Możemy połączyć magazynowanie z pakowaniem i przewozem.</p></article></div></div></section>
   <section class="section"><div class="container"><div class="split-section"><div class="split-section__content"><SectionHeading label="Zastosowania" title="Kiedy magazynowanie porządkuje przeprowadzkę" /><ul class="check-list"><li class="check-list__item">termin wydania starej i odbioru nowej lokalizacji nie jest ten sam,</li><li class="check-list__item">remont wymaga czasowego opróżnienia pomieszczeń,</li><li class="check-list__item">firma przenosi działy etapami,</li><li class="check-list__item">wyposażenie ma poczekać na decyzję lub dalszy transport.</li></ul></div><div class="split-section__media"><SafeImage src="/images/institution-moving/przeprowadzki-instytucji-3.webp" alt="Uporządkowane pojemniki transportowe podczas relokacji WHM" loading="lazy" decoding="async" class="section-img" displayMode="section" /></div></div></div></section>

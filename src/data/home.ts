@@ -1,6 +1,6 @@
 export const hero = {
   eyebrow: 'WHM Przeprowadzki \u2022 Kielce i województwo świętokrzyskie',
-  heading: 'Przeprowadzka bez stresu. Z zespołem, któremu naprawdę możesz zaufać.',
+  heading: 'Firma przeprowadzkowa z Kielc, która odpowiada za cały proces',
   lead: 'Od zabezpieczenia pierwszego mebla po ustawienie ostatniego kartonu. Zajmiemy się organizacją, pakowaniem, transportem i wniesieniem, aby cała przeprowadzka przebiegła sprawnie, bezpiecznie i zgodnie z planem.',
   contactNote: 'Zadzwoń, napisz SMS lub wyślij zdjęcia — odezwiemy się szybko.',
   image: '/images/hero/hero-1.webp',

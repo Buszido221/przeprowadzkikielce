@@ -1,11 +1,11 @@
 import type { APIRoute } from 'astro';
 import { site } from '../data/site';
-import { publicRoutes } from '../data/routes';
+import { seoPages } from '../data/seo';
 
-const indexableRoutes = publicRoutes.filter((route) => route.robots === 'index, follow');
+const indexableRoutes = seoPages.filter((page) => page.inSitemap);
 
-const urls = indexableRoutes.map((r) => ({
-  loc: `${site.domain}${r.slug.replace(/^\//, '')}`,
+const urls = indexableRoutes.map((p) => ({
+  loc: p.slug === '/' ? site.domain : `${site.domain}${p.slug.replace(/^\//, '')}`,
 }));
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

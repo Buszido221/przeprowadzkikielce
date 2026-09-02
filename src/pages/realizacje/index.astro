@@ -7,9 +7,10 @@ import SafeImage from '../../components/SafeImage.astro';
 import { site } from '../../data/site';
 import { getRoute } from '../../data/routes';
 import { caseStudies, caseStudyCategories } from '../../data/realizacje';
+import { getSeo } from '../../data/seo';
+import { buildSchemaGraph } from '../../lib/schema';
 
 const route = getRoute('/realizacje/');
-const canonical = `${site.domain}realizacje/`;
 
 const technicalMentions = [
   { title: 'Ponad dwumetrowe szafy serwerowe wprowadzane przez okno', text: 'Sprzęt techniczny potrafi wykluczyć drogę, która na planie budynku wygląda na oczywistą. Przy ponad dwumetrowych szafach serwerowych zespół przygotował alternatywną trasę przez okno.' },
@@ -19,9 +20,16 @@ const technicalMentions = [
   { title: 'Precyzyjne ustawianie sprzętu laboratoryjnego', text: 'Widły schodołazu pozwalają podnieść urządzenie na wysokość niemal 1,5 m i ustawić je na podwyższonym stojaku z dokładnością określaną jako milimetrowa.' },
   { title: 'Duże balie ogrodowe', text: 'Transporty dużych balii ogrodowych — gabaryt wymagający zaplanowania całej drogi przez posesję oraz dostępu samochodu.' },
 ];
+
+const seo = getSeo('/realizacje/');
+const schemaGraph = buildSchemaGraph({
+  slug: '/realizacje/',
+  breadcrumbs: [{ name: 'Realizacje' }],
+  itemList: caseStudies.map((cs) => ({ name: cs.heading, url: `https://przeprowadzkikielce.pl${cs.slug}` })),
+});
 ---
 
-<Layout title={route.title} description={route.description} robots={route.robots} canonical={canonical} ogImage="/images/institution-moving/przeprowadzki-instytucji-4.webp">
+<Layout seo={seo} schemaGraph={schemaGraph}>
   <ServiceHero
     eyebrow="Prawdziwe realizacje WHM"
     heading="Projekty, w których sam transport był dopiero początkiem"

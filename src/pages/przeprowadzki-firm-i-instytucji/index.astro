@@ -7,9 +7,10 @@ import MobileStickyCta from '../../components/MobileStickyCta.astro';
 import SafeImage from '../../components/SafeImage.astro';
 import { site } from '../../data/site';
 import { getRoute } from '../../data/routes';
+import { getSeo } from '../../data/seo';
+import { buildSchemaGraph, buildFaqSchema } from '../../lib/schema';
 
 const route = getRoute('/przeprowadzki-firm-i-instytucji/');
-const canonical = `${site.domain}przeprowadzki-firm-i-instytucji/`;
 
 const process = [
   ['01', 'Bezpłatna wizja lokalna', 'Oglądamy lokalizacje, drogi transportu, wyposażenie i ograniczenia organizacyjne.'],
@@ -26,34 +27,9 @@ const faq = [
   ['Czy możliwe jest czasowe magazynowanie?', 'Tak. Ogrzewane boksy WHM od 2 do 9 m² mogą wspierać relokację etapową albo przechowanie wyposażenia pomiędzy terminami.'],
   ['Czy mienie jest ubezpieczone?', 'Zakres odpowiedzialności i dokumenty ustalamy przed realizacją. WHM posiada ochronę ubezpieczeniową do 1 mln zł; zastosowanie i warunki potwierdzamy dla konkretnego zlecenia.'],
 ];
-
-const schema = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'Service', name: route.name, description: route.description, url: canonical,
-      provider: { '@type': 'MovingCompany', name: site.brand, telephone: site.phone },
-      areaServed: ['Kielce', 'Województwo świętokrzyskie', 'Polska'],
-      audience: { '@type': 'BusinessAudience', audienceType: 'Firmy i instytucje' },
-    },
-    {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Strona główna', item: site.domain },
-        { '@type': 'ListItem', position: 2, name: 'Dla firm', item: `${site.domain}dla-firm/` },
-        { '@type': 'ListItem', position: 3, name: route.name, item: canonical },
-      ],
-    },
-    {
-      '@type': 'FAQPage',
-      mainEntity: faq.map(([question, answer]) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })),
-    },
-  ],
-};
 ---
 
-<Layout title={route.title} description={route.description} robots={route.robots} canonical={canonical} ogImage="/images/institution-moving/przeprowadzki-instytucji-4.webp">
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
+<Layout seo={getSeo('/przeprowadzki-firm-i-instytucji/')} schemaGraph={buildSchemaGraph({ slug: '/przeprowadzki-firm-i-instytucji/', breadcrumbs: [{ name: 'Dla firm', url: 'https://przeprowadzkikielce.pl/dla-firm/' }, { name: 'Przeprowadzki firm i instytucji' }] })} faqSchema={buildFaqSchema(faq.map(([question, answer]) => ({ question, answer })))}>
 
   <ServiceHero
     eyebrow="Relokacje B2B"

@@ -1,8 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getSeo } from '../data/seo';
+
+const seo = getSeo('/404');
 ---
 
-<Layout title="Nie znaleziono strony - WHM Przeprowadzki" robots="noindex, follow">
+<Layout seo={seo}>
   <section class="page-skeleton">
     <div class="container" style="text-align: center; padding: 4rem 1rem;">
       <h1>Nie znaleziono strony</h1>

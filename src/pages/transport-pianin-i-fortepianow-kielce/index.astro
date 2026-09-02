@@ -7,51 +7,15 @@ import MobileStickyCta from '../../components/MobileStickyCta.astro';
 import SafeImage from '../../components/SafeImage.astro';
 import { site } from '../../data/site';
 import { pianinaPage as page } from '../../data/services';
+import { getSeo } from '../../data/seo';
+import { buildSchemaGraph, buildFaqSchema } from '../../lib/schema';
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Strona główna', item: site.domain },
-        { '@type': 'ListItem', position: 2, name: 'Transport specjalistyczny', item: `${site.domain}transport-specjalistyczny/` },
-        { '@type': 'ListItem', position: 3, name: 'Pianina i fortepiany', item: page.seo.canonical },
-      ],
-    },
-    {
-      '@type': 'Service',
-      name: 'Transport pianin i fortepianów Kielce',
-      description: page.seo.description,
-      provider: {
-        '@type': 'LocalBusiness',
-        name: site.brand,
-        telephone: site.phone,
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: site.address.street,
-          addressLocality: site.address.city,
-          postalCode: site.address.postalCode,
-          addressCountry: 'PL',
-        },
-      },
-      areaServed: { '@type': 'State', name: 'województwo świętokrzyskie' },
-    },
-    {
-      '@type': 'FAQPage',
-      mainEntity: page.faq.map((q) => ({
-        '@type': 'Question',
-        name: q.question,
-        acceptedAnswer: { '@type': 'Answer', text: q.answer },
-      })),
-    },
-  ],
-};
+const seo = getSeo('/transport-pianin-i-fortepianow-kielce/');
+const schemaGraph = buildSchemaGraph({ slug: '/transport-pianin-i-fortepianow-kielce/', breadcrumbs: [{ name: 'Usługi', url: 'https://przeprowadzkikielce.pl/uslugi/' }, { name: 'Transport pianin i fortepianów' }] });
+const faqSchema = buildFaqSchema(page.faq.map((q) => ({ question: q.question, answer: q.answer })));
 ---
 
-<Layout title={page.seo.title} description={page.seo.description} robots="index, follow">
-  <link slot="head" rel="canonical" href={page.seo.canonical} />
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+<Layout seo={seo} schemaGraph={schemaGraph} faqSchema={faqSchema}>
 
   <SubpageHero
     heading={page.hero.heading}
