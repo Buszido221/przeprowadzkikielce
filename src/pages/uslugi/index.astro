@@ -29,7 +29,7 @@ const schema = {
   <section class="section section--alt">
     <div class="container">
       <SectionHeading label="Oferta B2C" title="Wybierz zakres, który najlepiej opisuje zadanie" />
-      <div class="services-grid services-grid--2col">
+      <div class="services-grid services-grid--3col">
         {cardData.map((card) => <a class="service-card" href={card.slug}><div class="service-card__media"><img src={card.image} alt="" role="presentation" width="600" height="400" loading="lazy" decoding="async" /></div><div class="service-card__body"><h2 class="service-card__title">{card.route.name}</h2><p class="service-card__desc">{card.text}</p><span class="service-card__link">Poznaj zakres</span></div></a>)}
       </div>
     </div>

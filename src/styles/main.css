@@ -1056,6 +1056,16 @@ main {
   max-width: 52rem;
 }
 
+.services-grid--3col {
+  max-width: 72rem;
+}
+
+@media (min-width: 1024px) {
+  .services-grid--3col {
+    grid-template-columns: repeat(3, minmax(280px, 1fr));
+  }
+}
+
 .service-card {
   display: flex;
   flex-direction: column;
@@ -1676,7 +1686,8 @@ main {
 
 @media (min-width: 1024px) {
   .items-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, minmax(280px, 1fr));
+    max-width: 72rem;
   }
 }
 
@@ -2529,7 +2540,9 @@ main {
 
 @media (min-width: 768px) {
   .contact-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+    max-width: 56rem;
+    margin-inline: auto;
   }
 }
 
@@ -2687,7 +2700,9 @@ main {
 
 @media (min-width: 768px) {
   .about-ecosystem-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(280px, 1fr));
+    max-width: 72rem;
+    margin-inline: auto;
   }
 }
 
@@ -3193,8 +3208,9 @@ main {
 
 @media (min-width: 1024px) {
   .equipment-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    justify-content: center;
+    grid-template-columns: repeat(3, minmax(280px, 1fr));
+    max-width: 72rem;
+    margin-inline: auto;
   }
 }
 
@@ -3257,7 +3273,9 @@ main {
 
 @media (min-width: 768px) {
   .featured-realizations {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(280px, 1fr));
+    max-width: 72rem;
+    margin-inline: auto;
     gap: var(--space-6);
   }
 }
@@ -3376,7 +3394,9 @@ main {
 
 @media (min-width: 1024px) {
   .testimonials-static__grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(240px, 1fr));
+    max-width: 72rem;
+    margin-inline: auto;
   }
 }
 

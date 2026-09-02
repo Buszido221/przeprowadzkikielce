@@ -295,7 +295,9 @@ const selectedTestimonials = testimonials.filter((t) =>
 
   @media (min-width: 768px) {
     .testimonials-grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, minmax(280px, 1fr));
+      max-width: 72rem;
+      margin-inline: auto;
     }
   }
 
