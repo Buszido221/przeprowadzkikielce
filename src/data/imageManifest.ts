@@ -1,127 +1,140 @@
+export type Orientation = 'portrait' | 'landscape' | 'square';
+
 export interface ImageAsset {
   src: string;
   width: number;
   height: number;
+  orientation: Orientation;
   alt: string;
-  displayRatio: '16/9' | '4/3' | '3/2' | '1/1' | 'natural';
   objectPosition?: string;
   category: string;
 }
 
+function orient(w: number, h: number): Orientation {
+  const ratio = w / h;
+  if (ratio > 1.05) return 'landscape';
+  if (ratio < 0.95) return 'portrait';
+  return 'square';
+}
+
+function img(src: string, width: number, height: number, alt: string, category: string, objectPosition?: string): ImageAsset {
+  return { src, width, height, orientation: orient(width, height), alt, objectPosition, category };
+}
+
 const manifest: Record<string, ImageAsset> = {
   // Hero
-  '/images/hero/hero-1.webp': { src: '/images/hero/hero-1.webp', width: 1152, height: 581, alt: 'Samochód WHM Przeprowadzki przy realizacji zlecenia w Kielcach', displayRatio: '16/9', category: 'hero' },
-  '/images/hero/hero-2.webp': { src: '/images/hero/hero-2.webp', width: 1152, height: 581, alt: 'Zabezpieczony instrument podczas transportu WHM', displayRatio: '16/9', category: 'hero' },
-  '/images/hero/hero-3.webp': { src: '/images/hero/hero-3.webp', width: 1152, height: 581, alt: 'Zespół WHM podczas realizacji dla firmy', displayRatio: '16/9', category: 'hero' },
-  '/images/hero/hero-4.webp': { src: '/images/hero/hero-4.webp', width: 1152, height: 581, alt: 'Pracownicy WHM podczas wynoszenia mebla', displayRatio: '16/9', category: 'hero' },
+  '/images/hero/hero-1.webp': img('/images/hero/hero-1.webp', 1152, 581, 'Samochód WHM Przeprowadzki przy realizacji zlecenia w Kielcach', 'hero'),
+  '/images/hero/hero-2.webp': img('/images/hero/hero-2.webp', 1152, 581, 'Zabezpieczony instrument podczas transportu WHM', 'hero'),
+  '/images/hero/hero-3.webp': img('/images/hero/hero-3.webp', 1152, 581, 'Zespół WHM podczas realizacji dla firmy', 'hero'),
+  '/images/hero/hero-4.webp': img('/images/hero/hero-4.webp', 1152, 581, 'Pracownicy WHM podczas wynoszenia mebla', 'hero'),
 
   // Kielce moving
-  '/images/kielce-moving/przeprowadzki-kielce-1.webp': { src: '/images/kielce-moving/przeprowadzki-kielce-1.webp', width: 1536, height: 2048, alt: 'Samochód WHM podczas realizacji w Kielcach', displayRatio: '4/3', objectPosition: 'center top', category: 'kielce-moving' },
-  '/images/kielce-moving/przeprowadzki-kielce-2.webp': { src: '/images/kielce-moving/przeprowadzki-kielce-2.webp', width: 1128, height: 2000, alt: 'Zabezpieczone meble w samochodzie WHM', displayRatio: '4/3', objectPosition: 'center top', category: 'kielce-moving' },
-  '/images/kielce-moving/przeprowadzki-kielce-3.webp': { src: '/images/kielce-moving/przeprowadzki-kielce-3.webp', width: 768, height: 1024, alt: 'Przenoszenie zabezpieczonego mebla przez zespół WHM', displayRatio: '4/3', objectPosition: 'center top', category: 'kielce-moving' },
-  '/images/kielce-moving/przeprowadzki-kielce-4.webp': { src: '/images/kielce-moving/przeprowadzki-kielce-4.webp', width: 768, height: 1024, alt: 'Zabezpieczony i ustabilizowany ładunek w samochodzie WHM', displayRatio: '4/3', objectPosition: 'center top', category: 'kielce-moving' },
-  '/images/kielce-moving/przeprowadzki-kielce-5.webp': { src: '/images/kielce-moving/przeprowadzki-kielce-5.webp', width: 768, height: 1024, alt: 'Zespół WHM podczas wynoszenia wyposażenia z mieszkania', displayRatio: '4/3', objectPosition: 'center top', category: 'kielce-moving' },
-  '/images/kielce-moving/przeprowadzki-kielce-6.webp': { src: '/images/kielce-moving/przeprowadzki-kielce-6.webp', width: 768, height: 1024, alt: 'Samochód WHM na trasie w regionie świętokrzyskim', displayRatio: '4/3', objectPosition: 'center top', category: 'kielce-moving' },
-  '/images/kielce-moving/przeprowadzki-kielce-7.webp': { src: '/images/kielce-moving/przeprowadzki-kielce-7.webp', width: 768, height: 1024, alt: 'Załadunek wyposażenia do samochodu WHM', displayRatio: '4/3', objectPosition: 'center top', category: 'kielce-moving' },
-  '/images/kielce-moving/przeprowadzki-kielce-8.webp': { src: '/images/kielce-moving/przeprowadzki-kielce-8.webp', width: 768, height: 1024, alt: 'Przenoszenie dużego zabezpieczonego elementu przez zespół WHM', displayRatio: '4/3', objectPosition: 'center top', category: 'kielce-moving' },
+  '/images/kielce-moving/przeprowadzki-kielce-1.webp': img('/images/kielce-moving/przeprowadzki-kielce-1.webp', 1536, 2048, 'Samochód WHM podczas realizacji w Kielcach', 'kielce-moving', 'center top'),
+  '/images/kielce-moving/przeprowadzki-kielce-2.webp': img('/images/kielce-moving/przeprowadzki-kielce-2.webp', 1128, 2000, 'Zabezpieczone meble w samochodzie WHM', 'kielce-moving', 'center top'),
+  '/images/kielce-moving/przeprowadzki-kielce-3.webp': img('/images/kielce-moving/przeprowadzki-kielce-3.webp', 768, 1024, 'Przenoszenie zabezpieczonego mebla przez zespół WHM', 'kielce-moving', 'center top'),
+  '/images/kielce-moving/przeprowadzki-kielce-4.webp': img('/images/kielce-moving/przeprowadzki-kielce-4.webp', 768, 1024, 'Zabezpieczony i ustabilizowany ładunek w samochodzie WHM', 'kielce-moving', 'center top'),
+  '/images/kielce-moving/przeprowadzki-kielce-5.webp': img('/images/kielce-moving/przeprowadzki-kielce-5.webp', 768, 1024, 'Zespół WHM podczas wynoszenia wyposażenia z mieszkania', 'kielce-moving', 'center top'),
+  '/images/kielce-moving/przeprowadzki-kielce-6.webp': img('/images/kielce-moving/przeprowadzki-kielce-6.webp', 768, 1024, 'Samochód WHM na trasie w regionie świętokrzyskim', 'kielce-moving', 'center top'),
+  '/images/kielce-moving/przeprowadzki-kielce-7.webp': img('/images/kielce-moving/przeprowadzki-kielce-7.webp', 768, 1024, 'Załadunek wyposażenia do samochodu WHM', 'kielce-moving', 'center top'),
+  '/images/kielce-moving/przeprowadzki-kielce-8.webp': img('/images/kielce-moving/przeprowadzki-kielce-8.webp', 768, 1024, 'Przenoszenie dużego zabezpieczonego elementu przez zespół WHM', 'kielce-moving', 'center top'),
 
   // Home moving
-  '/images/home-moving/przeprowadzki-domow-kielce-1.webp': { src: '/images/home-moving/przeprowadzki-domow-kielce-1.webp', width: 600, height: 800, alt: 'Przeprowadzka domu realizowana przez WHM', displayRatio: '4/3', objectPosition: 'center top', category: 'home-moving' },
-  '/images/home-moving/przeprowadzki-domow-kielce-2.webp': { src: '/images/home-moving/przeprowadzki-domow-kielce-2.webp', width: 768, height: 1024, alt: 'Zabezpieczone wyposażenie przed domem', displayRatio: '4/3', objectPosition: 'center top', category: 'home-moving' },
-  '/images/home-moving/przeprowadzki-domow-kielce-3.webp': { src: '/images/home-moving/przeprowadzki-domow-kielce-3.webp', width: 600, height: 800, alt: 'Zabezpieczone wyposażenie przygotowane do transportu przed domem', displayRatio: '4/3', objectPosition: 'center top', category: 'home-moving' },
+  '/images/home-moving/przeprowadzki-domow-kielce-1.webp': img('/images/home-moving/przeprowadzki-domow-kielce-1.webp', 600, 800, 'Przeprowadzka domu realizowana przez WHM', 'home-moving', 'center top'),
+  '/images/home-moving/przeprowadzki-domow-kielce-2.webp': img('/images/home-moving/przeprowadzki-domow-kielce-2.webp', 768, 1024, 'Zabezpieczone wyposażenie przed domem', 'home-moving', 'center top'),
+  '/images/home-moving/przeprowadzki-domow-kielce-3.webp': img('/images/home-moving/przeprowadzki-domow-kielce-3.webp', 600, 800, 'Zabezpieczone wyposażenie przygotowane do transportu przed domem', 'home-moving', 'center top'),
 
   // Office moving
-  '/images/office-moving/przeprowadzki-biura-1.webp': { src: '/images/office-moving/przeprowadzki-biura-1.webp', width: 600, height: 800, alt: 'Relokacja biura prowadzona przez zespół WHM', displayRatio: '4/3', objectPosition: 'center top', category: 'office-moving' },
-  '/images/office-moving/przeprowadzki-biura-2.webp': { src: '/images/office-moving/przeprowadzki-biura-2.webp', width: 768, height: 1024, alt: 'Zabezpieczone wyposażenie biura przygotowane do przeniesienia', displayRatio: '4/3', objectPosition: 'center top', category: 'office-moving' },
-  '/images/office-moving/przeprowadzki-biura-3.webp': { src: '/images/office-moving/przeprowadzki-biura-3.webp', width: 600, height: 800, alt: 'Wyposażone pomieszczenie biurowe podczas realizacji', displayRatio: '4/3', objectPosition: 'center top', category: 'office-moving' },
-  '/images/office-moving/przeprowadzki-biura-4.webp': { src: '/images/office-moving/przeprowadzki-biura-4.webp', width: 600, height: 800, alt: 'Transport dużego elementu z wykorzystaniem sprzętu WHM', displayRatio: '4/3', objectPosition: 'center top', category: 'office-moving' },
+  '/images/office-moving/przeprowadzki-biura-1.webp': img('/images/office-moving/przeprowadzki-biura-1.webp', 600, 800, 'Relokacja biura prowadzona przez zespół WHM', 'office-moving', 'center top'),
+  '/images/office-moving/przeprowadzki-biura-2.webp': img('/images/office-moving/przeprowadzki-biura-2.webp', 768, 1024, 'Zabezpieczone wyposażenie biura przygotowane do przeniesienia', 'office-moving', 'center top'),
+  '/images/office-moving/przeprowadzki-biura-3.webp': img('/images/office-moving/przeprowadzki-biura-3.webp', 600, 800, 'Wyposażone pomieszczenie biurowe podczas realizacji', 'office-moving', 'center top'),
+  '/images/office-moving/przeprowadzki-biura-4.webp': img('/images/office-moving/przeprowadzki-biura-4.webp', 600, 800, 'Transport dużego elementu z wykorzystaniem sprzętu WHM', 'office-moving', 'center top'),
 
   // Institution moving
-  '/images/institution-moving/przeprowadzki-instytucji-3.webp': { src: '/images/institution-moving/przeprowadzki-instytucji-3.webp', width: 768, height: 1024, alt: 'Samochody WHM podczas realizacji przy obiekcie instytucjonalnym', displayRatio: '4/3', objectPosition: 'center top', category: 'institution-moving' },
-  '/images/institution-moving/przeprowadzki-instytucji-4.webp': { src: '/images/institution-moving/przeprowadzki-instytucji-4.webp', width: 768, height: 1024, alt: 'Zabezpieczone wyposażenie instytucji podczas relokacji WHM', displayRatio: '4/3', objectPosition: 'center top', category: 'institution-moving' },
-  '/images/institution-moving/przeprowadzki-instytucji-5.webp': { src: '/images/institution-moving/przeprowadzki-instytucji-5.webp', width: 768, height: 1024, alt: 'Transport szaf i wyposażenia biurowego przez zespół WHM', displayRatio: '4/3', objectPosition: 'center top', category: 'institution-moving' },
-  '/images/institution-moving/przeprowadzki-instytucji-6.webp': { src: '/images/institution-moving/przeprowadzki-instytucji-6.webp', width: 768, height: 1024, alt: 'Zabezpieczone archiwa i dokumentacja podczas transportu', displayRatio: '4/3', objectPosition: 'center top', category: 'institution-moving' },
+  '/images/institution-moving/przeprowadzki-instytucji-3.webp': img('/images/institution-moving/przeprowadzki-instytucji-3.webp', 768, 1024, 'Samochody WHM podczas realizacji przy obiekcie instytucjonalnym', 'institution-moving', 'center top'),
+  '/images/institution-moving/przeprowadzki-instytucji-4.webp': img('/images/institution-moving/przeprowadzki-instytucji-4.webp', 768, 1024, 'Zabezpieczone wyposażenie instytucji podczas relokacji WHM', 'institution-moving', 'center top'),
+  '/images/institution-moving/przeprowadzki-instytucji-5.webp': img('/images/institution-moving/przeprowadzki-instytucji-5.webp', 768, 1024, 'Transport szaf i wyposażenia biurowego przez zespół WHM', 'institution-moving', 'center top'),
+  '/images/institution-moving/przeprowadzki-instytucji-6.webp': img('/images/institution-moving/przeprowadzki-instytucji-6.webp', 768, 1024, 'Zabezpieczone archiwa i dokumentacja podczas transportu', 'institution-moving', 'center top'),
 
   // Packing services
-  '/images/packing-services/pakowanie-przeprowadzki-kielce-1.webp': { src: '/images/packing-services/pakowanie-przeprowadzki-kielce-1.webp', width: 600, height: 800, alt: 'Dokładnie zabezpieczone elementy wyposażenia przed transportem', displayRatio: '4/3', objectPosition: 'center top', category: 'packing-services' },
-  '/images/packing-services/pakowanie-przeprowadzki-kielce-2.webp': { src: '/images/packing-services/pakowanie-przeprowadzki-kielce-2.webp', width: 768, height: 1024, alt: 'Koce ochronne zabezpieczające meble podczas transportu', displayRatio: '4/3', objectPosition: 'center top', category: 'packing-services' },
-  '/images/packing-services/pakowanie-przeprowadzki-kielce-3.webp': { src: '/images/packing-services/pakowanie-przeprowadzki-kielce-3.webp', width: 768, height: 1024, alt: 'Duży mebel zabezpieczony pokrowcem i pasami', displayRatio: '4/3', objectPosition: 'center top', category: 'packing-services' },
-  '/images/packing-services/pakowanie-przeprowadzki-kielce-5.webp': { src: '/images/packing-services/pakowanie-przeprowadzki-kielce-5.webp', width: 600, height: 800, alt: 'Zabezpieczenie mienia przed przeprowadzką', displayRatio: '4/3', objectPosition: 'center top', category: 'packing-services' },
-  '/images/packing-services/pakowanie-przeprowadzki-kielce-6.webp': { src: '/images/packing-services/pakowanie-przeprowadzki-kielce-6.webp', width: 768, height: 1024, alt: 'Oznaczone kartony przygotowane do transportu', displayRatio: '4/3', objectPosition: 'center top', category: 'packing-services' },
+  '/images/packing-services/pakowanie-przeprowadzki-kielce-1.webp': img('/images/packing-services/pakowanie-przeprowadzki-kielce-1.webp', 600, 800, 'Dokładnie zabezpieczone elementy wyposażenia przed transportem', 'packing-services', 'center top'),
+  '/images/packing-services/pakowanie-przeprowadzki-kielce-2.webp': img('/images/packing-services/pakowanie-przeprowadzki-kielce-2.webp', 768, 1024, 'Koce ochronne zabezpieczające meble podczas transportu', 'packing-services', 'center top'),
+  '/images/packing-services/pakowanie-przeprowadzki-kielce-3.webp': img('/images/packing-services/pakowanie-przeprowadzki-kielce-3.webp', 768, 1024, 'Duży mebel zabezpieczony pokrowcem i pasami', 'packing-services', 'center top'),
+  '/images/packing-services/pakowanie-przeprowadzki-kielce-5.webp': img('/images/packing-services/pakowanie-przeprowadzki-kielce-5.webp', 600, 800, 'Zabezpieczenie mienia przed przeprowadzką', 'packing-services', 'center top'),
+  '/images/packing-services/pakowanie-przeprowadzki-kielce-6.webp': img('/images/packing-services/pakowanie-przeprowadzki-kielce-6.webp', 768, 1024, 'Oznaczone kartony przygotowane do transportu', 'packing-services', 'center top'),
 
   // Moving boxes
-  '/images/moving-boxes/kartony-do-przeprowadzki-1.webp': { src: '/images/moving-boxes/kartony-do-przeprowadzki-1.webp', width: 600, height: 800, alt: 'Kartony przeprowadzkowe ułożone i gotowe do pakowania', displayRatio: '4/3', objectPosition: 'center top', category: 'moving-boxes' },
-  '/images/moving-boxes/kartony-do-przeprowadzki-2.webp': { src: '/images/moving-boxes/kartony-do-przeprowadzki-2.webp', width: 768, height: 1024, alt: 'Kartony przeprowadzkowe podczas realnej realizacji WHM', displayRatio: '4/3', objectPosition: 'center top', category: 'moving-boxes' },
-  '/images/moving-boxes/kartony-do-przeprowadzki-3.webp': { src: '/images/moving-boxes/kartony-do-przeprowadzki-3.webp', width: 768, height: 1024, alt: 'Pojemniki transportowe WHM', displayRatio: '4/3', objectPosition: 'center top', category: 'moving-boxes' },
-  '/images/moving-boxes/kartony-do-przeprowadzki-4.webp': { src: '/images/moving-boxes/kartony-do-przeprowadzki-4.webp', width: 768, height: 1024, alt: 'Oznaczone kartony przeprowadzkowe przygotowane do transportu', displayRatio: '4/3', objectPosition: 'center top', category: 'moving-boxes' },
-  '/images/moving-boxes/pojemniki-przeprowadzkowe-1.webp': { src: '/images/moving-boxes/pojemniki-przeprowadzkowe-1.webp', width: 768, height: 1024, alt: 'Plombowane pojemniki transportowe WHM', displayRatio: '4/3', objectPosition: 'center top', category: 'moving-boxes' },
-  '/images/moving-boxes/pojemniki-przeprowadzkowe-2.webp': { src: '/images/moving-boxes/pojemniki-przeprowadzkowe-2.webp', width: 768, height: 1024, alt: 'Pojemniki wspierające relokacje i magazynowanie', displayRatio: '4/3', objectPosition: 'center top', category: 'moving-boxes' },
+  '/images/moving-boxes/kartony-do-przeprowadzki-1.webp': img('/images/moving-boxes/kartony-do-przeprowadzki-1.webp', 600, 800, 'Kartony przeprowadzkowe ułożone i gotowe do pakowania', 'moving-boxes', 'center top'),
+  '/images/moving-boxes/kartony-do-przeprowadzki-2.webp': img('/images/moving-boxes/kartony-do-przeprowadzki-2.webp', 768, 1024, 'Kartony przeprowadzkowe podczas realnej realizacji WHM', 'moving-boxes', 'center top'),
+  '/images/moving-boxes/kartony-do-przeprowadzki-3.webp': img('/images/moving-boxes/kartony-do-przeprowadzki-3.webp', 768, 1024, 'Pojemniki transportowe WHM', 'moving-boxes', 'center top'),
+  '/images/moving-boxes/kartony-do-przeprowadzki-4.webp': img('/images/moving-boxes/kartony-do-przeprowadzki-4.webp', 768, 1024, 'Oznaczone kartony przeprowadzkowe przygotowane do transportu', 'moving-boxes', 'center top'),
+  '/images/moving-boxes/pojemniki-przeprowadzkowe-1.webp': img('/images/moving-boxes/pojemniki-przeprowadzkowe-1.webp', 768, 1024, 'Plombowane pojemniki transportowe WHM', 'moving-boxes', 'center top'),
+  '/images/moving-boxes/pojemniki-przeprowadzkowe-2.webp': img('/images/moving-boxes/pojemniki-przeprowadzkowe-2.webp', 768, 1024, 'Pojemniki wspierające relokacje i magazynowanie', 'moving-boxes', 'center top'),
 
   // Furniture assembly
-  '/images/furniture-assembly/montaz-demontaz-mebli-1.webp': { src: '/images/furniture-assembly/montaz-demontaz-mebli-1.webp', width: 768, height: 1024, alt: 'Demontaż mebla przed transportem', displayRatio: '4/3', objectPosition: 'center top', category: 'furniture-assembly' },
-  '/images/furniture-assembly/montaz-demontaz-mebli-2.webp': { src: '/images/furniture-assembly/montaz-demontaz-mebli-2.webp', width: 768, height: 1024, alt: 'Uporządkowane elementy mebla po demontażu przygotowane do transportu', displayRatio: '4/3', objectPosition: 'center top', category: 'furniture-assembly' },
+  '/images/furniture-assembly/montaz-demontaz-mebli-1.webp': img('/images/furniture-assembly/montaz-demontaz-mebli-1.webp', 768, 1024, 'Demontaż mebla przed transportem', 'furniture-assembly', 'center top'),
+  '/images/furniture-assembly/montaz-demontaz-mebli-2.webp': img('/images/furniture-assembly/montaz-demontaz-mebli-2.webp', 768, 1024, 'Uporządkowane elementy mebla po demontażu przygotowane do transportu', 'furniture-assembly', 'center top'),
 
   // Standard WHM
-  '/images/standard-whm/dedykowane-pokrowce-1.webp': { src: '/images/standard-whm/dedykowane-pokrowce-1.webp', width: 600, height: 800, alt: 'Dedykowane pokrowce ochronne na meble', displayRatio: '4/3', objectPosition: 'center top', category: 'standard-whm' },
-  '/images/standard-whm/koce-przeprowadzkowe-1.webp': { src: '/images/standard-whm/koce-przeprowadzkowe-1.webp', width: 600, height: 800, alt: 'Koce ochronne do zabezpieczania mebli podczas transportu', displayRatio: '4/3', objectPosition: 'center top', category: 'standard-whm' },
-  '/images/standard-whm/zabezpieczenia-1.webp': { src: '/images/standard-whm/zabezpieczenia-1.webp', width: 768, height: 1024, alt: 'Pasy i zabezpieczenia stabilizujące ładunek', displayRatio: '4/3', objectPosition: 'center top', category: 'standard-whm' },
-  '/images/standard-whm/zabezpieczenia-2.webp': { src: '/images/standard-whm/zabezpieczenia-2.webp', width: 768, height: 1024, alt: 'Wózki i przygotowanie mienia do wynoszenia', displayRatio: '4/3', objectPosition: 'center top', category: 'standard-whm' },
-  '/images/standard-whm/sztywna-zabudowa-1.webp': { src: '/images/standard-whm/sztywna-zabudowa-1.webp', width: 768, height: 1024, alt: 'Sztywna zabudowa przestrzeni ładunkowej samochodu WHM', displayRatio: '4/3', objectPosition: 'center top', category: 'standard-whm' },
+  '/images/standard-whm/dedykowane-pokrowce-1.webp': img('/images/standard-whm/dedykowane-pokrowce-1.webp', 600, 800, 'Dedykowane pokrowce ochronne na meble', 'standard-whm', 'center top'),
+  '/images/standard-whm/koce-przeprowadzkowe-1.webp': img('/images/standard-whm/koce-przeprowadzkowe-1.webp', 600, 800, 'Koce ochronne do zabezpieczania mebli podczas transportu', 'standard-whm', 'center top'),
+  '/images/standard-whm/zabezpieczenia-1.webp': img('/images/standard-whm/zabezpieczenia-1.webp', 768, 1024, 'Pasy i zabezpieczenia stabilizujące ładunek', 'standard-whm', 'center top'),
+  '/images/standard-whm/zabezpieczenia-2.webp': img('/images/standard-whm/zabezpieczenia-2.webp', 768, 1024, 'Wózki i przygotowanie mienia do wynoszenia', 'standard-whm', 'center top'),
+  '/images/standard-whm/sztywna-zabudowa-1.webp': img('/images/standard-whm/sztywna-zabudowa-1.webp', 768, 1024, 'Sztywna zabudowa przestrzeni ładunkowej samochodu WHM', 'standard-whm', 'center top'),
 
   // Transport mebli
-  '/images/transport-mebli/transport-mebli-kielce-1.webp': { src: '/images/transport-mebli/transport-mebli-kielce-1.webp', width: 600, height: 800, alt: 'Zabezpieczony mebel przygotowany do transportu przez zespół WHM', displayRatio: '4/3', objectPosition: 'center top', category: 'transport-mebli' },
-  '/images/transport-mebli/transport-mebli-kielce-2.webp': { src: '/images/transport-mebli/transport-mebli-kielce-2.webp', width: 768, height: 1024, alt: 'Meble przygotowane do bezpiecznego przewozu', displayRatio: '4/3', objectPosition: 'center top', category: 'transport-mebli' },
+  '/images/transport-mebli/transport-mebli-kielce-1.webp': img('/images/transport-mebli/transport-mebli-kielce-1.webp', 600, 800, 'Zabezpieczony mebel przygotowany do transportu przez zespół WHM', 'transport-mebli', 'center top'),
+  '/images/transport-mebli/transport-mebli-kielce-2.webp': img('/images/transport-mebli/transport-mebli-kielce-2.webp', 768, 1024, 'Meble przygotowane do bezpiecznego przewozu', 'transport-mebli', 'center top'),
 
   // Transport pianin
-  '/images/transport-pianin-i-fortepianow/transport-pianin-i-fortepianow-kielce-1.webp': { src: '/images/transport-pianin-i-fortepianow/transport-pianin-i-fortepianow-kielce-1.webp', width: 600, height: 800, alt: 'Pianino zabezpieczone pokrowcami i pasami przed wyniesieniem', displayRatio: '4/3', objectPosition: 'center top', category: 'transport-pianin' },
-  '/images/transport-pianin-i-fortepianow/transport-pianin-i-fortepianow-kielce-2.webp': { src: '/images/transport-pianin-i-fortepianow/transport-pianin-i-fortepianow-kielce-2.webp', width: 768, height: 1024, alt: 'Instrument owinięty materiałem ochronnym podczas przygotowania', displayRatio: '4/3', objectPosition: 'center top', category: 'transport-pianin' },
-  '/images/transport-pianin-i-fortepianow/transport-pianin-i-fortepianow-kielce-3.webp': { src: '/images/transport-pianin-i-fortepianow/transport-pianin-i-fortepianow-kielce-3.webp', width: 768, height: 1024, alt: 'Pianino zabezpieczone pokrowcami i pasami przed transportem', displayRatio: '4/3', objectPosition: 'center top', category: 'transport-pianin' },
-  '/images/transport-pianin-i-fortepianow/transport-pianin-i-fortepianow-kielce-4.webp': { src: '/images/transport-pianin-i-fortepianow/transport-pianin-i-fortepianow-kielce-4.webp', width: 1024, height: 1365, alt: 'Zabezpieczony instrument gotowy do przeniesienia przez zespół WHM', displayRatio: '4/3', objectPosition: 'center top', category: 'transport-pianin' },
+  '/images/transport-pianin-i-fortepianow/transport-pianin-i-fortepianow-kielce-1.webp': img('/images/transport-pianin-i-fortepianow/transport-pianin-i-fortepianow-kielce-1.webp', 600, 800, 'Pianino zabezpieczone pokrowcami i pasami przed wyniesieniem', 'transport-pianin', 'center top'),
+  '/images/transport-pianin-i-fortepianow/transport-pianin-i-fortepianow-kielce-2.webp': img('/images/transport-pianin-i-fortepianow/transport-pianin-i-fortepianow-kielce-2.webp', 768, 1024, 'Instrument owinięty materiałem ochronnym podczas przygotowania', 'transport-pianin', 'center top'),
+  '/images/transport-pianin-i-fortepianow/transport-pianin-i-fortepianow-kielce-3.webp': img('/images/transport-pianin-i-fortepianow/transport-pianin-i-fortepianow-kielce-3.webp', 768, 1024, 'Pianino zabezpieczone pokrowcami i pasami przed transportem', 'transport-pianin', 'center top'),
+  '/images/transport-pianin-i-fortepianow/transport-pianin-i-fortepianow-kielce-4.webp': img('/images/transport-pianin-i-fortepianow/transport-pianin-i-fortepianow-kielce-4.webp', 1024, 1365, 'Zabezpieczony instrument gotowy do przeniesienia przez zespół WHM', 'transport-pianin', 'center top'),
 
   // Transport gabarytow
-  '/images/transport-gabarytow/transport-gabarytow-kielce-1.webp': { src: '/images/transport-gabarytow/transport-gabarytow-kielce-1.webp', width: 768, height: 1024, alt: 'Uprzęże transportowe i sprzęt WHM', displayRatio: '4/3', objectPosition: 'center top', category: 'transport-gabarytow' },
-  '/images/transport-gabarytow/transport-gabarytow-kielce-3.webp': { src: '/images/transport-gabarytow/transport-gabarytow-kielce-3.webp', width: 768, height: 1024, alt: 'Przenoszenie dużego zabezpieczonego przedmiotu przez zespół WHM', displayRatio: '4/3', objectPosition: 'center top', category: 'transport-gabarytow' },
-  '/images/transport-gabarytow/transport-gabarytow-kielce-4.webp': { src: '/images/transport-gabarytow/transport-gabarytow-kielce-4.webp', width: 768, height: 1024, alt: 'Przygotowanie drogi transportu przez zespół WHM', displayRatio: '4/3', objectPosition: 'center top', category: 'transport-gabarytow' },
-  '/images/transport-gabarytow/transport-gabarytow-kielce-5.webp': { src: '/images/transport-gabarytow/transport-gabarytow-kielce-5.webp', width: 768, height: 1024, alt: 'Praca ze schodołazem podczas przenoszenia ciężkiego przedmiotu', displayRatio: '4/3', objectPosition: 'center top', category: 'transport-gabarytow' },
-  '/images/transport-gabarytow/transport-gabarytow-kielce-6.webp': { src: '/images/transport-gabarytow/transport-gabarytow-kielce-6.webp', width: 768, height: 1024, alt: 'Wyposażenie wymagające ostrożnego przeniesienia przez zespół WHM', displayRatio: '4/3', objectPosition: 'center top', category: 'transport-gabarytow' },
-  '/images/transport-gabarytow/transport-gabarytow-kielce-7.webp': { src: '/images/transport-gabarytow/transport-gabarytow-kielce-7.webp', width: 720, height: 900, alt: 'Duży zabezpieczony przedmiot podnoszony przy użyciu specjalistycznego sprzętu', displayRatio: '4/3', objectPosition: 'center top', category: 'transport-gabarytow' },
+  '/images/transport-gabarytow/transport-gabarytow-kielce-1.webp': img('/images/transport-gabarytow/transport-gabarytow-kielce-1.webp', 768, 1024, 'Uprzęże transportowe i sprzęt WHM', 'transport-gabarytow', 'center top'),
+  '/images/transport-gabarytow/transport-gabarytow-kielce-3.webp': img('/images/transport-gabarytow/transport-gabarytow-kielce-3.webp', 768, 1024, 'Przenoszenie dużego zabezpieczonego przedmiotu przez zespół WHM', 'transport-gabarytow', 'center top'),
+  '/images/transport-gabarytow/transport-gabarytow-kielce-4.webp': img('/images/transport-gabarytow/transport-gabarytow-kielce-4.webp', 768, 1024, 'Przygotowanie drogi transportu przez zespół WHM', 'transport-gabarytow', 'center top'),
+  '/images/transport-gabarytow/transport-gabarytow-kielce-5.webp': img('/images/transport-gabarytow/transport-gabarytow-kielce-5.webp', 768, 1024, 'Praca ze schodołazem podczas przenoszenia ciężkiego przedmiotu', 'transport-gabarytow', 'center top'),
+  '/images/transport-gabarytow/transport-gabarytow-kielce-6.webp': img('/images/transport-gabarytow/transport-gabarytow-kielce-6.webp', 768, 1024, 'Wyposażenie wymagające ostrożnego przeniesienia przez zespół WHM', 'transport-gabarytow', 'center top'),
+  '/images/transport-gabarytow/transport-gabarytow-kielce-7.webp': img('/images/transport-gabarytow/transport-gabarytow-kielce-7.webp', 720, 900, 'Duży zabezpieczony przedmiot podnoszony przy użyciu specjalistycznego sprzętu', 'transport-gabarytow', 'center top'),
 
   // Transport lodowki
-  '/images/transport-lodowki/transport-lodowki-kielce-1.webp': { src: '/images/transport-lodowki/transport-lodowki-kielce-1.webp', width: 600, height: 800, alt: 'Zabezpieczona lodówka przygotowana do transportu', displayRatio: '4/3', objectPosition: 'center top', category: 'transport-lodowki' },
-  '/images/transport-lodowki/transport-lodowki-kielce-2.webp': { src: '/images/transport-lodowki/transport-lodowki-kielce-2.webp', width: 768, height: 1024, alt: 'Zabezpieczona lodówka przygotowana do przeniesienia', displayRatio: '4/3', objectPosition: 'center top', category: 'transport-lodowki' },
+  '/images/transport-lodowki/transport-lodowki-kielce-1.webp': img('/images/transport-lodowki/transport-lodowki-kielce-1.webp', 600, 800, 'Zabezpieczona lodówka przygotowana do transportu', 'transport-lodowki', 'center top'),
+  '/images/transport-lodowki/transport-lodowki-kielce-2.webp': img('/images/transport-lodowki/transport-lodowki-kielce-2.webp', 768, 1024, 'Zabezpieczona lodówka przygotowana do przeniesienia', 'transport-lodowki', 'center top'),
 
   // Transport pieca
-  '/images/transport-pieca/transport-pieca-kielce-1.webp': { src: '/images/transport-pieca/transport-pieca-kielce-1.webp', width: 768, height: 1024, alt: 'Ciężkie urządzenie przygotowane do przemieszczenia', displayRatio: '4/3', objectPosition: 'center top', category: 'transport-pieca' },
+  '/images/transport-pieca/transport-pieca-kielce-1.webp': img('/images/transport-pieca/transport-pieca-kielce-1.webp', 768, 1024, 'Ciężkie urządzenie przygotowane do przemieszczenia', 'transport-pieca', 'center top'),
 
   // Transport sejfu
-  '/images/transport-sejfu/transport-sejfu-kielce-1.webp': { src: '/images/transport-sejfu/transport-sejfu-kielce-1.webp', width: 768, height: 1024, alt: 'Transport sejfu i szafy pancernej przez WHM', displayRatio: '4/3', objectPosition: 'center top', category: 'transport-sejfu' },
+  '/images/transport-sejfu/transport-sejfu-kielce-1.webp': img('/images/transport-sejfu/transport-sejfu-kielce-1.webp', 768, 1024, 'Transport sejfu i szafy pancernej przez WHM', 'transport-sejfu', 'center top'),
 
   // Shop materials
-  '/images/shop-materials/sklep-z-materialami-1.webp': { src: '/images/shop-materials/sklep-z-materialami-1.webp', width: 768, height: 1024, alt: 'Materiały i akcesoria transportowe wykorzystywane podczas realizacji WHM', displayRatio: '4/3', objectPosition: 'center top', category: 'shop-materials' },
+  '/images/shop-materials/sklep-z-materialami-1.webp': img('/images/shop-materials/sklep-z-materialami-1.webp', 768, 1024, 'Materiały i akcesoria transportowe wykorzystywane podczas realizacji WHM', 'shop-materials', 'center top'),
 
   // Guides
-  '/images/guides/poradnik-jak-przygotowac-sie-do-przeprowadzki.webp': { src: '/images/guides/poradnik-jak-przygotowac-sie-do-przeprowadzki.webp', width: 627, height: 627, alt: 'Poradnik WHM — jak przygotować się do przeprowadzki', displayRatio: '1/1', category: 'guides' },
+  '/images/guides/poradnik-jak-przygotowac-sie-do-przeprowadzki.webp': img('/images/guides/poradnik-jak-przygotowac-sie-do-przeprowadzki.webp', 627, 627, 'Poradnik WHM — jak przygotować się do przeprowadzki', 'guides'),
 
   // Realizacje - Prokuratury
-  '/images/realizacje/prokuratury-kielce/przeprowadzka-prokuratury-1.webp': { src: '/images/realizacje/prokuratury-kielce/przeprowadzka-prokuratury-1.webp', width: 768, height: 1024, alt: 'Relokacja wyposażenia Prokuratury realizowana przez zespół WHM', displayRatio: '4/3', objectPosition: 'center top', category: 'realizacje' },
+  '/images/realizacje/prokuratury-kielce/przeprowadzka-prokuratury-1.webp': img('/images/realizacje/prokuratury-kielce/przeprowadzka-prokuratury-1.webp', 768, 1024, 'Relokacja wyposażenia Prokuratury realizowana przez zespół WHM', 'realizacje', 'center top'),
 
   // Realizacje - Teatr
-  '/images/realizacje/teatr-zeromskiego/relokacja-teatru-1.webp': { src: '/images/realizacje/teatr-zeromskiego/relokacja-teatru-1.webp', width: 1024, height: 682, alt: 'Relokacja wyposażenia Teatru im. Żeromskiego przez WHM', displayRatio: '4/3', category: 'realizacje' },
-  '/images/realizacje/teatr-zeromskiego/relokacja-teatru-2.webp': { src: '/images/realizacje/teatr-zeromskiego/relokacja-teatru-2.webp', width: 768, height: 1024, alt: 'Transport wyposażenia instytucji kultury przez WHM', displayRatio: '4/3', objectPosition: 'center top', category: 'realizacje' },
+  '/images/realizacje/teatr-zeromskiego/relokacja-teatru-1.webp': img('/images/realizacje/teatr-zeromskiego/relokacja-teatru-1.webp', 1024, 682, 'Relokacja wyposażenia Teatru im. Żeromskiego przez WHM', 'realizacje'),
+  '/images/realizacje/teatr-zeromskiego/relokacja-teatru-2.webp': img('/images/realizacje/teatr-zeromskiego/relokacja-teatru-2.webp', 768, 1024, 'Transport wyposażenia instytucji kultury przez WHM', 'realizacje', 'center top'),
 
   // Realizacje - TVP3
-  '/images/realizacje/tvp3-kielce/relokacja-tvp-kielce.webp': { src: '/images/realizacje/tvp3-kielce/relokacja-tvp-kielce.webp', width: 600, height: 400, alt: 'Relokacja wyposażenia i archiwum TVP3 Kielce przez WHM', displayRatio: '4/3', category: 'realizacje' },
+  '/images/realizacje/tvp3-kielce/relokacja-tvp-kielce.webp': img('/images/realizacje/tvp3-kielce/relokacja-tvp-kielce.webp', 600, 400, 'Relokacja wyposażenia i archiwum TVP3 Kielce przez WHM', 'realizacje'),
 
   // Realizacje - Biblioteka
-  '/images/realizacje/biblioteka-busko/biblioteka-busko-1.webp': { src: '/images/realizacje/biblioteka-busko/biblioteka-busko-1.webp', width: 500, height: 330, alt: 'Pojemniki transportowe WHM podczas relokacji biblioteki', displayRatio: '4/3', category: 'realizacje' },
-  '/images/realizacje/biblioteka-busko/biblioteka-busko-2.webp': { src: '/images/realizacje/biblioteka-busko/biblioteka-busko-2.webp', width: 850, height: 638, alt: 'Relokacja księgozbioru biblioteki w Busku-Zdroju', displayRatio: '4/3', category: 'realizacje' },
+  '/images/realizacje/biblioteka-busko/biblioteka-busko-1.webp': img('/images/realizacje/biblioteka-busko/biblioteka-busko-1.webp', 500, 330, 'Pojemniki transportowe WHM podczas relokacji biblioteki', 'realizacje'),
+  '/images/realizacje/biblioteka-busko/biblioteka-busko-2.webp': img('/images/realizacje/biblioteka-busko/biblioteka-busko-2.webp', 850, 638, 'Relokacja księgozbioru biblioteki w Busku-Zdroju', 'realizacje'),
 
   // Realizacje - Zamek
-  '/images/realizacje/zamek-szydlowieckich/zamek-szydlowieckich-1.webp': { src: '/images/realizacje/zamek-szydlowieckich/zamek-szydlowieckich-1.webp', width: 1008, height: 756, alt: 'Transport zabytkowego obrazu z Zamku Szydłowieckich', displayRatio: '4/3', category: 'realizacje' },
-  '/images/realizacje/zamek-szydlowieckich/zamek-szydlowieckich-2.webp': { src: '/images/realizacje/zamek-szydlowieckich/zamek-szydlowieckich-2.webp', width: 1008, height: 756, alt: 'Transport fortepianów w Zamku Szydłowieckich', displayRatio: '4/3', category: 'realizacje' },
+  '/images/realizacje/zamek-szydlowieckich/zamek-szydlowieckich-1.webp': img('/images/realizacje/zamek-szydlowieckich/zamek-szydlowieckich-1.webp', 1008, 756, 'Transport zabytkowego obrazu z Zamku Szydłowieckich', 'realizacje'),
+  '/images/realizacje/zamek-szydlowieckich/zamek-szydlowieckich-2.webp': img('/images/realizacje/zamek-szydlowieckich/zamek-szydlowieckich-2.webp', 1008, 756, 'Transport fortepianów w Zamku Szydłowieckich', 'realizacje'),
 
   // Realizacje - Fazioli
-  '/images/realizacje/fortepian-fazioli/fortepian-fazioli.webp': { src: '/images/realizacje/fortepian-fazioli/fortepian-fazioli.webp', width: 1200, height: 800, alt: 'Fortepian koncertowy Fazioli po transporcie nocnym', displayRatio: '4/3', category: 'realizacje' },
+  '/images/realizacje/fortepian-fazioli/fortepian-fazioli.webp': img('/images/realizacje/fortepian-fazioli/fortepian-fazioli.webp', 1200, 800, 'Fortepian koncertowy Fazioli po transporcie nocnym', 'realizacje'),
 };
 
 export function getImageAsset(src: string): ImageAsset | undefined {

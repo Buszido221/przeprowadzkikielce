@@ -1149,25 +1149,21 @@ strong {
 
 .standard-whm__img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  aspect-ratio: 4 / 3;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-lg);
 }
 
 .standard-whm__figure--large .standard-whm__img {
-  aspect-ratio: 16 / 10;
+  /* large figure: no forced ratio */
 }
 
 .standard-whm__caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: var(--space-4) var(--space-5);
-  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-  color: #fff;
+  padding: var(--space-3) var(--space-4);
   font-size: var(--text-sm);
   font-weight: 500;
+  color: var(--color-text-secondary);
+  text-align: center;
 }
 
 /* === Service Gallery === */
@@ -1197,8 +1193,9 @@ strong {
 
 .service-gallery__img {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-lg);
 }
 
 /* === Service FAQ === */

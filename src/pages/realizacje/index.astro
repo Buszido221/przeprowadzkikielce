@@ -66,7 +66,7 @@ const technicalMentions = [
         {caseStudies.map((cs) => (
           <a class="realizacje-hub__card" href={cs.slug} data-category={cs.category}>
             <div class="realizacje-hub__card-media">
-              <SafeImage src={cs.heroImage} alt={cs.heroAlt} width="600" height="400" loading="lazy" decoding="async" />
+              <SafeImage src={cs.heroImage} alt={cs.heroAlt} loading="lazy" decoding="async" />
             </div>
             <div class="realizacje-hub__card-body">
               <span class="section-heading__label">{cs.category}</span>

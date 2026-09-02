@@ -84,7 +84,7 @@ const jsonLd = {
         {page.services.items.map((item) => (
           <a href={item.href} class="service-card">
             <div class="service-card__media">
-              <SafeImage src={item.image} alt={item.alt} width="600" height="400" loading="lazy" decoding="async" />
+              <SafeImage src={item.image} alt={item.alt} loading="lazy" decoding="async" />
             </div>
             <div class="service-card__body">
               <h3 class="service-card__title">{item.title}</h3>
@@ -124,7 +124,7 @@ const jsonLd = {
       <div class="photo-grid photo-grid--3">
         {page.gallery.items.map((photo) => (
           <div class="photo-grid__item">
-            <SafeImage src={photo.src} alt={photo.alt} width="600" height="450" loading="lazy" decoding="async" />
+            <SafeImage src={photo.src} alt={photo.alt} loading="lazy" decoding="async" displayMode="natural" />
           </div>
         ))}
       </div>

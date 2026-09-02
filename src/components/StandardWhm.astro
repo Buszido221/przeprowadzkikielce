@@ -26,11 +26,10 @@ const { heading, text, images } = Astro.props;
           <SafeImage
             src={img.src}
             alt={img.alt}
-            width="640"
-            height="480"
             loading={i === 0 ? undefined : 'lazy'}
             decoding="async"
             class="standard-whm__img"
+            displayMode="natural"
           />
           <figcaption class="standard-whm__caption">{img.caption}</figcaption>
         </figure>

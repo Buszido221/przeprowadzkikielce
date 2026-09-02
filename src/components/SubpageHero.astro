@@ -51,11 +51,10 @@ const useCustom = !!heroImage;
         src={heroImage}
         alt=""
         role="presentation"
-        width="1920"
-        height="1080"
         class="subpage-hero__img subpage-hero__img--active"
         fetchpriority="high"
         decoding="async"
+        displayMode="hero"
       />
     ) : (
       defaultHeroImages.map((src, i) => (
@@ -63,13 +62,12 @@ const useCustom = !!heroImage;
           src={src}
           alt=""
           role="presentation"
-          width="1920"
-          height="1080"
           class={`subpage-hero__img${i === 0 ? ' subpage-hero__img--active' : ''}`}
           data-slide-index={i}
           fetchpriority={i === 0 ? 'high' : undefined}
           loading={i === 0 ? undefined : 'lazy'}
           decoding="async"
+          displayMode="hero"
         />
       ))
     )}

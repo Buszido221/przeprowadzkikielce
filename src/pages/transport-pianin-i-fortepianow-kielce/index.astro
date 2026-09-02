@@ -102,7 +102,7 @@ const jsonLd = {
       <div class="photo-grid photo-grid--3">
         {page.photos.items.map((photo) => (
           <div class="photo-grid__item">
-            <SafeImage src={photo.src} alt={photo.alt} width="600" height="450" loading="lazy" decoding="async" />
+            <SafeImage src={photo.src} alt={photo.alt} loading="lazy" decoding="async" displayMode="natural" />
           </div>
         ))}
       </div>

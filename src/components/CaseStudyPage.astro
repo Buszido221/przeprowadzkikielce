@@ -97,7 +97,7 @@ const breadcrumbSchema = {
       <div class={`photo-grid photo-grid--${Math.min(study.gallery.length, 3)}`}>
         {study.gallery.map((image) => (
           <figure class="photo-grid__item case-study__gallery-item">
-            <SafeImage src={image.src} alt={image.alt} loading="lazy" decoding="async" displayRatio="4/3" />
+            <SafeImage src={image.src} alt={image.alt} loading="lazy" decoding="async" displayMode="natural" />
             <figcaption>{image.caption}</figcaption>
           </figure>
         ))}

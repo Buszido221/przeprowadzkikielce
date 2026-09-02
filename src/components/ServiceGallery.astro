@@ -25,11 +25,10 @@ const { heading, eyebrow, images } = Astro.props;
           <SafeImage
             src={img.src}
             alt={img.alt}
-            width="480"
-            height="360"
             loading="lazy"
             decoding="async"
             class="service-gallery__img"
+            displayMode="natural"
           />
         </figure>
       ))}
