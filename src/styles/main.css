@@ -1054,10 +1054,12 @@ main {
 
 .services-grid--2col {
   max-width: 52rem;
+  margin-inline: auto;
 }
 
 .services-grid--3col {
   max-width: 72rem;
+  margin-inline: auto;
 }
 
 @media (min-width: 1024px) {
@@ -1693,6 +1695,7 @@ main {
 
 .items-grid--2x2 {
   max-width: 52rem;
+  margin-inline: auto;
 }
 
 @media (min-width: 640px) {
@@ -1936,6 +1939,7 @@ main {
   .photo-grid--2 {
     grid-template-columns: 1fr 1fr;
     max-width: 52rem;
+    margin-inline: auto;
   }
 }
 
