@@ -44,7 +44,7 @@ const schema = {
   <section class="section section--alt">
     <div class="container">
       <SectionHeading label="Ścieżki współpracy" title="Wybierz potrzebę, nie przypadkową mikrousługę" description="Każda większa realizacja może łączyć kilka kompetencji. Jeden koordynowany zakres ułatwia planowanie i rozliczenie odpowiedzialności." />
-      <div class="services-grid services-grid--3col">
+      <div class="services-grid services-grid--2col">
         {pathways.map((item) => (
           <a class="service-card" href={item.href}><div class="service-card__media"><img src={item.image} alt="" role="presentation" width="600" height="400" loading="lazy" decoding="async" /></div><div class="service-card__body"><h2 class="service-card__title">{item.title}</h2><p class="service-card__desc">{item.text}</p><span class="service-card__link">Poznaj zakres</span></div></a>
         ))}
@@ -55,7 +55,7 @@ const schema = {
   <section class="section">
     <div class="container">
       <SectionHeading label="Standard współpracy" title="Najpierw ograniczenia operacyjne, potem harmonogram" />
-      <div class="items-grid">
+      <div class="items-grid items-grid--2x2">
         <article class="items-grid__item"><h3 class="items-grid__title">Bezpłatne oględziny</h3><p class="items-grid__desc">Rozpoznajemy lokalizacje, drogi, zakres i elementy ryzyka.</p></article>
         <article class="items-grid__item"><h3 class="items-grid__title">Plan i etapy</h3><p class="items-grid__desc">Ustalamy kolejność prac tak, aby ograniczyć przestój organizacji.</p></article>
         <article class="items-grid__item"><h3 class="items-grid__title">Oznaczenia i pojemniki</h3><p class="items-grid__desc">Setki zamykanych pojemników około 70 l wspierają transport archiwów i wyposażenia.</p></article>

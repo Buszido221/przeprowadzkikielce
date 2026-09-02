@@ -1691,6 +1691,22 @@ main {
   }
 }
 
+.items-grid--2x2 {
+  max-width: 52rem;
+}
+
+@media (min-width: 640px) {
+  .items-grid--2x2 {
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .items-grid--2x2 {
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+  }
+}
+
 .items-grid__item {
   padding: var(--space-5);
   border: 1px solid var(--color-border);
