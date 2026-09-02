@@ -1,55 +1,49 @@
 # Checklista kontrolowanego uruchomienia produkcyjnego
 
-Repozytorium pozostaje stagingiem do osobnej akceptacji. Poniższe kroki nie zostały wykonane na usługach zewnętrznych.
+Aktualizacja: 2 września 2026
 
-## 1. Zmienne środowiskowe
+Repozytorium pozostaje stagingiem do osobnej akceptacji. Kod i materiały zostały zweryfikowane lokalnie; operacji na hostingu i kontach zewnętrznych nie wykonano.
 
-W stagingu pozostawić `PUBLIC_SITE_ENV=staging` albo nie ustawiać tej zmiennej. W produkcji ustawić dokładnie:
+## 1. Akceptacja i konfiguracja
+
+- [ ] Potwierdzić zgodę na publikację zdjęć i przypisania realizacji z `docs/PHOTO_REPLACEMENT_MAP.md`.
+- [ ] Ustawić na produkcji:
 
 ```text
 PUBLIC_SITE_ENV=production
+PUBLIC_GTM_ID=GTM-XXXXXXXX
 PUBLIC_EMAILJS_SERVICE_ID=...
 PUBLIC_EMAILJS_TEMPLATE_ID=...
 PUBLIC_EMAILJS_PUBLIC_KEY=...
 ```
 
-Nie umieszczać prywatnych kluczy ani danych klientów w repozytorium. Klucz publiczny EmailJS jest przeznaczony do klienta, ale powinien być ograniczony konfiguracją dostawcy.
+Identyfikatory GA4, Google Ads i Meta należy skonfigurować wewnątrz GTM. Sekrety nie mogą trafić do repozytorium ani zmiennych `PUBLIC_*`.
 
 ## 2. Test przed wdrożeniem
 
-1. Zbudować projekt w trybie staging i potwierdzić `noindex, nofollow, noarchive` oraz brak requestów Google.
-2. Zbudować lokalnie z `PUBLIC_SITE_ENV=production` i potwierdzić:
-   - docelowe robots dla zwykłych stron,
-   - `noindex, follow` dla `/kontakt/` i polityki prywatności,
-   - obecność tagu Google wyłącznie w produkcji,
-   - jeden canonical, jeden H1 i poprawny JSON-LD,
-   - działanie zgody cookies.
-3. Z rzeczywistą konfiguracją EmailJS wysłać pojedynczy testowy lead B2C i B2B, używając danych testowych zatwierdzonych do transmisji.
-4. Potwierdzić odbiór, kodowanie polskich znaków, kontekst formularza, UTM-y i brak PII w GA4.
+1. Uruchomić `npm run build` w trybie staging i `npm run verify:site`.
+2. Zbudować lokalnie z kompletem testowych zmiennych produkcyjnych i ponownie uruchomić `npm run verify:site`.
+3. Potwierdzić właściwe robots: staging zawsze `noindex, nofollow, noarchive`; produkcja `index, follow` poza polityką prywatności i 404.
+4. W podglądzie GTM i DebugView sprawdzić domyślne sygnały zgody `denied`, zmianę po decyzji użytkownika, nazwy zdarzeń i brak PII.
+5. Z rzeczywistą konfiguracją EmailJS wysłać po jednym zatwierdzonym leadzie testowym B2C i B2B.
+6. Potwierdzić odbiór, polskie znaki, kontekst formularza, atrybucję kampanii i brak PII w analityce.
 
 ## 3. Wdrożenie
 
-- [ ] Wdrożyć zweryfikowany commit bez zmian robionych bezpośrednio na hostingu.
-- [ ] Nie przepinać domeny przed akceptacją właściciela projektu.
-- [ ] Potwierdzić obsługę pliku `_redirects` przez wybrany hosting.
-- [ ] Jeżeli hosting nie wspiera tego formatu, przenieść te same reguły do jego natywnej konfiguracji bez zmiany mapy.
-- [ ] Zweryfikować certyfikat HTTPS, jeden wariant hosta i końcowe ukośniki.
-- [ ] Sprawdzić stronę 404 oraz nagłówki cache dla obrazów i zasobów `_astro`.
+- [ ] Wdrożyć wskazany, zweryfikowany commit bez zmian bezpośrednio na hostingu.
+- [ ] Nie przepinać domeny przed akceptacją właściciela.
+- [ ] Potwierdzić obsługę `public/_redirects`; jeśli hosting jej nie wspiera, odwzorować identyczne reguły natywnie.
+- [ ] Zweryfikować HTTPS, jeden wariant hosta, końcowe ukośniki, stronę 404 i cache zasobów.
+- [ ] Zachować poprzednie wdrożenie jako punkt rollbacku.
 
 ## 4. Smoke test po wdrożeniu
 
-- [ ] Telefon `720 719 022` działa w headerze, hero, formularzu, stopce i sticky CTA.
-- [ ] Wszystkie trasy z `docs/URL_MIGRATION_MAP.md` zwracają oczekiwane statusy.
-- [ ] Formularz B2C i B2B wysyła oraz pokazuje komunikat sukcesu.
-- [ ] Obrazy, menu mobilne, fokus, FAQ i anchor links działają.
-- [ ] Brak poziomego scrolla na 390 px i typowym desktopie.
-- [ ] Produkcja nie zawiera `noindex` na stronach przeznaczonych do indeksacji.
-- [ ] GA4 ładuje się zgodnie ze zgodą; staging nadal nie ładuje Google.
+- [ ] Telefon `720 719 022` działa w nagłówku, hero, formularzach, stopce i sticky CTA.
+- [ ] Wszystkie adresy z `docs/URL_MIGRATION_MAP.md` mają oczekiwane statusy, a 32 reguły migracyjne zwracają HTTP 301.
+- [ ] Formularze B2C i B2B wysyłają jedno zgłoszenie i pokazują komunikat sukcesu.
+- [ ] Zdjęcia, menu mobilne, fokus, FAQ i kotwice działają na 390 px i desktopie.
+- [ ] Produkcja nie ma `noindex` na trasach przeznaczonych do indeksacji.
+- [ ] GA4, Ads i Meta uruchamiają się zgodnie z konfiguracją zgód i nie otrzymują PII.
+- [ ] Sitemap została przesłana, a Search Console nie zgłasza nowej serii błędów 404.
 
-## 5. Po starcie
-
-- [ ] Zaktualizować Google Ads według `docs/MEASUREMENT_AND_ADS_HANDOFF.md`.
-- [ ] Przesłać sitemap i monitorować Search Console.
-- [ ] Obserwować błędy EmailJS, 404 i przekierowania.
-- [ ] Zachować poprzednie wdrożenie jako punkt bezpiecznego rollbacku.
-- [ ] Nie usuwać zabezpieczenia stagingu z innych środowisk.
+Szczegóły kampanii i konfiguracji tagów: `docs/MEASUREMENT_AND_ADS_HANDOFF.md`.

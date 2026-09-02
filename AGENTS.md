@@ -1,25 +1,24 @@
-# WHM Przeprowadzki — Instrukcje dla agentów
+# WHM Przeprowadzki — instrukcje dla agentów
 
 ## Stack
-- Astro 5 (static output, no SSR)
-- Manrope font (locally hosted in /public/fonts, no @fontsource)
-- EmailJS for contact form (configured via env vars)
-- Google Analytics 4 (configured via PUBLIC_GA4_ID env var)
+- Astro 5 (statyczny output, bez SSR)
+- Manrope hostowany lokalnie w `/public/fonts`
+- EmailJS dla wspólnego formularza kontaktowego
+- Google Tag Manager (`PUBLIC_GTM_ID`) i produkcyjny `Analytics.astro` z Consent Mode
+- staging bez kodu pomiarowego i z `noindex, nofollow, noarchive`
 
-## Pages
-- /kontakt/ — unified contact + form page (redirects from /wycena/)
-- All service pages include inline form sections with id="formularz"
-- /wycena/ redirects 301 to /kontakt/
+## Strony
+- `/kontakt/` — wspólny kontakt i formularz; `/wycena/` przekierowuje tutaj 301
+- strony usług zawierają sekcje wspólnego formularza z `id="formularz"`
+- aktywne trasy i wewnętrzne linki `/lp/` są zabronione; historyczne adresy obsługuje `public/_redirects`
 
-## Environment variables
-See .env.example for all required vars.
+## Konfiguracja
+- Aktualne zmienne środowiskowe są opisane w `.env.example`.
+- `npm run build` tworzy statyczny serwis w `dist/`.
+- `npm run verify:site` wykonuje pełne QA zbudowanego serwisu.
 
-## Build
-- `npm run build` — production build
-- Output: static HTML in dist/
-
-## Key conventions
-- SectionHeading accepts alignment="center" | "left" (default: left)
-- Split sections use 1024px breakpoint (not 768px)
-- All /wycena/ links must point to /kontakt/#formularz
-- Cookie consent: Basic Consent Mode (analytics_storage only, no ad_storage)
+## Konwencje
+- `SectionHeading` przyjmuje `alignment="center" | "left"` (domyślnie `left`).
+- Sekcje dzielone używają breakpointu 1024 px.
+- Linki wyceny prowadzą do `/kontakt/#formularz`.
+- Brakujące pliki graficzne obsługuje `SafeImage.astro`; nie wolno zastępować prawdziwych zdjęć WHM stockami ani grafikami generowanymi.

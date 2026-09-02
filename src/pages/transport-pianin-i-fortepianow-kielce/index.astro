@@ -4,6 +4,7 @@ import SubpageHero from '../../components/SubpageHero.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import LeadForm from '../../components/forms/LeadForm.astro';
 import MobileStickyCta from '../../components/MobileStickyCta.astro';
+import SafeImage from '../../components/SafeImage.astro';
 import { site } from '../../data/site';
 import { pianinaPage as page } from '../../data/services';
 
@@ -101,7 +102,7 @@ const jsonLd = {
       <div class="photo-grid photo-grid--3">
         {page.photos.items.map((photo) => (
           <div class="photo-grid__item">
-            <img src={photo.src} alt={photo.alt} width="600" height="450" loading="lazy" decoding="async" />
+            <SafeImage src={photo.src} alt={photo.alt} width="600" height="450" loading="lazy" decoding="async" />
           </div>
         ))}
       </div>

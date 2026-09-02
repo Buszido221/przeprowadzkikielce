@@ -3136,6 +3136,12 @@ main {
     grid-template-columns: 1fr;
   }
 
+  .realizacje-hub__technical-cta {
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+  }
+
   .case-study__sales-cta-actions {
     flex-direction: column;
   }

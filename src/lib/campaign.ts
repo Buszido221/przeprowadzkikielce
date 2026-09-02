@@ -69,7 +69,7 @@ function buildRecord(search: URLSearchParams): CampaignRecord {
 
   for (const key of CAMPAIGN_KEYS) {
     const val = search.get(key);
-    if (val) (record as Record<string, string>)[key] = sanitize(val);
+    if (val) record[key] = sanitize(val);
   }
 
   return record;
@@ -117,14 +117,14 @@ export function getCampaignForForm(): Record<string, string> {
 
   if (data.first_touch) {
     for (const key of CAMPAIGN_KEYS) {
-      const val = (data.first_touch as Record<string, string | undefined>)[key];
+      const val = data.first_touch[key];
       if (val) result[`ft_${key}`] = val;
     }
   }
 
   if (data.last_touch) {
     for (const key of CAMPAIGN_KEYS) {
-      const val = (data.last_touch as Record<string, string | undefined>)[key];
+      const val = data.last_touch[key];
       if (val) result[`lt_${key}`] = val;
     }
   }

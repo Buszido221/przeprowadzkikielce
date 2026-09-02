@@ -3,7 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import ServiceHero from './ServiceHero.astro';
 import SectionHeading from './SectionHeading.astro';
 import MobileStickyCta from './MobileStickyCta.astro';
+import SafeImage from './SafeImage.astro';
 import { site } from '../data/site';
+import { publicAssetExists } from '../lib/public-assets';
 import type { CaseStudy } from '../data/realizacje';
 
 interface Props {
@@ -12,6 +14,7 @@ interface Props {
 
 const { study } = Astro.props;
 const canonical = `${site.domain}${study.slug.replace(/^\//, '')}`;
+const hasHeroImage = publicAssetExists(study.heroImage);
 
 const articleSchema = {
   '@context': 'https://schema.org',
@@ -19,7 +22,7 @@ const articleSchema = {
   headline: study.heading,
   description: study.description,
   url: canonical,
-  image: new URL(study.heroImage, site.domain).href,
+  ...(hasHeroImage ? { image: new URL(study.heroImage, site.domain).href } : {}),
   author: { '@type': 'Organization', name: site.brand },
   publisher: {
     '@type': 'Organization',
@@ -93,7 +96,7 @@ const breadcrumbSchema = {
       <div class="photo-grid photo-grid--3">
         {study.gallery.map((image) => (
           <figure class="photo-grid__item case-study__gallery-item">
-            <img src={image.src} alt={image.alt} width="600" height="450" loading="lazy" decoding="async" />
+            <SafeImage src={image.src} alt={image.alt} width="600" height="450" loading="lazy" decoding="async" />
             <figcaption>{image.caption}</figcaption>
           </figure>
         ))}

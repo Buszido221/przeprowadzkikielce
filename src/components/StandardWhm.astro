@@ -1,5 +1,6 @@
 ---
 import SectionHeading from './SectionHeading.astro';
+import SafeImage from './SafeImage.astro';
 
 interface StandardImage {
   src: string;
@@ -22,7 +23,7 @@ const { heading, text, images } = Astro.props;
     <div class="standard-whm__grid">
       {images.map((img, i) => (
         <figure class:list={['standard-whm__figure', { 'standard-whm__figure--large': i === 0 }]}>
-          <img
+          <SafeImage
             src={img.src}
             alt={img.alt}
             width="640"

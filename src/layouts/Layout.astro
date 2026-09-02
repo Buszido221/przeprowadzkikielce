@@ -7,6 +7,7 @@ import CampaignAttribution from '../components/CampaignAttribution.astro';
 import ClientEvents from '../components/ClientEvents.astro';
 import { site } from '../data/site';
 import { isStaging } from '../lib/environment';
+import { publicAssetExists } from '../lib/public-assets';
 import '../styles/base.css';
 import '../styles/main.css';
 
@@ -29,6 +30,7 @@ const {
 const robotsContent = isStaging ? 'noindex, nofollow, noarchive' : robots;
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, site.domain).href;
 const ogImageUrl = new URL(ogImage, site.domain).href;
+const hasOgImage = publicAssetExists(ogImage);
 ---
 
 <!doctype html>
@@ -49,15 +51,15 @@ const ogImageUrl = new URL(ogImage, site.domain).href;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:image" content={ogImageUrl} />
-    <meta property="og:image:width" content="1920" />
-    <meta property="og:image:height" content="1080" />
+    {hasOgImage && <meta property="og:image" content={ogImageUrl} />}
+    {hasOgImage && <meta property="og:image:width" content="1920" />}
+    {hasOgImage && <meta property="og:image:height" content="1080" />}
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content={hasOgImage ? 'summary_large_image' : 'summary'} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImageUrl} />
+    {hasOgImage && <meta name="twitter:image" content={ogImageUrl} />}
 
     <GtmHead />
     <CampaignAttribution />

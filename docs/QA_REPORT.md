@@ -1,58 +1,50 @@
 # Raport QA przebudowy WHM
 
-Data: 31 sierpnia 2026
+Data: 2 września 2026
 
 ## Zakres
 
-Sprawdzono finalną architekturę 21 tras serwisu oraz stronę 404. Testy objęły build Astro, metadane, strukturę nagłówków, obrazy, linki, responsywność, konsolę, formularze, nawigację klawiaturą, analitykę stagingową i migrację `/lp/`.
+Zweryfikowano projekt po zsynchronizowaniu z bazą `8007f8f`, która dodała finalny zestaw zdjęć i zaktualizowała analitykę. Test obejmuje 28 publicznych tras oraz stronę 404, SEO techniczne, linki i zasoby lokalne, migrację `/lp/`, responsywność, menu, formularze oraz środowiska staging/production.
 
-## Wyniki automatyczne
+## Wyniki
 
 | Kontrola | Wynik |
 |---|---|
-| Build staging | PASS |
-| Liczba aktywnych katalogów `/lp/` w buildzie | 0 |
-| Odwołania `/lp/` w kodzie stron | 0 |
-| H1 na właściwej trasie | dokładnie 1 na każdej |
-| Canonical | dokładnie 1 na każdej |
-| Staging robots | `noindex, nofollow, noarchive` na wszystkich stronach HTML |
-| Google/GA4 w HTML stagingu | 0 odwołań |
-| Niedziałające linki lokalne | 0 |
-| Niedziałające obrazy lokalne | 0 |
-| Reguły przekierowań | 30 wariantów źródłowych |
+| Build staging | PASS — 29 stron HTML |
+| Aktywne katalogi `/lp/` | 0 |
+| Publiczne trasy w QA przeglądarkowym | 28 × desktop 1440 px × mobile 390 px |
+| H1 i canonical | dokładnie po 1 na każdej publicznej trasie |
+| Staging robots | `noindex, nofollow, noarchive` |
+| Requesty Google w stagingu | 0 |
+| Niedziałające linki i ładowane zasoby lokalne | 0 |
+| Pliki graficzne | 65; wszystkie 182 użycia `img` mają istniejący zasób; 0 placeholderów |
+| Poziomy overflow | 0 na wszystkich testowanych trasach i viewportach |
+| Błędy konsoli | 0 |
+| Przekierowania migracyjne | 32 poprawne reguły 301, cele istnieją w buildzie |
+| TypeScript | PASS po korekcie bezpiecznego indeksowania `CampaignRecord` |
+| Build production z testową konfiguracją | PASS — 29 stron HTML |
+| Consent Mode production | PASS — domyślne `denied`, zapis odrzucenia i pełnej zgody |
 
-## QA w przeglądarce
+## Kontrole interakcji
 
-Na desktopie sprawdzono stronę główną i hub B2B. Na viewport mobile sprawdzono:
-
-- `/przeprowadzki/`,
-- `/transport-mebli-kielce/`,
-- `/pakowanie-i-zabezpieczanie/`,
-- `/transport-pianin-i-fortepianow-kielce/`,
-- `/transport-specjalistyczny/`,
-- `/oproznianie-mieszkan-i-wywoz-mebli/`,
-- `/dla-firm/`,
-- `/przeprowadzki-firm-i-instytucji/`,
-- `/magazyny-kielce/`,
-- `/realizacje/`,
-- `/kontakt/`,
-- `/kontakt/`.
-
-Każda z tych stron miała jeden H1, jeden canonical, właściwe stagingowe robots, co najmniej jeden link telefoniczny, zero błędnie załadowanych obrazów i zero poziomego overflow. Nie wykryto błędów ani ostrzeżeń w konsoli.
-
-Menu mobilne zmienia `aria-expanded`, blokuje przewijanie tła, zamyka się klawiszem Escape i zwraca fokus do przycisku. Formularz przy pustej próbie wysłania ustawia fokus na imieniu, oznacza pięć wymaganych warunków i nie wykonuje wysyłki. Formularz B2B ma `data-context="business"` i opcjonalne pole firmy.
+- Menu mobilne zmienia `aria-expanded`, zamyka się klawiszem Escape i zwraca fokus do przycisku.
+- Pusty formularz wskazuje wymagane pola i ustawia fokus na pierwszym błędzie.
+- Formularz kontaktowy ma kontekst `consumer` mapowany na `b2c`.
+- Formularz relokacji firm ma kontekst `business` mapowany na `b2b` i opcjonalne pole firmy/instytucji.
+- Symulacja produkcyjna potwierdza widoczny banner bez decyzji, domyślne sygnały zgód `denied` oraz zapis wariantów „odrzuć” i „akceptuj wszystkie”.
 
 ## Problem wykryty i usunięty
 
-Drugorzędny przycisk w jasnym komponencie `ServiceHero` dziedziczył biały styl przeznaczony dla hero na ciemnym zdjęciu. Dodano osobny kontrastowy wariant dla jasnego tła i powtórzono kontrolę wizualną.
+Na `/realizacje/` długi przycisk powodował poziomy overflow 11 px na viewport 390 px. Dodano zawijanie tekstu i powtórzono test wszystkich tras. W świeżym `campaign.ts` usunięto również niebezpieczne rzutowania, które blokowały ścisłą kontrolę TypeScript.
 
-## Ryzyka i czynności wymagające zewnętrznej konfiguracji
+## Pozostałe kroki zewnętrzne
 
-1. Rzeczywista wysyłka EmailJS nie została przetestowana, ponieważ środowisko nie ma wymaganych zmiennych. To jedyna funkcjonalna blokada przed testem end-to-end leada.
-2. Reguły `_redirects` muszą być wspierane lub odwzorowane przez docelowy hosting.
-3. Produkcyjny consent i zdarzenia GA4 wymagają testu na zatwierdzonym środowisku z rzeczywistym tagiem.
-4. Po uruchomieniu trzeba potwierdzić 301 na poziomie HTTP, nie tylko zawartość pliku.
+1. Merytoryczna akceptacja przypisania zdjęć do konkretnych realizacji.
+2. Rzeczywisty test EmailJS po ustawieniu zatwierdzonych wartości produkcyjnych.
+3. Konfiguracja i test kontenera GTM, GA4, Google Ads i Meta.
+4. Potwierdzenie przekierowań jako odpowiedzi HTTP 301 na docelowym hostingu.
+5. Wdrożenie produkcyjne, domena i Search Console po osobnej akceptacji.
 
 ## Ocena gotowości
 
-Kod i treści są gotowe do kontrolowanego staging review. Produkcyjne uruchomienie wymaga osobnej decyzji, konfiguracji EmailJS, potwierdzenia hostingu i przejścia checklisty w `docs/PRODUCTION_LAUNCH_CHECKLIST.md`.
+Kod, treści, architektura, SEO, zdjęcia i automatyczne QA są gotowe do review stagingowego. Start produkcyjny wymaga wykonania checklisty zewnętrznej i osobnej decyzji właściciela.

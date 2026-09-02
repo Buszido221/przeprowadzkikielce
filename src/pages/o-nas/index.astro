@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import SubpageHero from '../../components/SubpageHero.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
+import SafeImage from '../../components/SafeImage.astro';
 import { site } from '../../data/site';
 import { oNasPage as page } from '../../data/services';
 
@@ -83,7 +84,7 @@ const jsonLd = {
           <SectionHeading label={page.local.eyebrow} title={page.local.heading} description={page.local.text} />
         </div>
         <div class="split-section__media">
-          <img src={page.local.image} alt={page.local.imageAlt} width="800" height="600" loading="lazy" decoding="async" class="section-img" />
+          <SafeImage src={page.local.image} alt={page.local.imageAlt} width="800" height="600" loading="lazy" decoding="async" class="section-img" />
         </div>
       </div>
     </div>

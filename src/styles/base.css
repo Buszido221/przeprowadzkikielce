@@ -419,6 +419,31 @@ strong {
   border-color: var(--color-red);
 }
 
+/* === Temporary media fallback === */
+.media-placeholder {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 12rem;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(185, 28, 28, 0.08), transparent 55%),
+    var(--color-neutral-100, #f3f4f6);
+  border: 1px solid var(--color-neutral-200, #e5e7eb);
+  color: var(--color-neutral-600, #52525b);
+}
+
+.media-placeholder__label {
+  max-width: 16rem;
+  padding: 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 /* === Cookie Consent Banner === */
 .cookie-consent {
   position: fixed;

@@ -4,6 +4,7 @@ import SubpageHero from '../../components/SubpageHero.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import LeadForm from '../../components/forms/LeadForm.astro';
 import MobileStickyCta from '../../components/MobileStickyCta.astro';
+import SafeImage from '../../components/SafeImage.astro';
 import { site } from '../../data/site';
 import { transportSpecPage as page } from '../../data/services';
 
@@ -83,7 +84,7 @@ const jsonLd = {
         {page.services.items.map((item) => (
           <a href={item.href} class="service-card">
             <div class="service-card__media">
-              <img src={item.image} alt={item.alt} width="600" height="400" loading="lazy" decoding="async" />
+              <SafeImage src={item.image} alt={item.alt} width="600" height="400" loading="lazy" decoding="async" />
             </div>
             <div class="service-card__body">
               <h3 class="service-card__title">{item.title}</h3>
@@ -123,7 +124,7 @@ const jsonLd = {
       <div class="photo-grid photo-grid--3">
         {page.gallery.items.map((photo) => (
           <div class="photo-grid__item">
-            <img src={photo.src} alt={photo.alt} width="600" height="450" loading="lazy" decoding="async" />
+            <SafeImage src={photo.src} alt={photo.alt} width="600" height="450" loading="lazy" decoding="async" />
           </div>
         ))}
       </div>

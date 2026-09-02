@@ -1,5 +1,6 @@
 ---
 import Breadcrumbs from './Breadcrumbs.astro';
+import SafeImage from './SafeImage.astro';
 import { site } from '../data/site';
 
 interface BreadcrumbItem {
@@ -52,7 +53,7 @@ const {
       {note && <p class="service-hero__note">{note}</p>}
     </div>
     <div class="service-hero__image">
-      <img
+      <SafeImage
         src={heroImage}
         alt={heroAlt}
         width="960"

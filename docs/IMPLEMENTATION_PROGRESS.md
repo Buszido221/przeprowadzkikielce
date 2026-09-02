@@ -1,6 +1,6 @@
 # Dziennik wdrożenia przebudowy WHM
 
-Aktualizacja: 31 sierpnia 2026
+Aktualizacja: 2 września 2026
 
 | Etap | Status | Commit / dowód |
 |---|---|---|
@@ -15,6 +15,7 @@ Aktualizacja: 31 sierpnia 2026
 | I. SEO i jakość | zakończony | wspólny rejestr tras + finalny QA |
 | J. Pełne QA | zakończony | `docs/QA_REPORT.md` |
 | K. Pakiet uruchomieniowy | zakończony | dokumenty w `docs/` |
+| L. Integracja nowych zdjęć i aktualnego GitHub | zakończony | baza `8007f8f`; 65 assetów; `SafeImage`; pełne QA 28 tras w 2 viewportach |
 
 ## Stan końcowy
 
@@ -25,14 +26,15 @@ Aktualizacja: 31 sierpnia 2026
 - Aktywne pliki tras `/lp/` zostały usunięte po migracji treści. Każdy historyczny adres ma precyzyjne 301 w `public/_redirects`.
 - Magazyny są opisane jako gotowe, częściowo zajęte, ogrzewane boksy od 2 do 9 m².
 - Staging domyślnie renderuje `noindex, nofollow, noarchive` i nie ładuje kodu Google.
+- Aktualny zestaw 65 zdjęć i logo z `8007f8f` jest zachowany; wszystkie aktywne odwołania graficzne mają istniejący plik.
 
 ## Potwierdzone testy
 
-- Build staging zakończony powodzeniem: 22 strony HTML (w tym 404), bez aktywnego katalogu `/lp/`.
+- Build staging zakończony powodzeniem: 29 stron HTML (w tym 404), bez aktywnego katalogu `/lp/`.
 - Każda właściwa trasa ma dokładnie jeden H1, jeden canonical i stagingowe robots.
 - Brak odwołań do Google/GA4 na stagingu.
 - Brak niedziałających lokalnych linków i obrazów w buildzie.
-- Kluczowe strony B2C i B2B sprawdzone w przeglądarce na desktopie i mobile; brak poziomego scrolla.
+- Wszystkie 28 publicznych tras sprawdzone w przeglądarce na desktopie 1440 px i mobile 390 px; brak poziomego scrolla i błędów konsoli.
 - Menu mobilne otwiera się, zamyka Escape i oddaje fokus przyciskowi.
 - Walidacja formularza ustawia komunikaty oraz fokus na pierwszym błędzie; pole firma jest opcjonalne tylko w kontekście B2B.
 
@@ -40,3 +42,4 @@ Aktualizacja: 31 sierpnia 2026
 
 - Brak zmiennych EmailJS uniemożliwia test rzeczywistej wysyłki. Formularz pokazuje bezpieczny komunikat z numerem telefonu i nie wysyła danych bez konfiguracji.
 - Nie wdrożono serwisu produkcyjnie i nie zmieniono domeny, Google Ads, Search Console, GA4, EmailJS ani hostingu.
+- Przypisanie zdjęć do nazwanych realizacji wymaga końcowego potwierdzenia merytorycznego właściciela.

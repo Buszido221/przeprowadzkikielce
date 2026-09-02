@@ -1,30 +1,32 @@
-# Mapa wymiany zdjęć — WHM Przeprowadzki
+# Mapa zdjęć — WHM Przeprowadzki
 
-## Status: Wymaga weryfikacji przypisania
+Aktualizacja: 2 września 2026
 
-Zdjęcia na stronie pochodzą z realizacji WHM, ale przypisanie konkretnego zdjęcia do konkretnej realizacji wymaga potwierdzenia. Poniższa tabela określa, które zdjęcia są aktualnie używane i gdzie.
+## Stan bieżący
 
-## Strona główna — wyróżnione realizacje
+Commit `668969b` usunął stare fotografie, a aktualny commit bazowy `8007f8f` dodał przygotowany zestaw 65 plików graficznych, w tym logo WHM. Build stagingowy generuje 182 elementy `img`; wszystkie wskazane pliki istnieją i żadna strona nie korzysta z pola zastępczego.
 
-| Realizacja | Aktualne zdjęcie | Status przypisania |
-|---|---|---|
-| Relokacja Prokuratur Kielce | /images/institution-moving/przeprowadzki-instytucji-4.webp | Wymaga potwierdzenia |
-| Relokacja Teatru Żeromskiego | /images/institution-moving/przepriedzki-instytucji-2.webp | Wymaga potwierdzenia |
-| Transport zabytkowego obrazu | /images/transport-gabarytow/transport-gabarytow-kielce-6.webp | Wymaga potwierdzenia |
+Komponent `SafeImage.astro` pozostaje zabezpieczeniem na przyszłość: sprawdza plik podczas builda, zachowuje proporcje przy jego braku i nie wysyła błędnego requestu. Brakujące obrazy nie trafiają też do Open Graph, Twitter Card ani pola `image` w danych strukturalnych.
 
-## Strona główna — Standard WHM (sprzęt)
+## Aktywne grupy materiałów
 
-| Moduł | Aktualne zdjęcie | Status przypisania |
-|---|---|---|
-| Dedykowane pokrowce | /images/packing-services/pakowanie-przeprowadzki-kielce-1.webp | Wymaga potwierdzenia |
-| Koce i gumy mocujące | /images/packing-services/pakowanie-przeprowadzki-kielce-2.webp | Wymaga potwierdzenia |
-| Pasy transportowe | /images/furniture-assembly/montaz-demontaz-mebli-1.webp | Wymaga potwierdzenia |
-| Uprzęże transportowe | /images/transport-gabarytow/transport-gabarytow-kielce-1.webp | Wymaga potwierdzenia |
-| Schodołazy elektryczne | /images/transport-gabarytow/transport-gabarytow-kielce-5.webp | Wymaga potwierdzenia |
-| Wózki i pojemniki | /images/moving-boxes/kartony-do-przeprowadzki-3.webp | Wymaga potwierdzenia |
-| Zabudowa meblarska | /images/kielce-moving/przeprowadzki-kielce-3.webp | Wymaga potwierdzenia |
+| Zastosowanie | Katalog |
+|---|---|
+| Logo i hero | `/images/LOGO_WHM.svg`, `/images/hero/` |
+| Przeprowadzki domów i mieszkań | `/images/home-moving/`, `/images/kielce-moving/` |
+| Firmy i instytucje | `/images/office-moving/`, `/images/institution-moving/` |
+| Pakowanie, meble i materiały | `/images/packing-services/`, `/images/furniture-assembly/`, `/images/moving-boxes/`, `/images/shop-materials/` |
+| Instrumenty i ładunki specjalne | `/images/transport-pianin-i-fortepianow/`, `/images/transport-gabarytow/`, `/images/transport-pieca/`, `/images/transport-sejfu/` |
+| Materiały pomocnicze | `/images/guides/`, `/images/testimonials/` |
 
-## Uwagi
+## Przypisania wymagające akceptacji merytorycznej
 
-- Alty zdjęć w wyróżnionych realizacjach zostały zmienione na neutralne ("Zdjęcie z realizacji WHM Przeprowadzki")
-- Po potwierdzeniu przypisania można przywrócić konkretne alty opisujące dany transport
+| Miejsce | Plik |
+|---|---|
+| Relokacja Prokuratur Kielce | `/images/institution-moving/przeprowadzki-instytucji-4.webp` |
+| Relokacja Teatru Żeromskiego | `/images/institution-moving/przeprowadzki-instytucji-2.webp` |
+| Transport zabytkowego obrazu | `/images/transport-gabarytow/transport-gabarytow-kielce-6.webp` |
+
+Przed uruchomieniem produkcji właściciel powinien potwierdzić, że powyższe fotografie pokazują wskazane realizacje i mają zgodę na publikację. Pełne przypisanie ścieżek znajduje się w `src/data/home.ts`, `src/data/services.ts`, `src/data/realizacje.ts` oraz `src/data/assets.ts`.
+
+Po każdej zmianie materiałów należy uruchomić `npm run build` oraz `npm run verify:site` i sprawdzić kadry na szerokości 390 px oraz 1440 px.

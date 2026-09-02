@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import MobileStickyCta from '../../components/MobileStickyCta.astro';
+import SafeImage from '../../components/SafeImage.astro';
 import { site } from '../../data/site';
 import { getRoute, serviceNavigation } from '../../data/routes';
 
@@ -30,12 +31,12 @@ const schema = {
     <div class="container">
       <SectionHeading label="Oferta B2C" title="Wybierz zakres, który najlepiej opisuje zadanie" />
       <div class="services-grid services-grid--3col">
-        {cardData.map((card) => <a class="service-card" href={card.slug}><div class="service-card__media"><img src={card.image} alt="" role="presentation" width="600" height="400" loading="lazy" decoding="async" /></div><div class="service-card__body"><h2 class="service-card__title">{card.route.name}</h2><p class="service-card__desc">{card.text}</p><span class="service-card__link">Poznaj zakres</span></div></a>)}
+        {cardData.map((card) => <a class="service-card" href={card.slug}><div class="service-card__media"><SafeImage src={card.image} alt="" role="presentation" width={600} height={400} loading="lazy" decoding="async" /></div><div class="service-card__body"><h2 class="service-card__title">{card.route.name}</h2><p class="service-card__desc">{card.text}</p><span class="service-card__link">Poznaj zakres</span></div></a>)}
       </div>
     </div>
   </section>
   <section class="section">
-    <div class="container"><div class="split-section"><div class="split-section__content"><SectionHeading label="Firmy i instytucje" title="Relokacje wymagające planu, etapów i ciągłości działania" description="Dla organizacji przygotowaliśmy osobną ścieżkę obejmującą bezpłatne oględziny, harmonogram, archiwa, sprzęt specjalistyczny i magazynowanie pomostowe." /><div class="section-cta"><a href="/dla-firm/" class="btn btn--primary">Przejdź do oferty B2B</a></div></div><div class="split-section__media"><img src="/images/institution-moving/przeprowadzki-instytucji-2.webp" alt="Zespół WHM podczas relokacji instytucji" width="800" height="600" loading="lazy" decoding="async" class="section-img" /></div></div></div>
+    <div class="container"><div class="split-section"><div class="split-section__content"><SectionHeading label="Firmy i instytucje" title="Relokacje wymagające planu, etapów i ciągłości działania" description="Dla organizacji przygotowaliśmy osobną ścieżkę obejmującą bezpłatne oględziny, harmonogram, archiwa, sprzęt specjalistyczny i magazynowanie pomostowe." /><div class="section-cta"><a href="/dla-firm/" class="btn btn--primary">Przejdź do oferty B2B</a></div></div><div class="split-section__media"><SafeImage src="/images/institution-moving/przeprowadzki-instytucji-2.webp" alt="Zespół WHM podczas relokacji instytucji" width={800} height={600} loading="lazy" decoding="async" class="section-img" /></div></div></div>
   </section>
   <MobileStickyCta formHref="/kontakt/#formularz" />
 </Layout>

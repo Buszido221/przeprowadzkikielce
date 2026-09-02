@@ -1,0 +1,61 @@
+---
+import { publicAssetExists } from '../lib/public-assets';
+
+interface Props {
+  src: string;
+  alt?: string;
+  width: number | string;
+  height: number | string;
+  class?: string;
+  loading?: 'eager' | 'lazy';
+  decoding?: 'sync' | 'async' | 'auto';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  role?: string;
+  placeholderLabel?: string;
+  [key: `data-${string}`]: string | number | undefined;
+}
+
+const {
+  src,
+  alt = '',
+  width,
+  height,
+  class: className,
+  loading,
+  decoding = 'async',
+  fetchpriority,
+  role,
+  placeholderLabel = 'Zdjęcie w przygotowaniu',
+  ...attributes
+} = Astro.props;
+
+const available = publicAssetExists(src);
+const decorative = role === 'presentation' || alt === '';
+const aspectRatio = `${width} / ${height}`;
+---
+
+{available ? (
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    class={className}
+    loading={loading}
+    decoding={decoding}
+    fetchpriority={fetchpriority}
+    role={role}
+    {...attributes}
+  />
+) : (
+  <div
+    class:list={['media-placeholder', className]}
+    style={`aspect-ratio: ${aspectRatio}`}
+    role={decorative ? 'presentation' : 'img'}
+    aria-label={decorative ? undefined : alt}
+    data-planned-image={src}
+    {...attributes}
+  >
+    {!decorative && <span class="media-placeholder__label">{placeholderLabel}</span>}
+  </div>
+)}

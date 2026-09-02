@@ -1,5 +1,6 @@
 ---
 import Breadcrumbs from './Breadcrumbs.astro';
+import SafeImage from './SafeImage.astro';
 import { site } from '../data/site';
 
 interface BreadcrumbItem {
@@ -46,7 +47,7 @@ const useCustom = !!heroImage;
 <section class="subpage-hero" aria-label={heading}>
   <div class="subpage-hero__bg">
     {useCustom ? (
-      <img
+      <SafeImage
         src={heroImage}
         alt=""
         role="presentation"
@@ -58,13 +59,13 @@ const useCustom = !!heroImage;
       />
     ) : (
       defaultHeroImages.map((src, i) => (
-        <img
+        <SafeImage
           src={src}
           alt=""
           role="presentation"
           width="1920"
           height="1080"
-          class:list={['subpage-hero__img', { 'subpage-hero__img--active': i === 0 }]}
+          class={`subpage-hero__img${i === 0 ? ' subpage-hero__img--active' : ''}`}
           data-slide-index={i}
           fetchpriority={i === 0 ? 'high' : undefined}
           loading={i === 0 ? undefined : 'lazy'}

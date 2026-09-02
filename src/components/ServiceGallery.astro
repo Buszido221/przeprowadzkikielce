@@ -1,5 +1,6 @@
 ---
 import SectionHeading from './SectionHeading.astro';
+import SafeImage from './SafeImage.astro';
 
 interface GalleryImage {
   src: string;
@@ -21,7 +22,7 @@ const { heading, eyebrow, images } = Astro.props;
     <div class="service-gallery__scroll">
       {images.map((img) => (
         <figure class="service-gallery__figure">
-          <img
+          <SafeImage
             src={img.src}
             alt={img.alt}
             width="480"

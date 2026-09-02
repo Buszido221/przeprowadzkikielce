@@ -4,6 +4,7 @@ import SubpageHero from '../../components/SubpageHero.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import LeadForm from '../../components/forms/LeadForm.astro';
 import MobileStickyCta from '../../components/MobileStickyCta.astro';
+import SafeImage from '../../components/SafeImage.astro';
 import { site } from '../../data/site';
 import { pakowanePage as page } from '../../data/services';
 
@@ -87,7 +88,7 @@ const jsonLd = {
           </div>
         </div>
         <div class="split-section__media">
-          <img src={page.materials.image} alt={page.materials.imageAlt} width="800" height="600" loading="lazy" decoding="async" class="section-img" />
+          <SafeImage src={page.materials.image} alt={page.materials.imageAlt} width="800" height="600" loading="lazy" decoding="async" class="section-img" />
         </div>
       </div>
     </div>
@@ -112,7 +113,7 @@ const jsonLd = {
           </div>
         </div>
         <div class="split-section__media">
-          <img src={page.process.image} alt={page.process.imageAlt} width="800" height="600" loading="lazy" decoding="async" class="section-img" />
+          <SafeImage src={page.process.image} alt={page.process.imageAlt} width="800" height="600" loading="lazy" decoding="async" class="section-img" />
         </div>
       </div>
     </div>
@@ -138,7 +139,7 @@ const jsonLd = {
           </div>
         </div>
         <div class="split-section__media">
-          <img src={page.selfVsWhm.image} alt={page.selfVsWhm.imageAlt} width="800" height="600" loading="lazy" decoding="async" class="section-img" />
+          <SafeImage src={page.selfVsWhm.image} alt={page.selfVsWhm.imageAlt} width="800" height="600" loading="lazy" decoding="async" class="section-img" />
         </div>
       </div>
     </div>
@@ -150,7 +151,7 @@ const jsonLd = {
       <SectionHeading label={page.shop.eyebrow} title={page.shop.heading} />
       <div class="shop-callout">
         <div class="shop-callout__media">
-          <img src={page.shop.image} alt={page.shop.imageAlt} width="600" height="400" loading="lazy" decoding="async" />
+          <SafeImage src={page.shop.image} alt={page.shop.imageAlt} width="600" height="400" loading="lazy" decoding="async" />
         </div>
         <div class="shop-callout__body">
           <p>{page.shop.text}</p>

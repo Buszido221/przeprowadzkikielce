@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import MobileStickyCta from '../../components/MobileStickyCta.astro';
+import SafeImage from '../../components/SafeImage.astro';
 import { site } from '../../data/site';
 import { getRoute } from '../../data/routes';
 import { caseStudies, caseStudyCategories } from '../../data/realizacje';
@@ -65,7 +66,7 @@ const technicalMentions = [
         {caseStudies.map((cs) => (
           <a class="realizacje-hub__card" href={cs.slug} data-category={cs.category}>
             <div class="realizacje-hub__card-media">
-              <img src={cs.heroImage} alt={cs.heroAlt} width="600" height="400" loading="lazy" decoding="async" />
+              <SafeImage src={cs.heroImage} alt={cs.heroAlt} width="600" height="400" loading="lazy" decoding="async" />
             </div>
             <div class="realizacje-hub__card-body">
               <span class="section-heading__label">{cs.category}</span>

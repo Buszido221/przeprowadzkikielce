@@ -4,6 +4,7 @@ import ServiceHero from '../../components/ServiceHero.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import LeadForm from '../../components/forms/LeadForm.astro';
 import MobileStickyCta from '../../components/MobileStickyCta.astro';
+import SafeImage from '../../components/SafeImage.astro';
 import { site } from '../../data/site';
 import { getRoute } from '../../data/routes';
 
@@ -101,7 +102,7 @@ const schema = {
             <li class="check-list__item">magazynowanie pomostowe, jeśli terminy lokalizacji się nie pokrywają.</li>
           </ul>
         </div>
-        <div class="split-section__media"><img src="/images/institution-moving/przeprowadzki-instytucji-3.webp" alt="Oznaczone pojemniki i wyposażenie podczas relokacji instytucji" width="800" height="600" loading="lazy" decoding="async" class="section-img" /></div>
+        <div class="split-section__media"><SafeImage src="/images/institution-moving/przeprowadzki-instytucji-3.webp" alt="Oznaczone pojemniki i wyposażenie podczas relokacji instytucji" width="800" height="600" loading="lazy" decoding="async" class="section-img" /></div>
       </div>
     </div>
   </section>
