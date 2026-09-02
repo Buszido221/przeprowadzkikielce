@@ -867,8 +867,7 @@ main {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   margin-bottom: var(--space-3);
-  -webkit-text-stroke: 0.35px #000;
-  text-shadow: 0 1px 2px #000;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .hero__heading {
@@ -876,8 +875,7 @@ main {
   line-height: 1.1;
   margin-bottom: var(--space-5);
   color: #fff;
-  -webkit-text-stroke: 0.55px #000;
-  text-shadow: 0 1px 2px #000;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .hero__lead {
@@ -885,8 +883,7 @@ main {
   line-height: var(--leading-relaxed);
   color: #fff;
   margin-bottom: var(--space-6);
-  -webkit-text-stroke: 0.35px #000;
-  text-shadow: 0 1px 2px #000;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .hero__actions {
@@ -900,8 +897,7 @@ main {
 .hero__note {
   font-size: var(--text-sm);
   color: #fff;
-  -webkit-text-stroke: 0.35px #000;
-  text-shadow: 0 1px 2px #000;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 /* Trust facts - bottom bar inside hero */
@@ -1529,8 +1525,7 @@ main {
 .subpage-hero__breadcrumbs .breadcrumbs__link,
 .subpage-hero__breadcrumbs .breadcrumbs__current {
   color: #fff;
-  -webkit-text-stroke: 0.3px #000;
-  text-shadow: 0 1px 2px #000;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .subpage-hero__breadcrumbs .breadcrumbs__link:hover {
@@ -1551,8 +1546,7 @@ main {
   line-height: 1.15;
   color: #fff;
   margin-bottom: var(--space-4);
-  -webkit-text-stroke: 0.55px #000;
-  text-shadow: 0 1px 2px #000;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .subpage-hero__lead {
@@ -1560,8 +1554,7 @@ main {
   line-height: var(--leading-relaxed);
   color: #fff;
   margin-bottom: var(--space-6);
-  -webkit-text-stroke: 0.35px #000;
-  text-shadow: 0 1px 2px #000;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .subpage-hero__actions {
@@ -1575,8 +1568,7 @@ main {
   margin-top: var(--space-4);
   font-size: var(--text-sm);
   color: #fff;
-  -webkit-text-stroke: 0.35px #000;
-  text-shadow: 0 1px 2px #000;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 /* ===================================================
@@ -2193,7 +2185,7 @@ main {
   line-height: 1.1;
   color: #fff;
   margin-bottom: var(--space-5);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6), 0 0 12px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
 .text-hero__lead {
@@ -2201,7 +2193,7 @@ main {
   line-height: var(--leading-relaxed);
   color: rgba(255, 255, 255, 0.75);
   margin-bottom: var(--space-6);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6), 0 0 8px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 .text-hero__status {
