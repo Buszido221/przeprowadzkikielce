@@ -1,4 +1,4 @@
-import { getCampaignFromStorage, captureCampaignParams, CAMPAIGN_KEYS } from '../lib/campaign';
+import { getCampaignForForm, captureCampaignParams } from '../lib/campaign';
 
 function validatePhone(val: string): boolean {
   const cleaned = val.replace(/[\s\-()]/g, '');
@@ -13,9 +13,10 @@ function validateEmail(val: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
 }
 
-function validateForm(form: HTMLFormElement): boolean {
+function validateForm(form: HTMLFormElement): { valid: boolean; errorType: string } {
   let valid = true;
   let firstError: HTMLElement | null = null;
+  let errorType = '';
 
   form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[required]').forEach((field) => {
     const errorEl = form.querySelector(`[data-error-for="${field.name}"]`) as HTMLElement;
@@ -32,6 +33,7 @@ function validateForm(form: HTMLFormElement): boolean {
     field.setAttribute('aria-invalid', errorMsg ? 'true' : 'false');
     if (errorMsg && !firstError) {
       firstError = field;
+      errorType = field.name;
       valid = false;
     }
   });
@@ -52,6 +54,7 @@ function validateForm(form: HTMLFormElement): boolean {
     phoneInput.setAttribute('aria-invalid', 'true');
     emailInput.setAttribute('aria-invalid', 'true');
     if (!firstError) firstError = phoneInput;
+    errorType = 'contact_missing';
     valid = false;
   } else {
     if (phoneVal && !validatePhone(phoneVal)) {
@@ -59,6 +62,7 @@ function validateForm(form: HTMLFormElement): boolean {
       phoneInput.classList.add('is-error');
       phoneInput.setAttribute('aria-invalid', 'true');
       if (!firstError) firstError = phoneInput;
+      errorType = 'phone_invalid';
       valid = false;
     } else {
       if (phoneError) phoneError.textContent = '';
@@ -70,6 +74,7 @@ function validateForm(form: HTMLFormElement): boolean {
       emailInput.classList.add('is-error');
       emailInput.setAttribute('aria-invalid', 'true');
       if (!firstError) firstError = emailInput;
+      errorType = 'email_invalid';
       valid = false;
     } else {
       if (emailError) emailError.textContent = '';
@@ -79,7 +84,14 @@ function validateForm(form: HTMLFormElement): boolean {
   }
 
   if (firstError) (firstError as HTMLElement).focus();
-  return valid;
+  return { valid, errorType };
+}
+
+function generateLeadId(): string {
+  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+    return crypto.randomUUID();
+  }
+  return 'lead-' + Date.now() + '-' + Math.random().toString(36).slice(2, 11);
 }
 
 export function initLeadForms(): void {
@@ -99,6 +111,7 @@ export function initLeadForms(): void {
     const serviceType = form.dataset.serviceType || '';
     const formLocation = form.dataset.location || '';
     const formContext = form.dataset.context || 'consumer';
+    const leadContext = formContext === 'business' ? 'b2b' : 'b2c';
 
     const statusEl = form.querySelector('.lead-form__status') as HTMLElement;
     const submitBtn = form.querySelector('.lead-form__submit') as HTMLButtonElement;
@@ -106,7 +119,7 @@ export function initLeadForms(): void {
     const submitLabel = submitBtn?.dataset.label || 'Wyślij zapytanie';
 
     let formStarted = false;
-    const renderTime = Date.now();
+    let submitted = false;
 
     const pageUrlInput = form.querySelector('input[name="page_url"]') as HTMLInputElement;
     if (pageUrlInput) pageUrlInput.value = window.location.href;
@@ -120,33 +133,36 @@ export function initLeadForms(): void {
     const submittedReadableInput = form.querySelector('input[name="submitted_at_readable"]') as HTMLInputElement;
 
     captureCampaignParams();
-    const campaign = getCampaignFromStorage();
-    CAMPAIGN_KEYS.forEach((f) => {
-      const input = form.querySelector(`input[name="${f}"]`) as HTMLInputElement;
-      if (input && campaign[f]) input.value = campaign[f];
+    const campaignFields = getCampaignForForm();
+    Object.entries(campaignFields).forEach(([key, value]) => {
+      const input = form.querySelector(`input[name="${key}"]`) as HTMLInputElement;
+      if (input) input.value = value;
     });
 
     function trackEvent(eventName: string, params: Record<string, string> = {}): void {
-      const detail = { event: eventName, formId, serviceType, formLocation, formContext, ...params };
+      const detail = { event: eventName, formId, serviceType, formLocation, leadContext, ...params };
       document.dispatchEvent(new CustomEvent('whm:analytics', { detail }));
     }
 
     form.addEventListener('input', () => {
       if (!formStarted) {
         formStarted = true;
-        trackEvent('form_start');
+        trackEvent('lead_form_start');
       }
     });
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+
       if (honeypot && honeypot.value) return;
-      if (submitBtn.disabled) return;
 
-      if (!validateForm(form)) return;
+      if (submitted) return;
 
-      const elapsed = Date.now() - renderTime;
-      if (elapsed < 1500) return;
+      const validation = validateForm(form);
+      if (!validation.valid) {
+        trackEvent('lead_form_validation_error', { errorType: validation.errorType });
+        return;
+      }
 
       if (!configured) {
         statusEl.textContent = 'Formularz nie jest jeszcze podłączony. Zadzwoń: ' + (document.querySelector('[data-phone]')?.getAttribute('data-phone') || '720 719 022') + '.';
@@ -154,11 +170,16 @@ export function initLeadForms(): void {
         return;
       }
 
+      submitted = true;
       submitBtn.disabled = true;
       submitBtn.setAttribute('aria-busy', 'true');
       submitBtn.textContent = 'Wysyłanie...';
       statusEl.textContent = '';
       statusEl.className = 'lead-form__status';
+
+      const leadId = generateLeadId();
+      const leadIdInput = form.querySelector('input[name="lead_id"]') as HTMLInputElement;
+      if (leadIdInput) leadIdInput.value = leadId;
 
       const now = new Date();
       if (submittedAtInput) submittedAtInput.value = now.toISOString();
@@ -172,15 +193,18 @@ export function initLeadForms(): void {
         statusEl.className = 'lead-form__status is-success';
         submitBtn.textContent = 'Wysłano';
 
-        document.dispatchEvent(new CustomEvent('whm:form_success', { detail: { formId, serviceType, formLocation, formContext } }));
+        document.dispatchEvent(new CustomEvent('whm:form_success', {
+          detail: { formId, serviceType, formLocation, leadContext, leadId }
+        }));
       } catch {
         statusEl.textContent = 'Nie udało się wysłać zgłoszenia. Zadzwoń pod numer ' + (document.querySelector('[data-phone]')?.getAttribute('data-phone') || '720 719 022') + ' albo spróbuj ponownie za chwilę.';
         statusEl.className = 'lead-form__status is-error';
+        submitted = false;
         submitBtn.disabled = false;
         submitBtn.removeAttribute('aria-busy');
         submitBtn.textContent = submitLabel;
 
-        trackEvent('form_submit_error', { service_type: serviceType });
+        trackEvent('lead_form_submit_error', { errorType: 'emailjs' });
       }
     });
   });

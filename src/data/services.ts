@@ -1398,16 +1398,16 @@ export const politykaPage = {
       content: 'Masz prawo dostępu do swoich danych, ich poprawiania, usunięcia, ograniczenia przetwarzania oraz wniesienia sprzeciwu. Aby skorzystać z tych praw, skontaktuj się pod adresem e-mail: kontakt@whmprzeprowadzkikielce.pl.',
     },
     {
-      heading: 'Analityka i pliki cookies',
-      content: 'Strona korzysta z Google Analytics 4 do zrozumienia, jak odwiedzający korzystają z serwisu. Skrypt analityczny ładuje się dopiero po wyrażeniu zgody w banerze cookies. Po odrzuceniu analityki analityka nie jest uruchamiana. Użytkownik może zmienić decyzję w dowolnym momencie, korzystając z linku „Ustawienia cookies” w stopce. Dane analityczne są zbierane w celu agregacyjnym i służą do ulepszania treści oraz nawigacji.',
+      heading: 'Analityka, pomiar reklam i pliki cookies',
+      content: 'Strona korzysta z Google Tag Manager do zarządzania skryptami śledzącymi. Działają trzy kategorie plików cookie: niezbędne (zawsze aktywne), analityczne (Google Analytics 4) oraz pomiar reklam (Google Ads, Meta Pixel). Skrypty analityczne i reklamowe ładują się dopiero po udzieleniu odpowiedniej zgody w banerze cookies. Po odrzuceniu zgody skrypty nie są uruchamiane. Użytkownik może zmienić decyzję w dowolnym momencie, korzystając z linku „Ustawienia cookies” w stopce. Dane analityczne są zbierane w celu agregacyjnym i służą do ulepszania treści oraz nawigacji. Pomiar reklam służy do mierzenia skuteczności kampanii reklamowych.',
     },
     {
       heading: 'Dostawcy usług',
-      content: 'W celu świadczenia usług korzystamy z następujących dostawców: Google LLC (Google Analytics 4 - analityka ruchu), EmailJS (przesyłanie formularzy kontaktowych), hosting serwisu. Każdy z dostawców przetwarza dane wyłącznie w zakresie niezbędnym do realizacji usługi.',
+      content: 'W celu świadczenia usług korzystamy z następujących dostawców: Google LLC (Google Tag Manager, Google Analytics 4, Google Ads - analityka i pomiar reklam), Meta Platforms (Meta Pixel - pomiar reklam), EmailJS (przesyłanie formularzy kontaktowych), hosting serwisu. Każdy z dostawców przetwarza dane wyłącznie w zakresie niezbędnym do realizacji usługi.',
     },
     {
       heading: 'Aktualizacje polityki',
-      content: 'Niniejsza polityka może być aktualizowana. Data ostatniej aktualizacji: 16 sierpnia 2026 r.',
+      content: 'Niniejsza polityka może być aktualizowana. Data ostatniej aktualizacji: 2 września 2026 r.',
     },
   ],
 };

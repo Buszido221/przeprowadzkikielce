@@ -21,10 +21,17 @@
       if (!link) return;
 
       var eventName = '';
-      if (link.matches('a[href^="tel:"]')) eventName = 'phone_click';
-          if (link.matches('a[href^="sms:"]')) eventName = 'sms_click';
-      else if (link.matches('a[href^="mailto:"]')) eventName = 'email_click';
-      else if (link.matches('[data-cta-click]')) eventName = 'cta_click';
+      if (link.matches('a[href^="tel:"]')) {
+        eventName = 'phone_click';
+      } else if (link.matches('a[href^="sms:"]')) {
+        eventName = 'sms_click';
+      } else if (link.matches('a[href^="mailto:"]')) {
+        eventName = 'email_click';
+      } else if (link.matches('a[href*="whmshop.pl"]')) {
+        eventName = 'whm_shop_click';
+      } else if (link.matches('[data-cta-click]')) {
+        eventName = 'cta_click';
+      }
       if (!eventName) return;
 
       var clickLocation = locationFor(link);
