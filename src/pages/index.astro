@@ -26,8 +26,8 @@ import {
   robots="index, follow"
 >
   <link slot="head" rel="canonical" href={site.domain} />
-  <link rel="preload" href="/fonts/manrope-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/fonts/manrope-latin-ext-700-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link slot="head" rel="preload" href="/fonts/manrope-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link slot="head" rel="preload" href="/fonts/manrope-latin-ext-700-normal.woff2" as="font" type="font/woff2" crossorigin />
   <script slot="head" type="application/ld+json" set:html={JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'MovingCompany',
@@ -84,7 +84,7 @@ import {
         <p class="hero__lead">{hero.lead}</p>
         <div class="hero__actions">
           <a href={`tel:${site.phoneRaw}`} class="btn btn--primary btn--lg" data-cta-click data-cta-location="home-hero">Zadzwoń: {site.phone}</a>
-          <a href="/wycena/" class="btn btn--hero-secondary btn--lg" data-cta-click data-cta-location="home-hero">Poproś o wycenę</a>
+          <a href="/kontakt/#formularz" class="btn btn--hero-secondary btn--lg" data-cta-click data-cta-location="home-hero">Poproś o wycenę</a>
         </div>
         <p class="hero__note">{hero.contactNote}</p>
       </div>
@@ -165,6 +165,7 @@ import {
         label={servicesSection.eyebrow}
         title={servicesSection.heading}
         description={servicesSection.intro}
+        alignment="center"
       />
       <div class="services-grid">
         {servicesSection.items.map((item) => (
@@ -200,6 +201,7 @@ import {
         label={standardSection.eyebrow}
         title={standardSection.heading}
         description={standardSection.text}
+        alignment="center"
       />
       <div class="equipment-grid">
         {standardSection.equipmentModules.map((mod) => (
@@ -227,12 +229,13 @@ import {
         label="Prawdziwe realizacje"
         title="Nie pokazujemy zdjęć stockowych. Pokazujemy swoją pracę."
         description="Każde zdjęcie na stronie pochodzi z naszych realizacji. Zobaczysz prawdziwy sprzęt, prawdziwe zabezpieczenia i efekty prawdziwej pracy."
+        alignment="center"
       />
       <div class="featured-realizations">
         {featuredRealizations.map((real) => (
           <a class="featured-realization" href={real.href}>
             <div class="featured-realization__media">
-              <img src={real.image} alt={real.title} width="600" height="400" loading="lazy" decoding="async" />
+              <img src={real.image} alt="Zdjęcie z realizacji WHM Przeprowadzki" width="600" height="400" loading="lazy" decoding="async" />
             </div>
             <div class="featured-realization__body">
               <span class="featured-realization__label">{real.label}</span>
@@ -320,14 +323,8 @@ import {
         <div class="testimonials-static__grid">
           {testimonials.map((t) => (
             <div class="testimonial-static">
-              <div class="testimonial-static__stars" aria-label="Ocena 5 na 5">
-                {[...Array(5)].map(() => (
-                  <svg class="testimonial-static__star" viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118l-3.37-2.448a1 1 0 00-1.176 0l-3.37 2.448c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.063 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.286-3.957z" />
-                  </svg>
-                ))}
-              </div>
               <blockquote class="testimonial-static__text">{t.text}</blockquote>
+              <figcaption class="testimonial-static__author">— {t.author}{t.source ? `, ${t.source}` : ''}</figcaption>
               <p class="testimonial-static__author">
                 {t.author}
                 {t.source && <span class="testimonial-static__source"> · {t.source}</span>}
@@ -350,6 +347,7 @@ import {
       <SectionHeading
         label={ecosystemSection.eyebrow}
         title={ecosystemSection.heading}
+        alignment="center"
       />
       <div class="ecosystem-grid">
         <div class="ecosystem-card ecosystem-card--storage">
@@ -402,6 +400,7 @@ import {
       <SectionHeading
         label={processSection.eyebrow}
         title={processSection.heading}
+        alignment="center"
       />
       <div class="process-steps">
         {processSection.steps.map((step) => (
@@ -496,7 +495,7 @@ import {
         <p class="final-cta__text">{finalCta.text}</p>
         <div class="final-cta__actions">
           <a href={`tel:${site.phoneRaw}`} class="btn btn--primary btn--lg" data-cta-click data-cta-location="home-final">Zadzwoń: {site.phone}</a>
-          <a href="/wycena/" class="btn btn--secondary btn--lg" data-cta-click data-cta-location="home-final">Poproś o wycenę</a>
+          <a href="/kontakt/#formularz" class="btn btn--secondary btn--lg" data-cta-click data-cta-location="home-final">Poproś o wycenę</a>
           <a href={`sms:${site.phoneRaw}`} class="btn btn--secondary btn--lg">Wyślij SMS</a>
         </div>
         <p class="final-cta__hours">
@@ -505,5 +504,5 @@ import {
       </div>
     </div>
   </section>
-  <MobileStickyCta formHref="/wycena/" />
+  <MobileStickyCta formHref="/kontakt/#formularz" />
 </Layout>

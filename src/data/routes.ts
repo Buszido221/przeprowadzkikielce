@@ -228,20 +228,12 @@ export const publicRoutes: Route[] = [
     description: 'Materiały używane przy przeprowadzkach: kartony, pokrowce, koce i akcesoria do zabezpieczania mienia.',
   },
   {
-    name: 'Wycena',
-    slug: '/wycena/',
-    category: 'contact',
-    robots: 'noindex, follow',
-    title: 'Wycena przeprowadzki | WHM Kielce',
-    description: 'Opisz przeprowadzkę lub transport. Wystarczy telefon albo e-mail i krótki opis zlecenia.',
-  },
-  {
     name: 'Kontakt',
     slug: '/kontakt/',
     category: 'contact',
     robots: 'index, follow',
-    title: 'Kontakt | WHM Przeprowadzki Kielce',
-    description: 'Telefon, e-mail, godziny kontaktu i adres operacyjny WHM Przeprowadzki w Masłowie Pierwszym.',
+    title: 'Kontakt i wycena | WHM Przeprowadzki Kielce',
+    description: 'Telefon, SMS, e-mail, godziny kontaktu, adres operacyjny WHM Przeprowadzki w Masłowie Pierwszym oraz formularz wyceny przeprowadzki.',
   },
   {
     name: 'Polityka prywatności',

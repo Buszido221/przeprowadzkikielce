@@ -149,7 +149,7 @@ export function initLeadForms(): void {
       if (elapsed < 1500) return;
 
       if (!configured) {
-        statusEl.textContent = 'Formularz nie jest jeszcze podłączony. Zadzwoń: 720 719 022.';
+        statusEl.textContent = 'Formularz nie jest jeszcze podłączony. Zadzwoń: ' + (document.querySelector('[data-phone]')?.getAttribute('data-phone') || '720 719 022') + '.';
         statusEl.className = 'lead-form__status is-error';
         return;
       }
@@ -174,7 +174,7 @@ export function initLeadForms(): void {
 
         document.dispatchEvent(new CustomEvent('whm:form_success', { detail: { formId, serviceType, formLocation, formContext } }));
       } catch {
-        statusEl.textContent = 'Nie udało się wysłać zgłoszenia. Zadzwoń pod numer 720 719 022 albo spróbuj ponownie za chwilę.';
+        statusEl.textContent = 'Nie udało się wysłać zgłoszenia. Zadzwoń pod numer ' + (document.querySelector('[data-phone]')?.getAttribute('data-phone') || '720 719 022') + ' albo spróbuj ponownie za chwilę.';
         statusEl.className = 'lead-form__status is-error';
         submitBtn.disabled = false;
         submitBtn.removeAttribute('aria-busy');

@@ -58,7 +58,7 @@ const jsonLd = {
     ctaLabel={`Zadzwoń: ${site.phone}`}
     ctaHref={`tel:${site.phoneRaw}`}
     ctaSecondaryLabel="Opisz transport"
-    ctaSecondaryHref="#wycena"
+    ctaSecondaryHref="#formularz"
     note={page.hero.note}
     heroImage={page.hero.image}
   />
@@ -148,7 +148,7 @@ const jsonLd = {
     </div>
   </section>
 
-  <section id="wycena" class="form-section" aria-label="Formularz wyceny transportu specjalistycznego">
+  <section id="formularz" class="form-section" aria-label="Formularz wyceny transportu specjalistycznego">
     <div class="container">
       <SectionHeading title="Opisz przedmiot i warunki dostępu" description="Podaj gabaryty, masę, lokalizacje i utrudnienia. Zdjęcia oraz dokumentację możesz dosłać po zgłoszeniu." />
       <div class="form-section__grid">
@@ -187,7 +187,7 @@ const jsonLd = {
         <h2 class="final-cta__heading">{page.finalCta.heading}</h2>
         <p class="final-cta__text">{page.finalCta.text}</p>
         <div class="final-cta__actions">
-          <a href="/wycena/" class="btn btn--primary btn--lg">{page.finalCta.ctaLabel}</a>
+          <a href="/kontakt/#formularz" class="btn btn--primary btn--lg">{page.finalCta.ctaLabel}</a>
           <a href={`tel:${site.phoneRaw}`} class="btn btn--secondary btn--lg">Zadzwoń: 720 719 022</a>
         </div>
         <p class="final-cta__hours">Pn–Pt: {site.hours.weekdays} &middot; Sob: {site.hours.saturday}</p>

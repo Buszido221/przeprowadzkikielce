@@ -148,7 +148,7 @@ export const firmaPage = {
         links: [
           { label: 'Pakowanie i zabezpieczanie', href: '/pakowanie-i-zabezpieczanie/' },
           { label: 'Transport specjalistyczny', href: '/transport-specjalistyczny/' },
-          { label: 'Poproś o wycenę', href: '/wycena/' },
+          { label: 'Poproś o wycenę', href: '/kontakt/#formularz' },
         ],
       },
       {
@@ -156,7 +156,7 @@ export const firmaPage = {
         text: 'Większa liczba elementów, dokumenty, zbiory, wyposażenie pomieszczeń - w takiej skali pracujemy etapami, oznaczamy przenoszone mienie i trzymamy się wspólnie ustalonej kolejności.',
         links: [
           { label: 'Pakowanie i zabezpieczanie', href: '/pakowanie-i-zabezpieczanie/' },
-          { label: 'Poproś o wycenę', href: '/wycena/' },
+          { label: 'Poproś o wycenę', href: '/kontakt/#formularz' },
         ],
       },
     ],
@@ -318,7 +318,7 @@ export const transportSpecPage = {
       {
         title: 'Ciężkie i nietypowe wyposażenie',
         desc: 'Ciężkie meble, urządzenia i nietypowe wyposażenie - oceniamy wymiary, masę i całą drogę transportową, zanim ruszymy.',
-        href: '#wycena',
+        href: '/kontakt/#formularz',
         image: '/images/transport-gabarytow/transport-gabarytow-kielce-7.webp',
         alt: 'Duży zabezpieczony przedmiot podnoszony przy użyciu specjalistycznego sprzętu',
       },
@@ -1248,7 +1248,7 @@ export const poradnikPage = {
   links: [
     { label: 'Pakowanie i zabezpieczanie', href: '/pakowanie-i-zabezpieczanie/' },
     { label: 'WHM Shop', href: '/whm-shop/' },
-    { label: 'Poproś o wycenę', href: '/wycena/' },
+    { label: 'Poproś o wycenę', href: '/kontakt/#formularz' },
   ],
 };
 
@@ -1308,45 +1308,16 @@ export const oNasPage = {
 };
 
 /* ===================================================
-   /wycena/
+   Shared form data (used by /kontakt/ and service pages)
    =================================================== */
 
 export const quoteFormEnabled = true;
 
+export const consentText =
+  'Wyrażam zgodę na wykorzystanie podanych danych w celu obsługi mojego zapytania. Szczegóły znajdują się w polityce prywatności.';
+
 export const wycenaPage = {
-  seo: {
-    title: 'Wycena przeprowadzki | WHM Kielce',
-    description: 'Opisz planowaną przeprowadzkę lub transport. Podaj lokalizacje, zakres, warunki dostępu i nietypowe elementy potrzebne do przygotowania wyceny.',
-    canonical: `${site.domain}wycena/`,
-  },
-  breadcrumbs: [{ label: 'Wycena' }],
-  hero: {
-    heading: 'Opisz zlecenie - zaczniemy od właściwych informacji',
-    lead: 'Nie musisz znać wszystkich parametrów. Podaj to, co wiesz, a brakujące informacje ustalimy podczas rozmowy.',
-  },
-  serviceTypes: [
-    'Przeprowadzka mieszkania lub domu',
-    'Przeprowadzka firmy lub instytucji',
-    'Pakowanie i zabezpieczanie',
-    'Transport pianina lub fortepianu',
-    'Transport gabarytowy',
-    'Transport mebli',
-    'Inny transport specjalistyczny',
-    'Utylizacja mebli',
-    'Przechowywanie mienia',
-    'Nie wiem - potrzebuję pomocy',
-  ],
-  scopeOptions: [
-    'Pakowanie',
-    'Materiały',
-    'Demontaż mebli',
-    'Montaż mebli',
-    'Wynoszenie',
-    'Transport',
-    'Wniesienie',
-    'Przechowywanie',
-  ],
-  consentText: 'Wyrażam zgodę na wykorzystanie podanych danych w celu obsługi mojego zapytania. Szczegóły znajdują się w polityce prywatności.',
+  consentText,
 };
 
 /* ===================================================
@@ -1355,14 +1326,15 @@ export const wycenaPage = {
 
 export const kontaktPage = {
   seo: {
-    title: 'Kontakt | WHM Przeprowadzki Kielce',
-    description: 'Skontaktuj się z WHM Przeprowadzki. Telefon, SMS, e-mail, godziny kontaktu oraz adres operacyjny w Masłowie Pierwszym.',
+    title: 'Kontakt i wycena | WHM Przeprowadzki Kielce',
+    description:
+      'Skontaktuj się z WHM Przeprowadzki. Telefon, SMS, e-mail, godziny kontaktu, adres operacyjny w Masłowie Pierwszym oraz formularz wyceny przeprowadzki.',
     canonical: `${site.domain}kontakt/`,
   },
   breadcrumbs: [{ label: 'Kontakt' }],
   hero: {
     heading: 'Porozmawiajmy o zakresie Twojej przeprowadzki',
-    lead: 'Zadzwoń, napisz SMS-a lub wyślij e-mail. Jeśli chcesz odwiedzić naszą lokalizację operacyjną, skontaktuj się wcześniej telefonicznie.',
+    lead: 'Zadzwoń, napisz SMS-a, wyślij e-mail albo wypełnij formularz wyceny. Jeśli chcesz odwiedzić naszą lokalizację operacyjną, skontaktuj się wcześniej telefonicznie.',
   },
   contact: {
     phone: '+48 720 719 022',

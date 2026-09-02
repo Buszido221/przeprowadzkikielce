@@ -25,7 +25,7 @@ const schema = {
 
 <Layout title={route.title} description={route.description} robots={route.robots} canonical={canonical} ogImage="/images/kielce-moving/przeprowadzki-kielce-1.webp">
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
-  <ServiceHero eyebrow="Usługi WHM" heading="Przeprowadzka i transport dopasowane do jednej rzeczywistej potrzeby" lead="Zamiast mnożyć podobne podstrony, porządkujemy ofertę w sześć czytelnych ścieżek. Jeśli zakres łączy kilka usług, koordynujemy je jako jeden proces." breadcrumbs={[{ label: route.name }]} heroImage="/images/kielce-moving/przeprowadzki-kielce-1.webp" heroAlt="Samochód i zespół WHM podczas realizacji przeprowadzki" secondaryCtaLabel="Przejdź do wyceny" secondaryCtaHref="/wycena/" />
+  <ServiceHero eyebrow="Usługi WHM" heading="Przeprowadzka i transport dopasowane do jednej rzeczywistej potrzeby" lead="Zamiast mnożyć podobne podstrony, porządkujemy ofertę w sześć czytelnych ścieżek. Jeśli zakres łączy kilka usług, koordynujemy je jako jeden proces." breadcrumbs={[{ label: route.name }]} heroImage="/images/kielce-moving/przeprowadzki-kielce-1.webp" heroAlt="Samochód i zespół WHM podczas realizacji przeprowadzki" secondaryCtaLabel="Przejdź do wyceny" secondaryCtaHref="/kontakt/#formularz" />
   <section class="section section--alt">
     <div class="container">
       <SectionHeading label="Oferta B2C" title="Wybierz zakres, który najlepiej opisuje zadanie" />
@@ -37,5 +37,5 @@ const schema = {
   <section class="section">
     <div class="container"><div class="split-section"><div class="split-section__content"><SectionHeading label="Firmy i instytucje" title="Relokacje wymagające planu, etapów i ciągłości działania" description="Dla organizacji przygotowaliśmy osobną ścieżkę obejmującą bezpłatne oględziny, harmonogram, archiwa, sprzęt specjalistyczny i magazynowanie pomostowe." /><div class="section-cta"><a href="/dla-firm/" class="btn btn--primary">Przejdź do oferty B2B</a></div></div><div class="split-section__media"><img src="/images/institution-moving/przeprowadzki-instytucji-2.webp" alt="Zespół WHM podczas relokacji instytucji" width="800" height="600" loading="lazy" decoding="async" class="section-img" /></div></div></div>
   </section>
-  <MobileStickyCta formHref="/wycena/" />
+  <MobileStickyCta formHref="/kontakt/#formularz" />
 </Layout>

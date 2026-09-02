@@ -53,7 +53,7 @@ const jsonLd = {
     ctaLabel={`Zadzwoń: ${site.phone}`}
     ctaHref={`tel:${site.phoneRaw}`}
     ctaSecondaryLabel="Opisz zlecenie"
-    ctaSecondaryHref="#wycena"
+    ctaSecondaryHref="#formularz"
   />
 
   <!-- WHAT WE PACK -->
@@ -163,7 +163,7 @@ const jsonLd = {
     </div>
   </section>
 
-  <section id="wycena" class="form-section" aria-label="Formularz wyceny pakowania">
+  <section id="formularz" class="form-section" aria-label="Formularz wyceny pakowania">
     <div class="container">
       <SectionHeading title="Opisz zakres pakowania" description="Podaj skalę zlecenia, termin i rodzaj mienia. Wystarczy telefon albo e-mail." />
       <div class="form-section__grid">
@@ -202,7 +202,7 @@ const jsonLd = {
         <h2 class="final-cta__heading">Potrzebujesz pomocy z pakowaniem?</h2>
         <p class="final-cta__text">Opisz mienie, zakres pakowania i termin. Przygotujemy propozycję materiałów i pracy zespołu.</p>
         <div class="final-cta__actions">
-          <a href="/wycena/" class="btn btn--primary btn--lg">Zapytaj o pakowanie</a>
+          <a href="/kontakt/#formularz" class="btn btn--primary btn--lg">Zapytaj o pakowanie</a>
           <a href={`tel:${site.phoneRaw}`} class="btn btn--secondary btn--lg">Zadzwoń: {site.phone}</a>
         </div>
         <p class="final-cta__hours">Pn–Pt: {site.hours.weekdays} &middot; Sob: {site.hours.saturday}</p>

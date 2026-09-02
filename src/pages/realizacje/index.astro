@@ -24,18 +24,18 @@ const technicalMentions = [
   <ServiceHero
     eyebrow="Prawdziwe realizacje WHM"
     heading="Projekty, w których sam transport był dopiero początkiem"
-    lead="Przenieść można niemal wszystko. Różnica polega na tym, czy przed rozpoczęciem pracy ktoś potrafi rozpoznać ryzyko, zaplanować kolejność i wziąć odpowiedzialność za cały proces. Pokazujemy realizacje WHM, w których liczyły się nie tylko samochody i siła zespołu, ale również organizacja, sprzęt, zabezpieczenia i umietność rozwiązania problemu."
+    lead="Przenieść można niemal wszystko. Różnica polega na tym, czy przed rozpoczęciem pracy ktoś potrafi rozpoznać ryzyko, zaplanować kolejność i wziąć odpowiedzialność za cały proces. Pokazujemy realizacje WHM, w których liczyły się nie tylko samochody i siła zespołu, ale również organizacja, sprzęt, zabezpieczenia i umiejętność rozwiązania problemu."
     breadcrumbs={[{ label: route.name }]}
     heroImage="/images/kielce-moving/przeprowadzki-kielce-5.webp"
     heroAlt="Zabezpieczone mienie podczas realizacji WHM"
     secondaryCtaLabel="Umów bezpłatne oględziny"
-    secondaryCtaHref="/wycena/"
+    secondaryCtaHref="/kontakt/#formularz"
   />
 
   <section class="section">
     <div class="container">
       <div class="editorial-intro__grid">
-        <SectionHeading title="Nie każdą przeprowadzkę da się zamknąć w prostym schemacie" />
+        <SectionHeading title="Nie każdą przeprowadzkę da się zamknąć w prostym schemacie"  alignment="center" />
         <div class="editorial-intro__copy">
           <p>Nie każdą przeprowadzkę da się zamknąć w prostym schemacie „wyniesienie, transport, wniesienie”. Czasem obraz nie może zostać ustawiony pionowo nawet na chwilę. Czasem niemal osiem tysięcy pozycji archiwum musi po przeprowadzce wrócić dokładnie na swoje miejsce. Innym razem instytucja nie może przerwać pracy, mimo że z budynku trzeba wynieść wyposażenie ponad stu osób, dziesiątki szaf i kilometry bieżące akt.</p>
           <p>W takich projektach najdroższym błędem nie jest dodatkowy kurs samochodu. Jest nim utrata kolejności dokumentacji, uszkodzenie cennego mienia, zatrzymanie działalności klienta albo improwizacja w miejscu, w którym standardowa droga transportu po prostu nie istnieje.</p>
@@ -47,17 +47,18 @@ const technicalMentions = [
 
   <section class="section section--alt">
     <div class="container">
-      <SectionHeading label="Skala" title="Od lokalnej przeprowadzki do relokacji całej instytucji" />
+      <SectionHeading label="Skala" title="Od lokalnej przeprowadzki do relokacji całej instytucji"  alignment="center" />
       <p class="realizacje-hub__intro-text">WHM obsługuje przeprowadzki mieszkań i domów, ale te same zasady odpowiedzialności wykorzystuje również przy relokacjach firm, urzędów, archiwów, obiektów kultury i sprzętu technicznego. Skala się zmienia. Standard przygotowania pozostaje ten sam: oględziny, rozpoznanie drogi, dobór zespołu i sprzętu, zabezpieczenie mienia, zaplanowanie kolejności oraz kontrola realizacji aż do ustawienia ostatniego elementu.</p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <SectionHeading label="Studia przypadków" title="Pełne realizacje WHM" />
+      <SectionHeading label="Studia przypadków" title="Pełne realizacje WHM"  alignment="center" />
       <div class="realizacje-hub__filters">
+        <button class="realizacje-hub__filter is-active" data-filter="all" aria-pressed="true">Wszystkie</button>
         {caseStudyCategories.map((cat) => (
-          <button class="realizacje-hub__filter" data-filter={cat}>{cat}</button>
+          <button class="realizacje-hub__filter" data-filter={cat} aria-pressed="false">{cat}</button>
         ))}
       </div>
       <div class="realizacje-hub__grid">
@@ -80,7 +81,7 @@ const technicalMentions = [
 
   <section class="section section--alt">
     <div class="container">
-      <SectionHeading label="Dalsze realizacje techniczne" title="Doświadczenie przekrojowe WHM" />
+      <SectionHeading label="Dalsze realizacje techniczne" title="Doświadczenie przekrojowe WHM"  alignment="center" />
       <p class="realizacje-hub__intro-text">Poniższe historie są prawdziwe, ale mają mniej szczegółów niż osiem głównych case studies. Zostały uwzględnione w zbiorczym case study technicznym. Osobne indeksowane podstrony można uruchomić dopiero po przypisaniu właściwych zdjęć i wystarczającej treści.</p>
       <div class="realizacje-hub__technical-grid">
         {technicalMentions.map((item) => (
@@ -96,9 +97,9 @@ const technicalMentions = [
 
   <section class="section">
     <div class="container">
-      <SectionHeading label="Pianina i fortepiany" title="Dowód doświadczenia w transporcie instrumentów" />
+      <SectionHeading label="Pianina i fortepiany" title="Dowód doświadczenia w transporcie instrumentów"  alignment="center" />
       <div class="editorial-intro__grid">
-        <SectionHeading title="Setki transportów, każdy oceniany osobno" />
+        <SectionHeading title="Dziesiątki transportów, każdy oceniany osobno"  alignment="center" />
         <div class="editorial-intro__copy">
           <p>WHM przewiozło dziesiątki, a prawdopodobnie setki pianin i fortepianów na terenie województwa świętokrzyskiego. Doświadczenie powstawało przy współpracy z domami kultury, stroicielami instrumentów i organizatorami wydarzeń oraz targów.</p>
           <p>Każdy instrument wymaga osobnej oceny. Znaczenie mają jego typ i masa, stan techniczny, piętra, schody, windy, zakręty, odległość od miejsca postoju oraz sposób ustawienia po transporcie. Dlatego WHM nie sprowadza wyceny do podania jednej stawki za kilogram lub piętro.</p>
@@ -115,13 +116,13 @@ const technicalMentions = [
         <p class="final-cta__text">Przy większych relokacjach WHM może przeprowadzić bezpłatne oględziny, ocenić warunki i przygotować plan. Opowiedz nam, co trzeba przenieść, jakie ograniczenia ma budynek i czego nie można pozostawić przypadkowi.</p>
         <div class="final-cta__actions">
           <a href={`tel:${site.phoneRaw}`} class="btn btn--primary btn--lg" data-cta-click data-cta-location="cases-final">Zadzwoń: {site.phone}</a>
-          <a href="/wycena/" class="btn btn--secondary btn--lg" data-cta-click data-cta-location="cases-final">Umów bezpłatne oględziny</a>
+          <a href="/kontakt/#formularz" class="btn btn--secondary btn--lg" data-cta-click data-cta-location="cases-final">Umów bezpłatne oględziny</a>
         </div>
       </div>
     </div>
   </section>
 
-  <MobileStickyCta formHref="/wycena/" />
+  <MobileStickyCta formHref="/kontakt/#formularz" />
 
   <script>
     const filters = document.querySelectorAll<HTMLButtonElement>('.realizacje-hub__filter');
@@ -130,8 +131,9 @@ const technicalMentions = [
     filters.forEach((filter) => {
       filter.addEventListener('click', () => {
         const category = filter.dataset.filter;
-        filters.forEach((f) => f.classList.remove('is-active'));
+        filters.forEach((f) => { f.classList.remove('is-active'); f.setAttribute('aria-pressed', 'false'); });
         filter.classList.add('is-active');
+        filter.setAttribute('aria-pressed', 'true');
 
         cards.forEach((card) => {
           if (category === 'all' || card.dataset.category === category) {

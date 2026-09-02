@@ -89,13 +89,18 @@ export const standardSection = {
       image: '/images/packing-services/pakowanie-przeprowadzki-kielce-2.webp',
     },
     {
-      name: 'Pasy i uprzęże transportowe',
+      name: 'Pasy transportowe',
       benefit: 'Stabilizują ładunek w samochodzie, żeby nic nie przesunęło się na trasie.',
       image: '/images/furniture-assembly/montaz-demontaz-mebli-1.webp',
     },
     {
+      name: 'Uprzęże transportowe',
+      benefit: 'Pozwalają bezpiecznie podtrzymywać i manewrować ciężkimi przedmiotami podczas przenoszenia.',
+      image: '/images/transport-gabarytow/transport-gabarytow-kielce-1.webp',
+    },
+    {
       name: 'Dwa schodołazy elektryczne',
-      benefit: 'Pozwalają bezpiecznie przenosić ciężkie ładunki po schodach bez ryzyka uszkodzenia.',
+      benefit: 'Pozwalają bezpiecznie przenosić ciężkie ładunki po schodach, ograniczając ryzyko uszkodzenia i przeciążenia zespołu.',
       image: '/images/transport-gabarytow/transport-gabarytow-kielce-5.webp',
     },
     {
@@ -137,7 +142,7 @@ export const featuredRealizations = [
     label: 'Transport dzieła sztuki',
     title: 'Transport zabytkowego obrazu z Zamku Szydłowieckich',
     location: 'Szydłowiec',
-    params: ['Ok. 4,3 m długości', 'Zakaz pionowania', 'Wjazd przez okno'],
+    params: ['Ok. 4,3 m długości', 'Zakaz pionowania', 'Opuszczenie i wprowadzenie przez okno'],
     challenge: 'Opuszczony z drugiego piętra obraz, którego nie wolno ustawić pionowo.',
     result: 'Dzieło trafiło do muzeum bez naruszenia wymaganej pozycji.',
     href: '/realizacje/transport-zabytkowego-obrazu-zamek-szydlowieckich/',

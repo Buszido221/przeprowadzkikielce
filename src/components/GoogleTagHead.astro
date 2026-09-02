@@ -1,13 +1,14 @@
 ---
 import { isStaging } from '../lib/environment';
 
-const GA4_ID = 'G-X0K3ND72TV';
+const GA4_ID = import.meta.env.PUBLIC_GA4_ID ?? '';
+const hasGa = GA4_ID && !isStaging;
 ---
 
-{isStaging ? null : (
+{hasGa && (
   <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`} is:inline></script>
 )}
-{isStaging ? null : (
+{hasGa && (
   <script is:inline>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -18,13 +19,10 @@ const GA4_ID = 'G-X0K3ND72TV';
       ad_personalization: 'denied'
     });
     gtag('js', new Date());
-    gtag('config', 'G-X0K3ND72TV');
+    gtag('config', ${GA4_ID});
     if (localStorage.getItem('whm_cookie_consent') === 'accepted') {
       gtag('consent', 'update', {
-        analytics_storage: 'granted',
-        ad_storage: 'granted',
-        ad_user_data: 'granted',
-        ad_personalization: 'granted'
+        analytics_storage: 'granted'
       });
     }
   </script>

@@ -35,10 +35,7 @@
     hideBanner();
     if (typeof gtag === 'function') {
       gtag('consent', 'update', {
-        analytics_storage: 'granted',
-        ad_storage: 'granted',
-        ad_user_data: 'granted',
-        ad_personalization: 'granted'
+        analytics_storage: 'granted'
       });
     }
     initEventTracking();
@@ -66,10 +63,10 @@
   function trackInteractionEvents() {
     document.addEventListener('whm:analytics', function (e) {
       var detail = e.detail || {};
-      if (detail.event !== 'phone_click' && detail.event !== 'email_click' && detail.event !== 'cta_click') return;
+      if (detail.event !== 'phone_click' && detail.event !== 'email_click' && detail.event !== 'sms_click' && detail.event !== 'cta_click') return;
       if (typeof gtag !== 'function') return;
 
-      var isContact = detail.event === 'phone_click' || detail.event === 'email_click';
+      var isContact = detail.event === 'phone_click' || detail.event === 'email_click' || detail.event === 'sms_click';
       var eventLocation = detail.link_location || detail.cta_location || 'content';
       gtag('event', detail.event, {
         event_category: isContact ? 'kontakt' : 'engagement',

@@ -5,7 +5,7 @@ interface Props {
   formHref?: string;
 }
 
-const { formHref = '#wycena' } = Astro.props;
+const { formHref = '/kontakt/#formularz' } = Astro.props;
 ---
 
 <div class="mobile-sticky-cta" data-mobile-sticky-cta>
@@ -13,6 +13,6 @@ const { formHref = '#wycena' } = Astro.props;
     Zadzwoń
   </a>
   <a href={formHref} class="mobile-sticky-cta__btn mobile-sticky-cta__btn--secondary" data-cta-click data-cta-location="sticky-cta">
-    Wycena
+    Napisz
   </a>
 </div>

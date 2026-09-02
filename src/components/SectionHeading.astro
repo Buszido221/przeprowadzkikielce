@@ -4,13 +4,14 @@ interface Props {
   title: string;
   description?: string;
   tag?: 'h2' | 'h3' | 'h4';
+  alignment?: 'center' | 'left';
 }
 
-const { label, title, description, tag = 'h2' } = Astro.props;
+const { label, title, description, tag = 'h2', alignment = 'left' } = Astro.props;
 const Tag = tag;
 ---
 
-<div class="section-heading">
+<div class={`section-heading section-heading--${alignment}`}>
   {label && <span class="section-heading__label">{label}</span>}
   <Tag class="section-heading__title">{title}</Tag>
   {description && <p class="section-heading__desc">{description}</p>}

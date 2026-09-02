@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import SubpageHero from '../../components/SubpageHero.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
+import LeadForm from '../../components/forms/LeadForm.astro';
 import { site } from '../../data/site';
 import { kontaktPage as page } from '../../data/services';
 
@@ -49,7 +50,7 @@ const jsonLd = {
 
   <section class="section section--alt">
     <div class="container">
-      <SectionHeading label="Dane kontaktowe" title="Skontaktuj się z WHM" />
+      <SectionHeading label="Dane kontaktowe" title="Skontaktuj się z WHM" alignment="center" />
       <div class="contact-grid">
         <div class="contact-card">
           <p class="contact-card__title">Telefon i SMS</p>
@@ -99,16 +100,39 @@ const jsonLd = {
     </div>
   </section>
 
-  <section class="final-cta">
+  <section id="formularz" class="section">
     <div class="container">
-      <div class="final-cta__inner">
-        <h2 class="final-cta__heading">Wolisz opisać zlecenie?</h2>
-        <p class="final-cta__text">Skorzystaj z formularza wyceny - prześlij lokalizacje, zakres i warunki dostępu.</p>
-        <div class="final-cta__actions">
-          <a href="/wycena/" class="btn btn--primary btn--lg">Przejdź do wyceny</a>
-          <a href={`tel:${site.phoneRaw}`} class="btn btn--secondary btn--lg">Zadzwoń: 720 719 022</a>
+      <div class="split-section">
+        <div class="split-section__content">
+          <SectionHeading label="Formularz wyceny" title="Opowiedz nam, czego potrzebujesz" alignment="left" />
+
+          <LeadForm
+            formId="contact-form"
+            serviceType="Wycena - formularz kontaktowy"
+            presentation="page"
+            context="consumer"
+            formLocation="/kontakt/"
+            submitLabel="Wyślij zapytanie"
+          />
         </div>
-        <p class="final-cta__hours">Pn–Pt: {site.hours.weekdays} &middot; Sob: {site.hours.saturday}</p>
+
+        <div class="split-section__media">
+          <SectionHeading label="Alternatywy" title="Możesz też skontaktować się bezpośrednio" alignment="left" />
+          <div class="contact-card">
+            <div class="contact-card__row">
+              <span class="contact-card__label">Telefon / SMS</span>
+              <span class="contact-card__value"><a href={`tel:${site.phoneRaw}`}>{site.phone}</a></span>
+            </div>
+            <div class="contact-card__row">
+              <span class="contact-card__label">E-mail</span>
+              <span class="contact-card__value"><a href={`mailto:${site.email}`}>{site.email}</a></span>
+            </div>
+            <div class="contact-card__row">
+              <span class="contact-card__label">Godziny kontaktu</span>
+              <span class="contact-card__value">Pn–Pt: {site.hours.weekdays}<br />Sob: {site.hours.saturday}</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>

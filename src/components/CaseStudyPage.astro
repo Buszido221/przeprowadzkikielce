@@ -58,7 +58,7 @@ const breadcrumbSchema = {
     heroImage={study.heroImage}
     heroAlt={study.heroAlt}
     secondaryCtaLabel="Umów bezpłatne oględziny"
-    secondaryCtaHref="/wycena/"
+    secondaryCtaHref="/kontakt/#formularz"
   />
 
   <section class="case-study__facts" aria-label="Najważniejsze fakty">
@@ -87,7 +87,7 @@ const breadcrumbSchema = {
     </div>
   </section>
 
-  <section class="case-study__gallery section--alt" aria-label="Galeria zdjęć z realizacji">
+  <section class="case-study__gallery section--alt" aria-label="Zdjęcia przedstawiające sposób pracy WHM">
     <div class="container">
       <SectionHeading label="Zdjęcia z pracy WHM" title="Sposób pracy i zabezpieczenia" />
       <div class="photo-grid photo-grid--3">
@@ -136,11 +136,11 @@ const breadcrumbSchema = {
         <p>{study.salesText}</p>
         <div class="case-study__sales-cta-actions">
           <a href={`tel:${site.phoneRaw}`} class="btn btn--primary btn--lg" data-cta-click data-cta-location="case-study-sales">Zadzwoń: {site.phone}</a>
-          <a href="/wycena/" class="btn btn--secondary btn--lg" data-cta-click data-cta-location="case-study-sales">Umów bezpłatne oględziny</a>
+          <a href="/kontakt/#formularz" class="btn btn--secondary btn--lg" data-cta-click data-cta-location="case-study-sales">Umów bezpłatne oględziny</a>
         </div>
       </div>
     </div>
   </section>
 
-  <MobileStickyCta formHref="/wycena/" />
+  <MobileStickyCta formHref="/kontakt/#formularz" />
 </Layout>

@@ -64,12 +64,13 @@ import { brandNavigation, businessNavigation, serviceNavigation } from '../data/
         <ul class="footer-section__list">
           <li><a href="/polityka-prywatnosci/">Polityka prywatności</a></li>
           <li><a href="/kontakt/">Kontakt</a></li>
-          <li><a href="/wycena/">Poproś o wycenę</a></li>
+          <li><a href="/kontakt/#formularz">Poproś o wycenę</a></li>
         </ul>
       </div>
     </div>
 
     <div class="footer-bottom">
+    <p><a href="#" id="cookie-settings-link" onclick="localStorage.removeItem('whm_cookie_consent');location.reload();return false;">Ustawienia cookies</a></p>
       <p>{site.legalName} &middot; NIP: {site.nip}</p>
     </div>
   </div>

@@ -959,7 +959,7 @@ main {
   align-items: start;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .split-section {
     grid-template-columns: 1fr 1fr;
     gap: var(--space-12);
@@ -969,6 +969,16 @@ main {
   .split-section--reverse .split-section__media {
     order: -1;
   }
+}
+
+.split-section--editorial {
+  align-items: start;
+}
+
+.split-section__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .split-section__media--stack {
